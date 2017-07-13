@@ -1,0 +1,26 @@
+{
+  "name": "@sing-group/mtc-games",
+  "version": "0.1.0-alpha.1",
+  "description": "MultiTasking Cubes games",
+  "main": "index.js",
+  "repository": "https://github.com/sing-group/mtc-games.git",
+  "publishConfig": {
+    "registry": "https://maven.sing-group.org/repository/npm-snapshots/"
+  },
+  "scripts": {
+    "compile": "./node_modules/babel-cli/bin/babel.js --presets=es2015,stage-2 -d src/ lib/",
+    "prepublish": "npm run compile",
+    "test": "./node_modules/babel-cli/bin/babel-node.js spec/run.js"
+  },
+  "author": "Miguel Reboiro-Jato",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "jasmine": "^2.6.0"
+  },
+  "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "check-types": "^7.2.0"
+  }
+}

@@ -1,0 +1,13 @@
+# Node
+node_modules
+build
+.npmrc
+npm-debug.log
+src
+
+# IntelliJ
+.idea
+
+# Generic
+bak
+*.bak
