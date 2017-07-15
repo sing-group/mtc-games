@@ -1,6 +1,6 @@
 {
   "name": "@sing-group/mtc-games",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "description": "MultiTasking Cubes games",
   "main": "index.js",
   "repository": "https://github.com/sing-group/mtc-games.git",
@@ -21,6 +21,7 @@
     "babel-cli": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "check-types": "^7.2.0"
+    "check-types": "^7.2.0",
+    "random-seed": "^0.3.0"
   }
 }
