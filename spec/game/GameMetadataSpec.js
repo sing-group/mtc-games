@@ -18,7 +18,7 @@
 import GameMetadata from '../../lib/game/GameMetadata';
 import I18N from '../../lib/i18n/I18N';
 
-describe('Game metadata tests', function() {
+describe('Game metadata tests', () => {
   it('instantiates', () => {
     new GameMetadata('game');
   });

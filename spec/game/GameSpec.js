@@ -19,7 +19,7 @@ import Game from '../../lib/game/Game';
 import GameMetadata from '../../lib/game/GameMetadata';
 import GameConfig from '../../lib/game/GameConfig';
 
-describe('Game tests', function() {
+describe('Game tests', () => {
   const game = new Game(
     new GameMetadata('game'),
     new GameConfig()

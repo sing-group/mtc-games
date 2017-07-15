@@ -15,35 +15,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import I18N from '../../lib/i18n/I18NStatic';
 
-describe('Game metadata tests', () => {
-  const en_US = {
-    message1: 'Message 1',
-    secondMessage: 'Second Message'
+import MtcDice from '../../lib/dice/MtcDice';
+import MtcDiceFace from '../../lib/dice/MtcDiceFace';
+
+describe('MTC dice const values tests', () => {
+  const getFaceValues = index => {
+    return MtcDiceFace.FACES.map(face => face.value(index));
   };
 
-  const es_ES = {
-    message1: 'Mensaje 1',
-    secondMessage: 'Segundo mensaje'
-  };
+  it('generates 12 dices', () => {
+    expect(MtcDice.DICES.length).toBe(12);
 
-  const gl_ES = {
-    message1: 'Mensaxe 1',
-    secondMessage: 'Segunda mesaxe'
-  };
+    for (let i = 1; i <= 12; i++) {
+      MtcDice.dice(i);
+    }
 
-  it('loads english message', () => {
-    const i18n = new I18N('en_US', { en_US, es_ES, gl_ES });
-
-    expect(i18n.text('message1')).toBe(en_US.message1);
+    expect(() => MtcDice.dice(0)).toThrowError();
+    expect(() => MtcDice.dice(13)).toThrowError();
   });
 
-  it('changes locale', () => {
-    const i18n = new I18N('en_US', { en_US, es_ES, gl_ES });
+  it('returns the dices correctly', () => {
+    for (let i = 1; i <= 12; i++) {
+      const dice = MtcDice.dice(i);
 
-    i18n.locale = 'es_ES';
-
-    expect(i18n.text('message1')).toBe(es_ES.message1);
+      expect(dice.faces).toEqual(MtcDiceFace.FACES);
+      expect(dice.values).toEqual(getFaceValues(i - 1));
+    }
   });
 });

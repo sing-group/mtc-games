@@ -15,35 +15,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import I18N from '../../lib/i18n/I18NStatic';
 
-describe('Game metadata tests', () => {
-  const en_US = {
-    message1: 'Message 1',
-    secondMessage: 'Second Message'
-  };
+import MtcDiceRoller from '../../lib/dice/MtcDiceRoller';
+import MtcDice from '../../lib/dice/MtcDice';
 
-  const es_ES = {
-    message1: 'Mensaje 1',
-    secondMessage: 'Segundo mensaje'
-  };
+describe('MTC dice roller tests', () => {
+  const dice = MtcDice.dice(1);
+  const roller = new MtcDiceRoller(dice);
 
-  const gl_ES = {
-    message1: 'Mensaxe 1',
-    secondMessage: 'Segunda mesaxe'
-  };
-
-  it('loads english message', () => {
-    const i18n = new I18N('en_US', { en_US, es_ES, gl_ES });
-
-    expect(i18n.text('message1')).toBe(en_US.message1);
+  it('assigns the values passed to constructor', () => {
+    expect(roller.dice).toBe(dice);
   });
 
-  it('changes locale', () => {
-    const i18n = new I18N('en_US', { en_US, es_ES, gl_ES });
+  it('returns valid roll results (100 rolls)', () => {
+    for (let i = 0; i < 100; i++) {
+      const result = roller.roll();
 
-    i18n.locale = 'es_ES';
-
-    expect(i18n.text('message1')).toBe(es_ES.message1);
+      expect(dice.isValidValue(result)).toBeTruthy();
+    }
   });
 });
