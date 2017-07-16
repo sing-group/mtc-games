@@ -16,39 +16,64 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import I18NStatic from '../../lib/i18n/I18NStatic';
+import I18NChain from '../../lib/i18n/I18NChain';
 
-describe('I18N static tests', () => {
-  const en_US = {
+describe('I18N chain tests', () => {
+  const en_US1 = {
     message1: 'Message 1',
     firstMessage: 'First Message'
   };
 
-  const es_ES = {
+  const es_ES1 = {
     message1: 'Mensaje 1',
     firstMessage: 'First mensaje'
   };
 
-  const gl_ES = {
+  const gl_ES1 = {
     message1: 'Mensaxe 1',
     firstMessage: 'First mesaxe'
   };
 
-  const locale = 'en_US';
-  const i18n = new I18NStatic(locale, { en_US, es_ES, gl_ES });
+  const en_US2 = {
+    message2: 'Message 2',
+    secondMessage: 'Second Message'
+  };
+
+  const es_ES2 = {
+    message2: 'Mensaje 2',
+    secondMessage: 'Segundo mensaje'
+  };
+
+  const gl_ES2 = {
+    message2: 'Mensaxe 2',
+    secondMessage: 'Segunda mesaxe'
+  };
+
+  const defaultLocale = 'en_US';
+  const i18n = new I18NChain(
+    [
+      new I18NStatic(defaultLocale, { en_US: en_US1, es_ES: es_ES1, gl_ES: gl_ES1 }),
+      new I18NStatic(defaultLocale, { en_US: en_US2, es_ES: es_ES2, gl_ES: gl_ES2 })
+    ],
+    defaultLocale
+  );
 
   it('loads default locale', () => {
-    expect(i18n.locale).toBe(locale);
+    expect(i18n.locale).toBe(defaultLocale);
 
-    expect(i18n.text('message1')).toBe(en_US.message1);
-    expect(i18n.text('firstMessage')).toBe(en_US.firstMessage);
+    expect(i18n.text('message1')).toBe(en_US1.message1);
+    expect(i18n.text('firstMessage')).toBe(en_US1.firstMessage);
+    expect(i18n.text('message2')).toBe(en_US2.message2);
+    expect(i18n.text('secondMessage')).toBe(en_US2.secondMessage);
   });
 
   it('changes locale', () => {
     i18n.locale = 'es_ES';
 
-    expect(i18n.locale).toBe('es_ES');
-    expect(i18n.text('message1')).toBe(es_ES.message1);
-    expect(i18n.text('firstMessage')).toBe(es_ES.firstMessage);
+    expect(i18n.text('message1')).toBe(es_ES1.message1);
+    expect(i18n.text('firstMessage')).toBe(es_ES1.firstMessage);
+    expect(i18n.text('message2')).toBe(es_ES2.message2);
+    expect(i18n.text('secondMessage')).toBe(es_ES2.secondMessage);
   });
 
   it('does not allow invalid locale change', () => {
