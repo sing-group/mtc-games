@@ -15,6 +15,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import GameConfig from '../GameConfig';
 
-export default class VerbalFluencyGameConfig extends GameConfig {}
+import BooleanParameter from '../../../../../lib/game/metadata/parameter/basic/BooleanParameter';
+import ParameterTestBuilder from '../ParameterTestBuilder';
+
+describe('Boolean parameter tests', ParameterTestBuilder.build({
+  paramConstructor: BooleanParameter,
+  id: 'boolean.id',
+  name: 'boolean.name',
+  description: 'boolean.description',
+  defaultValue: true,
+  validValues: [ true, false ],
+  invalidValues: [ null, undefined, 0, 1, 1.2, 'hello', [], {} ]
+}));

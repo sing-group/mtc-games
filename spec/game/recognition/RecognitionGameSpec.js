@@ -15,27 +15,26 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import GameMetadata from '../../lib/game/GameMetadata';
-import I18N from '../../lib/i18n/I18N';
+import RecognitionGame from '../../../lib/game/recognition/RecognitionGame';
+import RecognitionGameMetadata from '../../../lib/game/recognition/RecognitionGameMetadata';
+import GameConfig from '../../../lib/game/GameConfig';
 
-describe('Game metadata tests', () => {
-  it('instantiates', () => {
-    new GameMetadata('game');
+describe('Recognition game metadata test', () => {
+  let game;
+
+  beforeEach(() => {
+    game = new RecognitionGame();
   });
 
-  it('validates id type', () => {
-    const i18n = new I18N('en_US', { name: 'Name', description: 'Description'});
+  it('has the correct metadata', () => {
+    expect(game.metadata).toEqual(jasmine.any(RecognitionGameMetadata));
+  });
 
-    const badInstantiations = [
-      () => new GameMetadata(1),
-      () => new GameMetadata(null),
-      () => new GameMetadata(undefined),
-      () => new GameMetadata(true),
-      () => new GameMetadata({})
-    ];
+  it('has a configuration compatible with the metadata', () => {
+    expect(game.metadata.isValid(game.config)).toBeTruthy();
+  });
 
-    badInstantiations.forEach(
-      instantiation => expect(instantiation).toThrowError(TypeError)
-    );
+  it('rejects invalid game configurations', () => {
+    expect(() => new RecognitionGame(new GameConfig())).toThrowError(TypeError);
   });
 });

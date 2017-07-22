@@ -15,14 +15,29 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import GameMetadata from '../metadata/GameMetadata';
+import VerbalFluencyGameMetadata from '../../../lib/game/verbal_fluency/VerbalFluencyGameMetadata';
+import extendedArrayMatchers from '../../matchers/extendedArrayMatchers';
 
-export default class VerbalFluencyGameMetadata extends GameMetadata {
-  static get ID() {
-    return 'verbal_fluency';
-  }
+describe('Recognition game metadata test', () => {
+  let metadata;
 
-  constructor() {
-    super(VerbalFluencyGameMetadata.ID);
-  }
-}
+  beforeAll(() => {
+    jasmine.addMatchers(extendedArrayMatchers);
+  });
+
+  beforeEach(() => {
+    metadata = new VerbalFluencyGameMetadata();
+  });
+
+  afterEach(() => {
+    metadata = null;
+  });
+
+  it('has the correct id', () => {
+    expect(metadata.id).toBe(VerbalFluencyGameMetadata.ID);
+  });
+
+  it('has the correct parameter ids', () => {
+    expect(metadata.parameterIds()).toEqual([]);
+  });
+});

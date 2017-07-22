@@ -26,7 +26,7 @@ describe('MTC dice roller tests', () => {
   const dices = MtcDice.DICES;
   const roller = new MtcDicesRoller(dices);
 
-  beforeEach(() => {
+  beforeAll(() => {
     jasmine.addMatchers(extendedArrayMatchers);
     jasmine.addMatchers(diceMatchers);
   });

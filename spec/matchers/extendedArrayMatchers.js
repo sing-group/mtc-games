@@ -24,10 +24,10 @@ const extendedArrayMatchers = {
 
         if (!Array.isArray(actual)) {
           result.pass = false;
-          result.message = 'Expected ' + actual + ' to be an array';
+          result.message = 'Expected [' + actual + '] to be an array';
         } else if (!Array.isArray(expected)) {
           result.pass = false;
-          result.message = 'Expected ' + expected + ' to be an array';
+          result.message = 'Expected [' + expected + '] to be an array';
         } else {
           result.pass = true;
           for (const value of actual) {
@@ -38,10 +38,43 @@ const extendedArrayMatchers = {
           }
 
           if (result.pass) {
-            result.message = expected + ' contains all the elements of ' + actual;
+            result.message = '[' + expected + '] contains all the elements of [' + actual + ']';
           } else {
-            result.message = 'Expected ' + expected + ' to contain all the elements of ' + actual
-              + ', but some elements are missing';
+            result.message = 'Expected [' + expected + '] to contain all the elements of [' + actual
+              + '], but some elements are missing';
+          }
+        }
+
+        return result;
+      }
+    };
+  },
+
+  toHaveSameValuesAs(util, customEqualityTester) {
+    return {
+      compare(actual, expected) {
+        const result = {};
+
+        if (!Array.isArray(actual)) {
+          result.pass = false;
+          result.message = 'Expected [' + actual + '] to be an array';
+        } else if (!Array.isArray(expected)) {
+          result.pass = false;
+          result.message = 'Expected [' + expected + '] to be an array';
+        } else {
+          result.pass = true;
+
+          const actualSet = new Set(actual);
+          const expectedSet = new Set(actual);
+
+          result.pass = actualSet.size === expectedSet.size
+            && Array.from(actualSet).every(value => expectedSet.has(value));
+
+          if (result.pass) {
+            result.message = '[' + expected + ' has the same elements as [' + actual + ']';
+          } else {
+            result.message = 'Expected [' + expected + '] to have the same elements as [' + actual
+              + '], but there are some differences';
           }
         }
 
@@ -76,9 +109,9 @@ const extendedArrayMatchers = {
           }
 
           if (result.pass) {
-            result.message = actual + ' does not contain repeated values';
+            result.message = '[' + actual + '] does not contain repeated values';
           } else {
-            result.message = 'Expected ' + actual + ' to do not contain repeated values, but it does';
+            result.message = 'Expected [' + actual + '] to do not contain repeated values, but it does';
           }
         } else {
           result.pass = false;
@@ -113,11 +146,11 @@ const extendedArrayMatchers = {
           }
 
           if (result.pass) {
-            result.message = actual + ' contains once ' + expected;
+            result.message = '[' + actual + '] contains once ' + expected;
           } else if (found) {
-            result.message = 'Expected ' + actual + ' to contain ' + expected + ' once, but it was found more than once';
+            result.message = 'Expected [' + actual + '] to contain ' + expected + ' once, but it was found more than once';
           } else {
-            result.message = 'Expected ' + actual + ' to contain ' + expected + ' once, but it was not found';
+            result.message = 'Expected [' + actual + '] to contain ' + expected + ' once, but it was not found';
           }
         } else {
           result.message = 'Expected ' + actual + ' to be an array';

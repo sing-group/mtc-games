@@ -15,14 +15,29 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import GameMetadata from '../metadata/GameMetadata';
+import GameMetadata from '../../../lib/game/metadata/GameMetadata';
+import Parameter from '../../../lib/game/metadata/parameter/Parameter';
+import SecondsParameter from '../../../lib/game/metadata/parameter/time/SecondsParameter';
+import IntegerParameter from '../../../lib/game/metadata/parameter/basic/IntegerParameter';
 
-export default class VerbalFluencyGameMetadata extends GameMetadata {
+const id = 'stub';
+
+export default class GameMetadataStub extends GameMetadata {
   static get ID() {
-    return 'verbal_fluency';
+    return id;
   }
 
   constructor() {
-    super(VerbalFluencyGameMetadata.ID);
+    super(
+      GameMetadataStub.ID,
+      [
+        Parameter.build(SecondsParameter, id, 'param1', 5),
+        Parameter.build(IntegerParameter, id, 'param2', 1, 1, 10)
+      ]
+    );
+  }
+
+  isValid(configuration) {
+    return true;
   }
 }
