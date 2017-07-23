@@ -22,7 +22,7 @@ describe('I18N id builder tests', () => {
     expect(I18NId.forGame('game1').id()).toBe('game.game1');
   });
 
-  it('creates the game name id', () => {
+  it('creates the game nameId id', () => {
     expect(I18NId.forGame('game1').name()).toBe('game.game1.name');
   });
 
@@ -34,7 +34,7 @@ describe('I18N id builder tests', () => {
     expect(I18NId.forGame('game1').param('param1').id()).toBe('game.game1.param.param1');
   });
 
-  it('creates the game param name id', () => {
+  it('creates the game param nameId id', () => {
     expect(I18NId.forGame('game1').param('param1').name()).toBe('game.game1.param.param1.name');
   });
 
@@ -46,7 +46,7 @@ describe('I18N id builder tests', () => {
     expect(I18NId.forParam('param1').id()).toBe('param.param1');
   });
 
-  it('creates the param name id', () => {
+  it('creates the param nameId id', () => {
     expect(I18NId.forParam('param1').name()).toBe('param.param1.name');
   });
 

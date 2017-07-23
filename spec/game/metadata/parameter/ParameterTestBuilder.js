@@ -35,8 +35,8 @@ export default class ParameterTestBuilder {
     return new ParameterTestBuilder(
       parameters.paramConstructor,
       parameters.id,
-      parameters.name,
-      parameters.description,
+      parameters.nameId,
+      parameters.descriptionId,
       parameters.defaultValue,
       parameters.validValues,
       parameters.invalidValues,
@@ -48,8 +48,8 @@ export default class ParameterTestBuilder {
   constructor(constructor, id, name, description, defaultValue, validValues, invalidValues, additionalParameters, additionalTests) {
     this._constructor = constructor;
     this._id = id;
-    this._name = name;
-    this._description = description;
+    this._nameId = name;
+    this._descriptionId = description;
     this._defaultValue = defaultValue;
     this._validValues = validValues;
     this._invalidValues = invalidValues;
@@ -60,13 +60,13 @@ export default class ParameterTestBuilder {
   createBuilder() {
     return () => {
       const parameter = new this._constructor(
-        this._id, this._name, this._description, this._defaultValue, ...this._additionalParameters
+        this._id, this._nameId, this._descriptionId, this._defaultValue, ...this._additionalParameters
       );
 
       it('assigns the default properties correctly', () => {
         expect(parameter.id).toBe(this._id);
-        expect(parameter.name).toBe(this._name);
-        expect(parameter.description).toBe(this._description);
+        expect(parameter.nameId).toBe(this._nameId);
+        expect(parameter.descriptionId).toBe(this._descriptionId);
         expect(parameter.defaultValue).toBe(this._defaultValue);
       });
 

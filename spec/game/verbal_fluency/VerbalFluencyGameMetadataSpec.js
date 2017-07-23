@@ -16,28 +16,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import VerbalFluencyGameMetadata from '../../../lib/game/verbal_fluency/VerbalFluencyGameMetadata';
-import extendedArrayMatchers from '../../matchers/extendedArrayMatchers';
+import GameTestBuilder from '../GameTestBuilder';
 
-describe('Recognition game metadata test', () => {
-  let metadata;
-
-  beforeAll(() => {
-    jasmine.addMatchers(extendedArrayMatchers);
-  });
-
-  beforeEach(() => {
-    metadata = new VerbalFluencyGameMetadata();
-  });
-
-  afterEach(() => {
-    metadata = null;
-  });
-
-  it('has the correct id', () => {
-    expect(metadata.id).toBe(VerbalFluencyGameMetadata.ID);
-  });
-
-  it('has the correct parameter ids', () => {
-    expect(metadata.parameterIds()).toEqual([]);
-  });
-});
+describe('Recognition game metadata test', GameTestBuilder.build({
+  metadataConstructor: VerbalFluencyGameMetadata
+}));

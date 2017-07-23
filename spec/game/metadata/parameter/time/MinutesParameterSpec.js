@@ -21,13 +21,13 @@ import ParameterTestBuilder from '../ParameterTestBuilder';
 
 const id = 'minutes.id';
 const name = 'minutes.name';
-const description = 'minutes.description';
+const description = 'minutes.descriptionId';
 
 describe('Minutes parameter tests', ParameterTestBuilder.build({
   paramConstructor: MinutesParameter,
   id: id,
-  name: name,
-  description: description,
+  nameId: name,
+  descriptionId: description,
   defaultValue: 1,
   validValues: ParameterTestBuilder.intRange(MinutesParameter.MIN, MinutesParameter.MAX),
   invalidValues: [ null, undefined, true, false, 1.2, 'hello', [], {} ],

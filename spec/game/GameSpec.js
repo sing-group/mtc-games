@@ -16,20 +16,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import Game from '../../lib/game/Game';
-import GameMetadata from '../../lib/game/metadata/GameMetadata';
+import GameMetadataStub from './metadata/GameMetadataStub';
 import GameConfig from '../../lib/game/GameConfig';
 
 describe('Game tests', () => {
-  /*const game = new Game(
-    new GameMetadata('game'),
-    new GameConfig()
-  );*/
+  const metadata = new GameMetadataStub('game');
+  const config = GameConfig.forMetadata(metadata);
+  const game = new Game(metadata, config);
 
-  /*it('assigns id correctly', () => {
-    expect(game.metadata.id).toBe('game');
+  it('assigns parameters correctly', () => {
+    expect(game.metadata).toBe(metadata);
+    expect(game.config).toBe(config);
   });
-
-  it('doesn\'t allow id changes', () => {
-    expect(() => { game.metadata.id = 1 }).toThrowError(TypeError);
-  });*/
 });

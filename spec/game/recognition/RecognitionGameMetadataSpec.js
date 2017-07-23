@@ -16,36 +16,15 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import RecognitionGameMetadata from '../../../lib/game/recognition/RecognitionGameMetadata';
-import extendedArrayMatchers from '../../matchers/extendedArrayMatchers';
 import SecondsParameter from "../../../lib/game/metadata/parameter/time/SecondsParameter";
 import IntegerParameter from "../../../lib/game/metadata/parameter/basic/IntegerParameter";
+import GameTestBuilder from '../GameTestBuilder';
 
-describe('Recognition game metadata test', () => {
-  let metadata;
-
-  beforeAll(() => {
-    jasmine.addMatchers(extendedArrayMatchers);
-  });
-
-  beforeEach(() => {
-    metadata = new RecognitionGameMetadata();
-  });
-
-  afterEach(() => {
-    metadata = null;
-  });
-
-  it('has the correct id', () => {
-    expect(metadata.id).toBe(RecognitionGameMetadata.ID);
-  });
-
-  it('has the correct parameter ids', () => {
-    expect(metadata.parameterIds()).toHaveSameValuesAs([ 'diceShowTime', 'numOfStimuli', 'maxRepetitions' ]);
-  });
-
-  it('has the correct parameter types', () => {
-    expect(metadata.parameter('diceShowTime')).toEqual(jasmine.any(SecondsParameter));
-    expect(metadata.parameter('numOfStimuli')).toEqual(jasmine.any(IntegerParameter));
-    expect(metadata.parameter('maxRepetitions')).toEqual(jasmine.any(IntegerParameter));
-  });
-});
+describe('Recognition game metadata test', GameTestBuilder.build({
+  metadataConstructor: RecognitionGameMetadata,
+  paramTypes: {
+    'diceShowTime': SecondsParameter,
+    'numOfStimuli': IntegerParameter,
+    'maxRepetitions': IntegerParameter
+  }
+}));

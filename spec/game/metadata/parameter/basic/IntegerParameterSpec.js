@@ -21,15 +21,15 @@ import ParameterTestBuilder from '../ParameterTestBuilder';
 
 const id = 'integer.id';
 const name = 'integer.name';
-const description = 'integer.description';
+const description = 'integer.descriptionId';
 const min = 0;
 const max = 10;
 
 describe('Integer parameter tests', ParameterTestBuilder.build({
   paramConstructor: IntegerParameter,
   id: id,
-  name: name,
-  description: description,
+  nameId: name,
+  descriptionId: description,
   defaultValue: 3,
   validValues: ParameterTestBuilder.intRange(min, max),
   invalidValues: [ null, undefined, true, false, 1.2, 'hello', [], {} ],

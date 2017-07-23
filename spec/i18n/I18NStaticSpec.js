@@ -43,6 +43,14 @@ describe('I18N static tests', () => {
     expect(i18n.text('firstMessage')).toBe(en_US.firstMessage);
   });
 
+  it('has identifies which text ids are valid', () => {
+    expect(i18n.has('message1')).toBeTruthy();
+    expect(i18n.has('firstMessage')).toBeTruthy();
+
+    expect(i18n.has('badMessage')).toBeFalsy();
+    expect(i18n.has('wrongMessage')).toBeFalsy();
+  });
+
   it('changes locale', () => {
     i18n.locale = 'es_ES';
 

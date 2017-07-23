@@ -17,6 +17,7 @@
  */
 import GameConfig from '../../lib/game/GameConfig';
 import GameMetadataStub from './metadata/GameMetadataStub';
+import I18NStatic from '../../lib/i18n/I18NStatic';
 
 describe('Game config test', () => {
   let metadata;
@@ -35,7 +36,6 @@ describe('Game config test', () => {
   it('extracts the metadata properties', () => {
     expect(config.time).toBe(GameConfig.DEFAULTS.TIME);
     expect(config.timerVisible).toBe(GameConfig.DEFAULTS.TIMER_VISIBLE);
-    expect(config.repeatsAllowed).toBe(GameConfig.DEFAULTS.REPEATS_ALLOWED);
 
     for (const param of metadata.parameterIds()) {
       expect(config[param]).toBe(metadata.parameter(param).defaultValue);
@@ -51,7 +51,6 @@ describe('Game config test', () => {
     const expectedValues = {
       time: GameConfig.DEFAULTS.TIME,
       timerVisible: GameConfig.DEFAULTS.TIMER_VISIBLE,
-      repeatsAllowed: GameConfig.DEFAULTS.REPEATS_ALLOWED,
       ...expectedParamValues
     };
 
@@ -71,5 +70,14 @@ describe('Game config test', () => {
   it('validates the property values', () => {
     expect(() => config.param1 = 100).toThrowError(TypeError);
     expect(() => config.param2 = 11).toThrowError(TypeError);
+  });
+
+  it('has valid i18n ids', () => {
+    const i18n = I18NStatic.COMMON_INSTANCE;
+
+    expect(i18n.has(config.timeNameId)).toBeTruthy();
+    expect(i18n.has(config.timeDescriptionId)).toBeTruthy();
+    expect(i18n.has(config.timerVisibleNameId)).toBeTruthy();
+    expect(i18n.has(config.timerVisibleDescriptionId)).toBeTruthy();
   });
 });

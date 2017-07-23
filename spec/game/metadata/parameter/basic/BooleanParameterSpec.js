@@ -22,8 +22,8 @@ import ParameterTestBuilder from '../ParameterTestBuilder';
 describe('Boolean parameter tests', ParameterTestBuilder.build({
   paramConstructor: BooleanParameter,
   id: 'boolean.id',
-  name: 'boolean.name',
-  description: 'boolean.description',
+  nameId: 'boolean.name',
+  descriptionId: 'boolean.descriptionId',
   defaultValue: true,
   validValues: [ true, false ],
   invalidValues: [ null, undefined, 0, 1, 1.2, 'hello', [], {} ]
