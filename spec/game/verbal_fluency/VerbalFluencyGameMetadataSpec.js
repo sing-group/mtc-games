@@ -15,9 +15,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+import GameTaskType from '../../../lib/game/metadata/GameTaskType';
 import VerbalFluencyGameMetadata from '../../../lib/game/verbal_fluency/VerbalFluencyGameMetadata';
 import GameTestBuilder from '../GameTestBuilder';
 
 describe('Recognition game metadata test', GameTestBuilder.build({
-  metadataConstructor: VerbalFluencyGameMetadata
+  metadataConstructor: VerbalFluencyGameMetadata,
+  taskTypes: [ GameTaskType.TYPES.VERBAL_FLUENCY ]
 }));

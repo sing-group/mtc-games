@@ -22,12 +22,14 @@ export default class GameTestBuilder {
   static build(parameters) {
     return new GameTestBuilder(
       parameters.metadataConstructor,
+      parameters.taskTypes,
       parameters.paramTypes
     ).createBuilder();
   }
 
-  constructor(metadataConstructor, paramTypes = []) {
+  constructor(metadataConstructor, taskTypes = [], paramTypes = []) {
     this._metadataConstructor = metadataConstructor;
+    this._taskTypes = taskTypes;
     this._paramTypes = paramTypes;
   }
 
@@ -50,6 +52,10 @@ export default class GameTestBuilder {
 
       it('has the correct id', () => {
         expect(metadata.id).toBe(this._metadataConstructor.ID);
+      });
+
+      it('has the correct task types', () => {
+        expect(metadata.taskTypes).toHaveSameValuesAs(Object.keys(this._taskTypes));
       });
 
       it('has the correct parameter ids', () => {

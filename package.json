@@ -1,6 +1,6 @@
 {
   "name": "@sing-group/mtc-games",
-  "version": "0.1.0-alpha.9",
+  "version": "0.1.0-alpha.10",
   "description": "MultiTasking Cubes games",
   "main": "index.js",
   "repository": "https://github.com/sing-group/mtc-games.git",

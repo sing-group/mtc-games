@@ -16,6 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import GameMetadata from '../../../lib/game/metadata/GameMetadata';
+import GameTaskType from '../../../lib/game/metadata/GameTaskType';
 import Parameter from '../../../lib/game/metadata/parameter/Parameter';
 import SecondsParameter from '../../../lib/game/metadata/parameter/time/SecondsParameter';
 import IntegerParameter from '../../../lib/game/metadata/parameter/basic/IntegerParameter';
@@ -30,6 +31,7 @@ export default class GameMetadataStub extends GameMetadata {
   constructor() {
     super(
       GameMetadataStub.ID,
+      [ GameTaskType.TYPES.FREE_MEMORY ],
       [
         Parameter.build(SecondsParameter, id, 'param1', 5),
         Parameter.build(IntegerParameter, id, 'param2', 1, 1, 10)

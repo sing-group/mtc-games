@@ -15,15 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import GameMetadata from '../metadata/GameMetadata';
-import GameTaskType from '../metadata/GameTaskType';
+import GameTastkType from '../../../lib/game/metadata/GameTaskType';
+import i18nMatchers from '../../matchers/i18nMatchers';
 
-export default class VerbalFluencyGameMetadata extends GameMetadata {
-  static get ID() {
-    return 'verbalFluency';
-  }
+describe('Game task type test', () => {
+  beforeAll(() => {
+    jasmine.addMatchers(i18nMatchers);
+  });
 
-  constructor() {
-    super(VerbalFluencyGameMetadata.ID, [ GameTaskType.TYPES.VERBAL_FLUENCY ]);
-  }
-}
+  it('has valid i18n ids for default types', () => {
+    for (const type of Object.values(GameTastkType.TYPES)) {
+      expect(type.id).toHaveI18NMessage();
+    }
+  });
+});
