@@ -17,7 +17,7 @@
  */
 
 const diceMatchers = {
-  toBeAValidRollFor(util, customEqualityTester) {
+  toBeAValidRollFor() {
     return {
       compare(actual, expected) {
         const result = {};
@@ -45,7 +45,6 @@ const diceMatchers = {
             }
 
             if (!found) {
-              console.log('No dice found for ' + rollResult);
               result.pass = false;
               break;
             }

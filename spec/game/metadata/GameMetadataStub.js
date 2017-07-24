@@ -37,7 +37,7 @@ export default class GameMetadataStub extends GameMetadata {
     );
   }
 
-  isValid(configuration) {
+  isValid() {
     return true;
   }
 }

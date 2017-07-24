@@ -20,7 +20,7 @@ import I18N from '../../lib/i18n/I18N';
 import I18NStatic from '../../lib/i18n/I18NStatic';
 
 const i18nMatchers = {
-  toHaveI18NMessage(util, customEqualityTester) {
+  toHaveI18NMessage() {
     return {
       compare(actual) {
         check.assert.string(actual, 'actual should be a string');

@@ -52,8 +52,8 @@ describe('Array checks test', () => {
   });
 
   it('checks non repeated values', () => {
-    for (const repeatedCase of repeatedCases) {
-      expect(ArrayCheck.nonRepeatedValues(nonRepeatedCases)).toBeTruthy();
+    for (const nonRepeatedCase of nonRepeatedCases) {
+      expect(ArrayCheck.nonRepeatedValues(nonRepeatedCase)).toBeTruthy();
     }
   });
 

@@ -17,7 +17,7 @@
  */
 
 const extendedArrayMatchers = {
-  toBeAllIn(util, customEqualityTester) {
+  toBeAllIn() {
     return {
       compare(actual, expected) {
         const result = {};
@@ -50,7 +50,7 @@ const extendedArrayMatchers = {
     };
   },
 
-  toHaveSameValuesAs(util, customEqualityTester) {
+  toHaveSameValuesAs() {
     return {
       compare(actual, expected) {
         const result = {};
@@ -83,9 +83,9 @@ const extendedArrayMatchers = {
     };
   },
 
-  toDoNotHaveRepeatedValues(util, customEqualityTester) {
+  toDoNotHaveRepeatedValues() {
     return {
-      compare(actual, expected) {
+      compare(actual) {
         const result = {};
 
         if (Array.isArray(actual)) {
@@ -123,7 +123,7 @@ const extendedArrayMatchers = {
     };
   },
 
-  toContainOnce(util, customEqualityTester) {
+  toContainOnce() {
     return {
       compare(actual, expected) {
         const result = {};
