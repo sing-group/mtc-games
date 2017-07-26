@@ -1,13 +1,12 @@
 const webpack = require('webpack');
 const path = require('path');
-const TransferWebpackPlugin = require('transfer-webpack-plugin');
 
 module.exports = {
   // Entry points to the project
   entry: {
     main: [
       // only- means to only hot reload for successful updates
-      './src/index.jsx'
+      './lib/index.js'
     ],
   },
   devtool: 'source-map',
