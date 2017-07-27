@@ -20,9 +20,9 @@ import VerbalFluencyGame from '../lib/game/verbal_fluency/VerbalFluencyGame';
 import RecognitionGame from '../lib/game/recognition/RecognitionGame';
 import GameConfig from '../lib/game/GameConfig';
 
-let config = new GameConfig();
-config.resX = 800;
-config.resY = 600;
-config.domId = 'targetDiv';
+let gameConfig = new GameConfig();
+gameConfig.resX = 800;
+gameConfig.resY = 600;
+gameConfig.domId = 'targetDiv';
 
-const game = new VerbalFluencyGame(config);
+const game = new VerbalFluencyGame(gameConfig);
