@@ -6,7 +6,7 @@ module.exports = {
   entry: {
     main: [
       // only- means to only hot reload for successful updates
-      './lib/index.js'
+      './demo/pack-script.js'
     ],
   },
   devtool: 'source-map',

@@ -8,6 +8,9 @@ src
 # IntelliJ
 .idea
 
+# Visual Studio Code
+.vscode
+
 # Generic
 bak
 *.bak

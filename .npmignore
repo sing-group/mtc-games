@@ -7,6 +7,12 @@ npm-debug.log
 # IntelliJ
 .idea
 
+# Visual Studio Code
+.vscode
+
+# Development demo
+demo
+
 # Generic
 bak
 *.bak

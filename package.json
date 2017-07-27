@@ -8,11 +8,12 @@
     "registry": "https://maven.sing-group.org/repository/npm-snapshots/"
   },
   "scripts": {
-    "compile": "./node_modules/babel-cli/bin/babel.js --presets=es2015,stage-2 -d src/ lib/",
+    "compile": "node ./node_modules/babel-cli/bin/babel.js --presets=es2015,stage-2 -d src/ lib/",
+    "pack": "node ./node_modules/webpack/bin/webpack.js --config ./webpack-dev-server.config.js --progress --colors",
     "prepublish": "npm run compile",
-    "test": "./node_modules/babel-cli/bin/babel-node.js spec/run.js",
-    "code-check": "./node_modules/eslint/bin/eslint.js lib",
-    "spec-check": "./node_modules/eslint/bin/eslint.js --config .eslintrc_spec.json spec"
+    "test": "node ./node_modules/babel-cli/bin/babel-node.js spec/run.js",
+    "code-check": "node ./node_modules/eslint/bin/eslint.js lib",
+    "spec-check": "node ./node_modules/eslint/bin/eslint.js --config .eslintrc_spec.json spec"
   },
   "author": "Miguel Reboiro-Jato",
   "license": "GPL-3.0",

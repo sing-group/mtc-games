@@ -16,7 +16,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import VerbalFluencyGame from './game/verbal_fluency/VerbalFluencyGame';
+import VerbalFluencyGame from '../lib/game/verbal_fluency/VerbalFluencyGame';
+import RecognitionGame from '../lib/game/recognition/RecognitionGame';
 
 const game = new VerbalFluencyGame();
 
