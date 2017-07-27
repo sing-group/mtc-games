@@ -18,7 +18,11 @@
 
 import VerbalFluencyGame from '../lib/game/verbal_fluency/VerbalFluencyGame';
 import RecognitionGame from '../lib/game/recognition/RecognitionGame';
+import GameConfig from '../lib/game/GameConfig';
 
-const game = new VerbalFluencyGame();
+let config = new GameConfig();
+config.resX = 800;
+config.resY = 600;
+config.domId = 'targetDiv';
 
-game.startAt(window, 'game');
+const game = new VerbalFluencyGame(config);
