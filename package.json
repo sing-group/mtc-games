@@ -10,6 +10,7 @@
   "scripts": {
     "compile": "node ./node_modules/babel-cli/bin/babel.js --presets=es2015,stage-2 -d src/ lib/",
     "pack": "node ./node_modules/webpack/bin/webpack.js --config ./webpack-dev-server.config.js --progress --colors",
+    "demo-server": "node node_modules/http-server/bin/http-server ./",
     "prepublish": "npm run compile",
     "test": "node ./node_modules/babel-cli/bin/babel-node.js spec/run.js",
     "code-check": "node ./node_modules/eslint/bin/eslint.js lib",
@@ -26,7 +27,8 @@
     "jasmine": "^2.6.0",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
-    "webpack": "^3.4.1"
+    "webpack": "^3.4.1",
+    "http-server": "^0.10.0"
   },
   "dependencies": {
     "babel-cli": "^6.24.1",
