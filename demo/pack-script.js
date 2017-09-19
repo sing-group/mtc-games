@@ -23,6 +23,7 @@ import GameConfig from '../lib/game/GameConfig';
 let gameConfig = new GameConfig();
 gameConfig.resX = 800;
 gameConfig.resY = 600;
+gameConfig.time = 10;
 gameConfig.domId = 'targetDiv';
 
 const game = new VerbalFluencyGame(gameConfig);

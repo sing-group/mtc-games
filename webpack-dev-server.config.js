@@ -10,6 +10,9 @@ module.exports = {
     ],
   },
   devtool: 'source-map',
+  devServer: {
+    contentBase: './'
+  },
   output: {
     path: path.resolve(__dirname, 'build'), // Path of output file
     filename: 'app.js'
