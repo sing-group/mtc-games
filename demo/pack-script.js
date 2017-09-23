@@ -18,12 +18,34 @@
 
 import VerbalFluencyGame from '../lib/game/verbal_fluency/VerbalFluencyGame';
 import RecognitionGame from '../lib/game/recognition/RecognitionGame';
-import GameConfig from '../lib/game/GameConfig';
+import VerbalFluencyGameConfig from '../lib/game/verbal_fluency/VerbalFluencyGameConfig';
 
-let gameConfig = new GameConfig();
+function gameStartHandler(){
+    console.log("The game has started");
+}
+
+function gameEndHandler(result){
+    console.log("The game has ended. Results:");
+    console.log(result);
+}
+
+function gameResetHandler(){
+    console.log("User pressed reset");
+}
+
+function gameCheckHandler(result){
+    console.log("User checked a word. Result: ");
+    console.log(result);
+}
+
+let gameConfig = new VerbalFluencyGameConfig();
 gameConfig.resX = 800;
 gameConfig.resY = 600;
 gameConfig.time = 20;
 gameConfig.domId = 'targetDiv';
+gameConfig.gameStartCallbackFunction = gameStartHandler;
+gameConfig.gameEndCallbackFunction = gameEndHandler;
+gameConfig.gameCheckCallbackFunction = gameCheckHandler;
+gameConfig.gameResetCallbackFunction = gameResetHandler;
 
 const game = new VerbalFluencyGame(gameConfig);
