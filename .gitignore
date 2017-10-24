@@ -11,6 +11,9 @@ src
 # Visual Studio Code
 .vscode
 
+# Build
+sing-group-mtc-games-*.tgz
+
 # Generic
 bak
 *.bak
