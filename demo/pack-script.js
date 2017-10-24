@@ -17,9 +17,11 @@
  */
 
 import VerbalFluencyGame from '../lib/game/verbal_fluency/VerbalFluencyGame';
-import RecognitionGame from '../lib/game/recognition/RecognitionGame';
 import VerbalFluencyGameConfig from '../lib/game/verbal_fluency/VerbalFluencyGameConfig';
+import RecognitionGame from '../lib/game/recognition/RecognitionGame';
+import RecognitionGameConfig from '../lib/game/recognition/RecognitionGameConfig';
 
+// Common functions
 function gameStartHandler(){
     console.log("The game has started");
 }
@@ -29,23 +31,47 @@ function gameEndHandler(result){
     console.log(result);
 }
 
-function gameResetHandler(){
-    console.log("User pressed reset");
-}
 
-function gameCheckHandler(result){
-    console.log("User checked a word. Result: ");
-    console.log(result);
-}
 
-let gameConfig = new VerbalFluencyGameConfig();
+
+// region Test VerbalFluencyGame
+
+// function gameResetHandler(){
+//     console.log("User pressed reset");
+// }
+
+// function gameCheckHandler(result){
+//     console.log("User checked a word. Result: ");
+//     console.log(result);
+// }
+
+// let gameConfig = new VerbalFluencyGameConfig();
+// gameConfig.resX = 800;
+// gameConfig.resY = 600;
+// gameConfig.time = 20;
+// gameConfig.domId = 'targetDiv';
+// gameConfig.gameStartCallbackFunction = gameStartHandler;
+// gameConfig.gameEndCallbackFunction = gameEndHandler;
+// gameConfig.gameCheckCallbackFunction = gameCheckHandler;
+// gameConfig.gameResetCallbackFunction = gameResetHandler;
+
+// const game = new VerbalFluencyGame(gameConfig);
+// endregion
+
+// region Test RecognitionGame
+
+let gameConfig = new RecognitionGameConfig();
 gameConfig.resX = 800;
 gameConfig.resY = 600;
 gameConfig.time = 20;
 gameConfig.domId = 'targetDiv';
+gameConfig.timePerElement = 3,
+gameConfig.numberOfElements = 2,
+gameConfig.numberOfTries = 1,
+gameConfig.responseIntroduction = RecognitionGameConfig.RESPONSETYPES.NORMAL;
 gameConfig.gameStartCallbackFunction = gameStartHandler;
 gameConfig.gameEndCallbackFunction = gameEndHandler;
-gameConfig.gameCheckCallbackFunction = gameCheckHandler;
-gameConfig.gameResetCallbackFunction = gameResetHandler;
 
-const game = new VerbalFluencyGame(gameConfig);
+const game = new RecognitionGame(gameConfig);
+
+// endregion
