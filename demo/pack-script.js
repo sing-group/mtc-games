@@ -36,42 +36,45 @@ function gameEndHandler(result){
 
 // region Test VerbalFluencyGame
 
-// function gameResetHandler(){
-//     console.log("User pressed reset");
-// }
+function gameResetHandler(){
+    console.log("User pressed reset");
+}
 
-// function gameCheckHandler(result){
-//     console.log("User checked a word. Result: ");
-//     console.log(result);
-// }
+function gameCheckHandler(result){
+    console.log("User checked a word. Result: ");
+    console.log(result);
+}
 
-// let gameConfig = new VerbalFluencyGameConfig();
-// gameConfig.resX = 800;
-// gameConfig.resY = 600;
-// gameConfig.time = 20;
-// gameConfig.domId = 'targetDiv';
-// gameConfig.gameStartCallbackFunction = gameStartHandler;
-// gameConfig.gameEndCallbackFunction = gameEndHandler;
-// gameConfig.gameCheckCallbackFunction = gameCheckHandler;
-// gameConfig.gameResetCallbackFunction = gameResetHandler;
+let gameConfig1 = new VerbalFluencyGameConfig();
+gameConfig1.resX = 800;
+gameConfig1.resY = 600;
+gameConfig1.time = 20;
+gameConfig1.domId = 'div1';
+gameConfig1.locale = 'en_US';
+gameConfig1.gameStartCallbackFunction = gameStartHandler;
+gameConfig1.gameEndCallbackFunction = gameEndHandler;
+gameConfig1.gameCheckCallbackFunction = gameCheckHandler;
+gameConfig1.gameResetCallbackFunction = gameResetHandler;
 
-// const game = new VerbalFluencyGame(gameConfig);
+const game1 = new VerbalFluencyGame(gameConfig1);
+
 // endregion
 
 // region Test RecognitionGame
 
-let gameConfig = new RecognitionGameConfig();
-gameConfig.resX = 800;
-gameConfig.resY = 600;
-gameConfig.time = 20;
-gameConfig.domId = 'targetDiv';
-gameConfig.timePerElement = 3,
-gameConfig.numberOfElements = 2,
-gameConfig.numberOfTries = 1,
-gameConfig.responseIntroduction = RecognitionGameConfig.RESPONSETYPES.NORMAL;
-gameConfig.gameStartCallbackFunction = gameStartHandler;
-gameConfig.gameEndCallbackFunction = gameEndHandler;
+let gameConfig2 = new RecognitionGameConfig();
+gameConfig2.resX = 800;
+gameConfig2.resY = 600;
+gameConfig2.time = 20;
+gameConfig2.domId = 'div2';
+gameConfig2.locale = 'en_US';
+gameConfig2.timePerElement = 3,
+gameConfig2.numberOfElements = 2,
+gameConfig2.numberOfTries = 1,
+gameConfig2.responseIntroduction = RecognitionGameConfig.RESPONSETYPES.NORMAL;
+gameConfig2.gameStartCallbackFunction = gameStartHandler;
+gameConfig2.gameEndCallbackFunction = gameEndHandler;
 
-const game = new RecognitionGame(gameConfig);
+const game2 = new RecognitionGame(gameConfig2);
 
 // endregion
