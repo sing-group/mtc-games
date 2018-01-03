@@ -80,6 +80,9 @@ const diceMatchers = {
                 if (face === null) {
                   face = dice.getFaceForValue(rollResult);
                 } else if (face !== dice.getFaceForValue(rollResult)) {
+                  console.log("RESULT:", rollResult);
+                  console.log("FACE:", face);
+                  console.log("NEW FACE:", dice.getFaceForValue(rollResult));
                   result.pass = false;
                   result.message = 'Expected ' + actual + ' to be a valid face roll for ' + expected + ', but it is not';
 

@@ -1,6 +1,6 @@
 {
   "name": "@sing-group/mtc-games",
-  "version": "0.1.0-alpha.20",
+  "version": "0.1.0-alpha.21",
   "description": "MultiTasking Cubes - Games",
   "license": "GPL-3.0",
   "author": [
@@ -27,7 +27,7 @@
   },
   "scripts": {
     "compile": "node ./node_modules/babel-cli/bin/babel.js --presets=env -d src/ lib/ --copy-files",
-    "prepublish": "npm run compile",
+    "prepare": "npm run compile",
     "test": "node ./node_modules/babel-cli/bin/babel-node.js spec/run.js",
     "code-check": "node ./node_modules/eslint/bin/eslint.js lib",
     "spec-check": "node ./node_modules/eslint/bin/eslint.js --config .eslintrc_spec.json spec"

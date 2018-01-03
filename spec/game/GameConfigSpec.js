@@ -51,11 +51,10 @@ describe('Game config test', () => {
       param2: 1
     };
 
-    const expectedValues = {
+    const expectedValues = Object.assign({}, expectedParamValues, {
       time: GameConfig.DEFAULTS.TIME,
-      timerVisible: GameConfig.DEFAULTS.TIMER_VISIBLE,
-      ...expectedParamValues
-    };
+      timerVisible: GameConfig.DEFAULTS.TIMER_VISIBLE
+    });
 
     expect(config.getParameterValues()).toEqual(expectedValues);
     expect(config.getParameterValues(true)).toEqual(expectedValues);
