@@ -48,6 +48,14 @@ describe('Array checks test', () => {
     [ 1, 2, 3 ], [ 1, 2, 1 ]
   ];
 
+  const presentValues = [
+    1, 'b','world', false, 1.2, 5
+  ];
+
+  const absentValues = [
+    10, 'w','ola', 0, 3.5, 0
+  ];
+
   it('checks repeated values', () => {
     for (const repeatedCase of repeatedCases) {
      expect(ArrayCheck.nonRepeatedValues(repeatedCase)).toBeFalsy();
@@ -100,5 +108,41 @@ describe('Array checks test', () => {
 
     expect(() => ArrayCheck.assert.haveSameValues(diffValues[0], diffValues[1], customMessage))
       .toThrowError(TypeError, customMessage);
+  });
+
+  it('checks if an array contains a value', () => {
+    for (let i = 0; i < presentValues.length; i++) {
+      const array = nonRepeatedCases[i];
+      const value = presentValues[i];
+
+      expect(ArrayCheck.hasValue(array, value)).toBeTruthy();
+    }
+  });
+
+  it('checks if an array does not contain a value', () => {
+    for (let i = 0; i < absentValues.length; i++) {
+      const array = nonRepeatedCases[i];
+      const value = absentValues[i];
+
+      expect(ArrayCheck.hasValue(array, value)).toBeFalsy();
+    }
+  });
+
+  it('asserts if an array contains a value', () => {
+    for (let i = 0; i < presentValues.length; i++) {
+      const array = nonRepeatedCases[i];
+      const value = presentValues[i];
+
+      ArrayCheck.assert.hasValue(array, value);
+    }
+  });
+
+  it('asserts if an array does not contain a value', () => {
+    for (let i = 0; i < absentValues.length; i++) {
+      const array = nonRepeatedCases[i];
+      const value = absentValues[i];
+
+      expect(() => ArrayCheck.assert.hasValue(array, value)).toThrowError(TypeError);
+    }
   });
 });

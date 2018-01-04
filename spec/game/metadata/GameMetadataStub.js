@@ -18,15 +18,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import GameMetadata from '../../../lib/game/metadata/GameMetadata';
 import GameTaskType from '../../../lib/game/metadata/GameTaskType';
 import Parameter from '../../../lib/game/metadata/parameter/Parameter';
 import SecondsParameter from '../../../lib/game/metadata/parameter/time/SecondsParameter';
 import IntegerParameter from '../../../lib/game/metadata/parameter/basic/IntegerParameter';
+import GameCallbackStub from "./GameCallbackStub";
+import StandardGameMetadata from "../../../lib/game/metadata/StandardGameMetadata";
 
 const id = 'stub';
 
-export default class GameMetadataStub extends GameMetadata {
+export default class GameMetadataStub extends StandardGameMetadata {
   static get ID() {
     return id;
   }
@@ -38,7 +39,8 @@ export default class GameMetadataStub extends GameMetadata {
       [
         Parameter.build(SecondsParameter, id, 'param1', 5),
         Parameter.build(IntegerParameter, id, 'param2', 1, 1, 10)
-      ]
+      ],
+      GameCallbackStub
     );
   }
 

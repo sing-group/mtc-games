@@ -23,13 +23,15 @@ import GameTaskType from '../../../lib/game/metadata/GameTaskType';
 import SecondsParameter from "../../../lib/game/metadata/parameter/time/SecondsParameter";
 import IntegerParameter from "../../../lib/game/metadata/parameter/basic/IntegerParameter";
 import GameTestBuilder from '../GameTestBuilder';
+import EnumStringParameter from "../../../lib/game/metadata/parameter/enum/EnumStringParameter";
 
 describe('Recognition game metadata test', GameTestBuilder.build({
   metadataConstructor: RecognitionGameMetadata,
   taskTypes: [ GameTaskType.TYPES.RECOGNITION ],
   paramTypes: {
-    'diceShowTime': SecondsParameter,
-    'numOfStimuli': IntegerParameter,
-    'maxRepetitions': IntegerParameter
+    'timePerElement': SecondsParameter,
+    'numberOfElements': IntegerParameter,
+    'numberOfTries': IntegerParameter,
+    'responseIntroduction': EnumStringParameter
   }
 }));

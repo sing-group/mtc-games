@@ -1,6 +1,6 @@
-/*
+/**
  * MultiTasking Cubes - Games
- * Copyright (C) 2017 - Miguel Reboiro-Jato, Andrés Vieira Vázquez,
+ * Copyright (C) 2017-2018 - Miguel Reboiro-Jato, Andrés Vieira Vázquez,
  * Adolfo Piñón Blanco, Hugo López-Fernández, Rosalía Laza Fidalgo,
  * Reyes Pavón Rial, Francisco Otero Lamas, Adrián Varela Pomar,
  * Carlos Spuch Calvar, and Tania Rivera Baltanás
@@ -18,18 +18,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import Jasmine from 'jasmine';
+import GameCallback from "../../../lib/game/callback/GameCallback";
 
-const jasmine = new Jasmine();
-jasmine.loadConfig({
-  "spec_dir": "spec",
-  "spec_files": [
-    "**/*[sS]pec.js"
-  ],
-  "helpers": [
-    "helpers/**/*.js"
-  ],
-  "stopSpecOnExpectationFailure": false,
-  "random": false
-});
-jasmine.execute();
+export default class GameCallbackStub extends GameCallback {
+  gameFinished() {}
+
+  gameStarted() {}
+}

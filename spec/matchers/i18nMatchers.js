@@ -30,7 +30,7 @@ const i18nMatchers = {
 
         const result = {
           pass: true,
-          message: '\'' + actual + '\' has I18N messages'
+          message: '\'' + actual + '\' has i18n messages'
         };
 
         const i18n = new I18NStatic();

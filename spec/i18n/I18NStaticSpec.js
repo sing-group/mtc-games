@@ -20,7 +20,7 @@
  */
 import I18NStatic from '../../lib/i18n/I18NStatic';
 
-describe('I18N static tests', () => {
+describe('i18n static tests', () => {
   const en_US = {
     message1: 'Message 1',
     firstMessage: 'First Message'

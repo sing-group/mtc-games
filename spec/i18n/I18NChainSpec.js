@@ -21,7 +21,7 @@
 import I18NStatic from '../../lib/i18n/I18NStatic';
 import I18NChain from '../../lib/i18n/I18NChain';
 
-describe('I18N chain tests', () => {
+describe('i18n chain tests', () => {
   const en_US1 = {
     message1: 'Message 1',
     firstMessage: 'First Message'

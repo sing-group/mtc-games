@@ -21,6 +21,9 @@
 import GameConfig from '../../lib/game/GameConfig';
 import GameMetadataStub from './metadata/GameMetadataStub';
 import I18NStatic from '../../lib/i18n/I18NStatic';
+import GameCallback from "../../lib/game/callback/GameCallback";
+import GameCallbackStub from "./metadata/GameCallbackStub";
+import StandardGameMetadata from "../../lib/game/metadata/StandardGameMetadata";
 
 describe('Game config test', () => {
   let metadata;
@@ -28,7 +31,7 @@ describe('Game config test', () => {
 
   beforeEach(() => {
     metadata = new GameMetadataStub();
-    config = GameConfig.forMetadata(metadata);
+    config = GameConfig.forMetadata(metadata, new GameCallbackStub());
   });
 
   afterEach(() => {
@@ -37,9 +40,6 @@ describe('Game config test', () => {
   });
 
   it('extracts the metadata properties', () => {
-    expect(config.time).toBe(GameConfig.DEFAULTS.TIME);
-    expect(config.timerVisible).toBe(GameConfig.DEFAULTS.TIMER_VISIBLE);
-
     for (const param of metadata.parameterIds()) {
       expect(config[param]).toBe(metadata.parameter(param).defaultValue);
     }
@@ -51,14 +51,12 @@ describe('Game config test', () => {
       param2: 1
     };
 
-    const expectedValues = Object.assign({}, expectedParamValues, {
-      time: GameConfig.DEFAULTS.TIME,
-      timerVisible: GameConfig.DEFAULTS.TIMER_VISIBLE
-    });
+    const expectedValues = Object.assign({
+      time: StandardGameMetadata.DEFAULTS.TIME,
+      timerVisible: StandardGameMetadata.DEFAULTS.TIMER_VISIBLE
+    }, expectedParamValues);
 
-    expect(config.getParameterValues()).toEqual(expectedValues);
-    expect(config.getParameterValues(true)).toEqual(expectedValues);
-    expect(config.getParameterValues(false)).toEqual(expectedParamValues);
+    expect(config.parameterValues).toEqual(expectedValues);
   });
 
   it('changes the property values', () => {
@@ -70,16 +68,26 @@ describe('Game config test', () => {
   });
 
   it('validates the property values', () => {
-    expect(() => config.param1 = 100).toThrowError(TypeError);
+    expect(() => config.param1 = 901).toThrowError(TypeError);
     expect(() => config.param2 = 11).toThrowError(TypeError);
   });
 
   it('has valid i18n ids', () => {
     const i18n = I18NStatic.COMMON_INSTANCE;
 
-    expect(i18n.has(config.timeNameId)).toBeTruthy();
-    expect(i18n.has(config.timeDescriptionId)).toBeTruthy();
-    expect(i18n.has(config.timerVisibleNameId)).toBeTruthy();
-    expect(i18n.has(config.timerVisibleDescriptionId)).toBeTruthy();
+    expect(i18n.has(config.widthNameId)).toBeTruthy();
+    expect(i18n.has(config.widthDescriptionId)).toBeTruthy();
+    expect(i18n.has(config.heightNameId)).toBeTruthy();
+    expect(i18n.has(config.heightDescriptionId)).toBeTruthy();
+    expect(i18n.has(config.domIdNameId)).toBeTruthy();
+    expect(i18n.has(config.domIdDescriptionId)).toBeTruthy();
+    expect(i18n.has(config.localeNameId)).toBeTruthy();
+    expect(i18n.has(config.localeDescriptionId)).toBeTruthy();
+    expect(i18n.has(config.i18nNameId)).toBeTruthy();
+    expect(i18n.has(config.i18nDescriptionId)).toBeTruthy();
+  });
+
+  it('checks callback type', () => {
+    expect(() => config.gameCallback = new GameCallback()).toThrowError(TypeError);
   });
 });

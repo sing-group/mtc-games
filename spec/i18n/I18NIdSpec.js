@@ -20,7 +20,7 @@
  */
 import I18NId from '../../lib/i18n/I18NId';
 
-describe('I18N id builder tests', () => {
+describe('i18n id builder tests', () => {
   it('creates the game id', () => {
     expect(I18NId.forGame('game1').id()).toBe('game.game1');
   });
