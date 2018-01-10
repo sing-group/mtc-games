@@ -18,6 +18,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+
 import GameTaskType from '../../../lib/game/metadata/GameTaskType';
 import Parameter from '../../../lib/game/metadata/parameter/Parameter';
 import SecondsParameter from '../../../lib/game/metadata/parameter/time/SecondsParameter';

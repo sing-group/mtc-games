@@ -18,12 +18,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-import RecognitionGameMetadata from '../../../lib/game/recognition/RecognitionGameMetadata';
+//import RecognitionGameMetadata from '../../../lib/game/recognition/RecognitionGameMetadata';
 import GameTaskType from '../../../lib/game/metadata/GameTaskType';
 import SecondsParameter from "../../../lib/game/metadata/parameter/time/SecondsParameter";
 import IntegerParameter from "../../../lib/game/metadata/parameter/basic/IntegerParameter";
 import GameTestBuilder from '../GameTestBuilder';
 import EnumStringParameter from "../../../lib/game/metadata/parameter/enum/EnumStringParameter";
+import RecognitionGameMetadata from "../../../lib/game/recognition/RecognitionGameMetadata";
 
 describe('Recognition game metadata test', GameTestBuilder.build({
   metadataConstructor: RecognitionGameMetadata,
