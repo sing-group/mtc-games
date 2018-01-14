@@ -1,6 +1,6 @@
 {
   "name": "@sing-group/mtc-games",
-  "version": "0.1.5",
+  "version": "0.2.0-alpha.1",
   "description": "MultiTasking Cubes - Games",
   "license": "GPL-3.0",
   "author": {
@@ -21,7 +21,7 @@
   "main": "index.js",
   "repository": "https://github.com/sing-group/mtc-games.git",
   "publishConfig": {
-    "registry": "https://maven.sing-group.org/repository/npm-releases/"
+    "registry": "https://maven.sing-group.org/repository/npm-snapshots/"
   },
   "scripts": {
     "compile": "node ./node_modules/babel-cli/bin/babel.js --presets=env -d src/ lib/ --copy-files",
