@@ -53,7 +53,8 @@ describe('Game config test', () => {
 
     const expectedValues = Object.assign({
       time: StandardGameMetadata.DEFAULTS.TIME,
-      timerVisible: StandardGameMetadata.DEFAULTS.TIMER_VISIBLE
+      timerVisible: StandardGameMetadata.DEFAULTS.TIMER_VISIBLE,
+      numberOfTries: StandardGameMetadata.DEFAULTS.NUMBER_OF_TRIES
     }, expectedParamValues);
 
     expect(config.parameterValues).toEqual(expectedValues);

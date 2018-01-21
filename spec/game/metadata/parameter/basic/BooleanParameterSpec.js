@@ -28,6 +28,6 @@ describe('Boolean parameter tests', ParameterTestBuilder.build({
   nameId: 'boolean.name',
   descriptionId: 'boolean.descriptionId',
   defaultValue: true,
-  validValues: [ true, false ],
+  validValues: [ true, false, 'true', 'false' ],
   invalidValues: [ null, undefined, 0, 1, 1.2, 'hello', [], {} ]
 }));

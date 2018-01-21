@@ -25,6 +25,7 @@ import ParameterTestBuilder from '../ParameterTestBuilder';
 const id = 'seconds.id';
 const name = 'seconds.name';
 const description = 'seconds.descriptionId';
+const valueRange = ParameterTestBuilder.intRange(SecondsParameter.MIN, SecondsParameter.MAX);
 
 describe('Minutes parameter tests', ParameterTestBuilder.build({
   paramConstructor: SecondsParameter,
@@ -32,7 +33,10 @@ describe('Minutes parameter tests', ParameterTestBuilder.build({
   nameId: name,
   descriptionId: description,
   defaultValue: 1,
-  validValues: ParameterTestBuilder.intRange(SecondsParameter.MIN, SecondsParameter.MAX),
+  validValues: [
+    ...valueRange,
+    ...valueRange.map(value => value.toString())
+  ],
   invalidValues: [ null, undefined, true, false, 1.2, 'hello', [], {} ],
   additionalTests: () => {
     it('constructors checks range', () => {

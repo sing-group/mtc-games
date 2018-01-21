@@ -27,6 +27,7 @@ const name = 'integer.name';
 const description = 'integer.descriptionId';
 const min = 0;
 const max = 10;
+const intRange = ParameterTestBuilder.intRange(min, max);
 
 describe('Integer parameter tests', ParameterTestBuilder.build({
   paramConstructor: IntegerParameter,
@@ -34,7 +35,10 @@ describe('Integer parameter tests', ParameterTestBuilder.build({
   nameId: name,
   descriptionId: description,
   defaultValue: 3,
-  validValues: ParameterTestBuilder.intRange(min, max),
+  validValues: [
+    ...intRange,
+    ...intRange.map(value => value.toString())
+  ],
   invalidValues: [ null, undefined, true, false, 1.2, 'hello', [], {} ],
   additionalParameters: [ min, max ],
   additionalTests: () => {
