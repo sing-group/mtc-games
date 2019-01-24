@@ -1,6 +1,6 @@
 {
   "name": "@sing-group/mtc-games",
-  "version": "0.2.0-alpha.24",
+  "version": "0.2.0-alpha.25",
   "description": "MultiTasking Cubes - Games",
   "license": "GPL-3.0",
   "author": {
@@ -34,14 +34,14 @@
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-eslint": "8.1.2",
-    "babel-preset-env": "1.6.1",
+    "babel-preset-env": "1.7.0",
     "eslint": "4.14.0",
-    "eslint-plugin-jasmine": "2.9.1",
-    "jasmine": "2.8.0"
+    "eslint-plugin-jasmine": "2.10.1",
+    "jasmine": "2.9.0"
   },
   "dependencies": {
-    "check-types": "7.3.0",
-    "phaser-ce": "2.9.4",
+    "check-types": "7.4.0",
+    "phaser-ce": "2.11.1",
     "random-seed": "0.3.0"
   }
 }
