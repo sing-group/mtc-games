@@ -13,8 +13,8 @@ interdisciplinar.
 
 ## Contributors
 Development team:
-* Andrés Vieira Vázquez
 * Miguel Reboiro-Jato
+* Germán Veras Gómez
 
 Research team:
 * Miguel Reboiro-Jato
@@ -26,6 +26,9 @@ Research team:
 * Adrián Varela Pomar
 * Carlos Spuch Calvar
 * Tania Rivera Baltanás
+
+Past developers:
+* Andrés Vieira Vázquez
 
 ## License
 This software is distributed under a GNU GPLv3 license. Please, read the
