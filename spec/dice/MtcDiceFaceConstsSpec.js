@@ -26,7 +26,7 @@ describe('MTC dice face const values tests', () => {
     MtcDiceFace.NUMBERS_FACE_NAME,
     MtcDiceFace.LETTERS_FACE_NAME,
     MtcDiceFace.COLORS_FACE_NAME,
-    MtcDiceFace.SYLLABLES_FACE_NAME,
+    MtcDiceFace.TRIGRAMS_FACE_NAME,
     MtcDiceFace.WORDS_FACE_NAME,
     MtcDiceFace.TOOLS_FACE_NAME,
   ];
@@ -47,7 +47,7 @@ describe('MTC dice face const values tests', () => {
     expect(MtcDiceFace.NUMBERS_FACE.name).toBe(MtcDiceFace.NUMBERS_FACE_NAME);
     expect(MtcDiceFace.LETTERS_FACE.name).toBe(MtcDiceFace.LETTERS_FACE_NAME);
     expect(MtcDiceFace.COLORS_FACE.name).toBe(MtcDiceFace.COLORS_FACE_NAME);
-    expect(MtcDiceFace.SYLLABLES_FACE.name).toBe(MtcDiceFace.SYLLABLES_FACE_NAME);
+    expect(MtcDiceFace.TRIGRAMS_FACE.name).toBe(MtcDiceFace.TRIGRAMS_FACE_NAME);
     expect(MtcDiceFace.WORDS_FACE.name).toBe(MtcDiceFace.WORDS_FACE_NAME);
     expect(MtcDiceFace.TOOLS_FACE.name).toBe(MtcDiceFace.TOOLS_FACE_NAME);
   });
@@ -56,7 +56,7 @@ describe('MTC dice face const values tests', () => {
     expect(MtcDiceFace.NUMBERS_FACE.values).toEqual(MtcDiceFace.NUMBERS_FACE_VALUES);
     expect(MtcDiceFace.LETTERS_FACE.values).toEqual(MtcDiceFace.LETTERS_FACE_VALUES);
     expect(MtcDiceFace.COLORS_FACE.values).toEqual(MtcDiceFace.COLORS_FACE_VALUES);
-    expect(MtcDiceFace.SYLLABLES_FACE.values).toEqual(MtcDiceFace.SYLLABLES_FACE_VALUES);
+    expect(MtcDiceFace.TRIGRAMS_FACE.values).toEqual(MtcDiceFace.TRIGRAMS_FACE_VALUES);
     expect(MtcDiceFace.WORDS_FACE.values).toEqual(MtcDiceFace.WORDS_FACE_VALUES);
     expect(MtcDiceFace.TOOLS_FACE.values).toEqual(MtcDiceFace.TOOLS_FACE_VALUES);
   });
