@@ -1,6 +1,6 @@
 {
   "name": "@sing-group/mtc-games",
-  "version": "0.3.0-alpha.4",
+  "version": "0.3.0-alpha.5",
   "description": "MultiTasking Cubes - Games",
   "license": "GPL-3.0",
   "author": {
@@ -25,15 +25,16 @@
     "registry": "https://maven.sing-group.org/repository/npm-snapshots/"
   },
   "scripts": {
-    "compile": "node ./node_modules/.bin/babel --presets=env -d src/ lib/ --copy-files",
+    "compile": "node ./node_modules/babel-cli/bin/babel.js --presets=env -d src/ lib/ --copy-files",
     "compile-watch": "npm run compile -- --watch",
     "prepare": "npm run compile",
-    "test": "node ./node_modules/.bin/babel-node --presets=env spec/run.js",
-    "code-check": "node ./node_modules/.bin/eslint lib",
-    "spec-check": "node ./node_modules/.bin/eslint --config .eslintrc_spec.json spec"
+    "test": "node ./node_modules/babel-cli/bin/babel-node.js --presets=env spec/run.js",
+    "code-check": "node ./node_modules/eslint/bin/eslint.js lib",
+    "spec-check": "node ./node_modules/eslint/bin/eslint.js --config .eslintrc_spec.json spec"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
+    "babel-core": "6.26.3",
     "babel-eslint": "10.0.1",
     "babel-preset-env": "1.7.0",
     "eslint": "5.13.0",
@@ -42,7 +43,7 @@
   },
   "dependencies": {
     "check-types": "8.0.1",
-    "phaser-ce": "2.12.0",
+    "phaser": "3.16.2",
     "random-seed": "0.3.0"
   }
 }
