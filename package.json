@@ -1,6 +1,6 @@
 {
   "name": "@sing-group/mtc-games",
-  "version": "0.3.0-alpha.5",
+  "version": "0.3.0-alpha.7",
   "description": "MultiTasking Cubes - Games",
   "license": "GPL-3.0",
   "author": {
@@ -19,27 +19,38 @@
     "Carlos Spuch Calvar",
     "Tania Rivera Baltanás"
   ],
-  "main": "index.js",
-  "repository": "https://github.com/sing-group/mtc-games.git",
+  "main": "./lib/@sing-group/mtc-games.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sing-group/mtc-games.git"
+  },
   "publishConfig": {
     "registry": "https://maven.sing-group.org/repository/npm-snapshots/"
   },
   "scripts": {
-    "compile": "node ./node_modules/babel-cli/bin/babel.js --presets=env -d src/ lib/ --copy-files",
-    "compile-watch": "npm run compile -- --watch",
-    "prepare": "npm run compile",
-    "test": "node ./node_modules/babel-cli/bin/babel-node.js --presets=env spec/run.js",
-    "code-check": "node ./node_modules/eslint/bin/eslint.js lib",
-    "spec-check": "node ./node_modules/eslint/bin/eslint.js --config .eslintrc_spec.json spec"
+    "build": "./node_modules/.bin/webpack --progress --colors",
+    "test": "./node_modules/.bin/babel --presets=@babel/preset-env spec/run.js",
+    "code-check": "./node_modules/.bin/eslint src",
+    "spec-check": "./node_modules/.bin/eslint --config .eslintrc_spec.json spec"
   },
   "devDependencies": {
-    "babel-cli": "6.26.0",
-    "babel-core": "6.26.3",
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.3.4",
+    "@babel/preset-env": "7.3.4",
     "babel-eslint": "10.0.1",
-    "babel-preset-env": "1.7.0",
+    "babel-loader": "8.0.5",
+    "babel-plugin-add-module-exports": "1.0.0",
+    "circular-dependency-plugin": "^5.0.2",
+    "clean-webpack-plugin": "2.0.0",
     "eslint": "5.13.0",
+    "eslint-loader": "2.1.2",
     "eslint-plugin-jasmine": "2.10.1",
-    "jasmine": "3.3.1"
+    "expose-loader": "0.7.5",
+    "file-loader": "3.0.1",
+    "jasmine": "3.3.1",
+    "url-loader": "1.1.2",
+    "webpack": "4.29.6",
+    "webpack-cli": "3.2.3"
   },
   "dependencies": {
     "check-types": "8.0.1",

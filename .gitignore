@@ -3,7 +3,7 @@ node_modules
 build
 .npmrc
 npm-debug.log
-src
+lib
 
 # IntelliJ
 .idea
