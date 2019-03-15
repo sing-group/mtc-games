@@ -19,36 +19,36 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import {VerbalFluencyGameMetadata} from '../verbal_fluency';
-import {RecognitionGameMetadata} from '../recognition';
-import {CentralExecutiveGameMetadata} from '../central_executive';
 
+import {GameResult} from '../GameResult';
+import check from 'check-types';
 
-export class GameMetadataBuilder {
-  static gameIds() {
-    return [
-      VerbalFluencyGameMetadata.ID,
-      RecognitionGameMetadata.ID,
-      CentralExecutiveGameMetadata.ID
-    ];
+export class CentralExecutiveGameResult extends GameResult {
+  constructor(gameCompleted, guessed, failed) {
+    super(['gameCompleted', 'guessed', 'failed', 'totalTries']);
+
+    check.assert.boolean(gameCompleted, 'gameCompleted should be a boolean value');
+    check.assert.greaterOrEqual(guessed, 0, 'guessed should be positive');
+    check.assert.greaterOrEqual(failed, 0, 'failed should be positive');
+
+    this._gameCompleted = gameCompleted;
+    this._guessed = guessed;
+    this._failed = failed;
   }
 
-  static gameMetadataForId(id) {
-    switch (id) {
-      case VerbalFluencyGameMetadata.ID:
-        return VerbalFluencyGameMetadata;
-      case RecognitionGameMetadata.ID:
-        return RecognitionGameMetadata;
-      case CentralExecutiveGameMetadata.ID:
-        return CentralExecutiveGameMetadata;
-      default:
-        throw new Error('Unrecognized game metadata id: ' + id);
-    }
+  get gameCompleted() {
+    return this._gameCompleted;
   }
 
-  buildGameMetadata(id) {
-    const metadata = GameMetadataBuilder.gameMetadataForId(id);
+  get guessed() {
+    return this._guessed;
+  }
 
-    return new metadata();
+  get failed() {
+    return this._failed;
+  }
+
+  get totalTries() {
+    return this._guessed + this._failed;
   }
 }

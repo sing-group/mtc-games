@@ -19,36 +19,14 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import {VerbalFluencyGameMetadata} from '../verbal_fluency';
-import {RecognitionGameMetadata} from '../recognition';
-import {CentralExecutiveGameMetadata} from '../central_executive';
+import {CentralExecutiveMainCallback} from './CentralExecutiveMainCallback';
+import {CentralExecutiveMainRenderer} from './CentralExecutiveMainRenderer';
+import {CentralExecutiveMainStageRenderConfiguration} from './CentralExecutiveMainStageRenderConfiguration';
+import {CentralExecutiveMainStageStatus} from './CentralExecutiveMainStageStatus';
 
-
-export class GameMetadataBuilder {
-  static gameIds() {
-    return [
-      VerbalFluencyGameMetadata.ID,
-      RecognitionGameMetadata.ID,
-      CentralExecutiveGameMetadata.ID
-    ];
-  }
-
-  static gameMetadataForId(id) {
-    switch (id) {
-      case VerbalFluencyGameMetadata.ID:
-        return VerbalFluencyGameMetadata;
-      case RecognitionGameMetadata.ID:
-        return RecognitionGameMetadata;
-      case CentralExecutiveGameMetadata.ID:
-        return CentralExecutiveGameMetadata;
-      default:
-        throw new Error('Unrecognized game metadata id: ' + id);
-    }
-  }
-
-  buildGameMetadata(id) {
-    const metadata = GameMetadataBuilder.gameMetadataForId(id);
-
-    return new metadata();
-  }
-}
+export {
+  CentralExecutiveMainCallback,
+  CentralExecutiveMainRenderer,
+  CentralExecutiveMainStageRenderConfiguration,
+  CentralExecutiveMainStageStatus
+};

@@ -23,6 +23,7 @@ import check from 'check-types';
 import {GameConfig} from '../GameConfig';
 import {VerbalFluencyGame, VerbalFluencyGameMetadata} from '../verbal_fluency';
 import {RecognitionGame, RecognitionGameMetadata} from '../recognition';
+import {CentralExecutiveGame, CentralExecutiveGameMetadata} from '../central_executive';
 
 export class GameBuilder {
   static gameForId(id) {
@@ -31,6 +32,8 @@ export class GameBuilder {
         return VerbalFluencyGame;
       case RecognitionGameMetadata.ID:
         return RecognitionGame;
+      case CentralExecutiveGameMetadata.ID:
+        return CentralExecutiveGame;
       default:
         throw new Error('Unrecognized game id: ' + id);
     }

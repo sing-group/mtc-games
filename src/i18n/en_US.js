@@ -115,5 +115,18 @@ export const en_US = {
   'game.recognition.result.gameCompleted.name': 'Game completed',
   'game.recognition.result.totalTries.name': 'Total tries',
   'game.recognition.result.guessed.name': 'Guessed stimulus',
-  'game.recognition.result.failed.name': 'Failed stimulus'
+  'game.recognition.result.failed.name': 'Failed stimulus',
+  'game.centralExecutive.name': 'Executive Central',
+  'game.centralExecutive.description': 'At the start of this game some values of the same dice face are shown for a few seconds. ' +
+    'Then, all the values of the same dice face are shown and you will have to select at inverse order the ones showed at the game start.',
+  'game.centralExecutive.param.timePerElement.name': 'Recognition time',
+  'game.centralExecutive.param.timePerElement.description': 'Number of seconds that each dice group is shown to the user.',
+  'game.centralExecutive.param.numberOfElements.name': 'Number of dice',
+  'game.centralExecutive.param.numberOfElements.description': 'Number of dices shown.',
+  'game.centralExecutive.param.responseIntroduction.name': 'Response Introduction',
+  'game.centralExecutive.param.responseIntroduction.description': 'Type of response introduction (NORMAL or STERNBERG).',
+  'game.centralExecutive.result.gameCompleted.name': 'Game completed',
+  'game.centralExecutive.result.totalTries.name': 'Total tries',
+  'game.centralExecutive.result.guessed.name': 'Guessed stimulus',
+  'game.centralExecutive.result.failed.name': 'Failed stimulus'
 };

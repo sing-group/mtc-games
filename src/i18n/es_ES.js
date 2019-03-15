@@ -98,8 +98,7 @@ export const es_ES = {
   'game.task.calculus': 'Cálculo',
   'game.task.associatedPairs': 'Pares asociados',
   'game.verbalFluency.name': 'Fluidez verbal',
-  'game.verbalFluency.description': 'En este juego deberás crear palabras válidas utilizando las letras de la cara de ' +
-    'letras de todos los dados.',
+  'game.verbalFluency.description': 'En este juego deberás crear palabras válidas utilizando las letras de la cara de ' + 'letras de todos los dados.',
   'game.verbalFluency.result.attempts.name': 'Intentos',
   'game.verbalFluency.result.guessedWords.name': 'Palabras acertadas',
   'game.verbalFluency.result.failedWords.name': 'Palabras falladas',
@@ -116,5 +115,18 @@ export const es_ES = {
   'game.recognition.result.gameCompleted.name': 'Juego completado',
   'game.recognition.result.totalTries.name': 'Intentos totales',
   'game.recognition.result.guessed.name': 'Estímulos acertados',
-  'game.recognition.result.failed.name': 'Estímulos fallados'
+  'game.recognition.result.failed.name': 'Estímulos fallados',
+  'game.centralExecutive.name': 'Ejecutivo Central',
+  'game.centralExecutive.description': 'En el inicio de este juego se mostrarán varios valores de un tipo de cara de los dados durante unos pocos segundos. ' +
+    'A continuación, se muestran todos los valores del mismo tipo de cara y tendrás que seleccionar en orden inverso aquellos mostrados en el inicio.',
+  'game.centralExecutive.param.timePerElement.name': 'Tiempo de reconocimiento',
+  'game.centralExecutive.param.timePerElement.description': 'Número de segundos que se muestra cada grupo de dados.',
+  'game.centralExecutive.param.numberOfElements.name': 'Número de dados',
+  'game.centralExecutive.param.numberOfElements.description': 'Número de dados mostrados.',
+  'game.centralExecutive.param.responseIntroduction.name': 'Introducción de la respuesta',
+  'game.centralExecutive.param.responseIntroduction.description': 'Tipo de introducción de la respuesta (NORMAL o STERNBERG).',
+  'game.centralExecutive.result.gameCompleted.name': 'Juego completado',
+  'game.centralExecutive.result.totalTries.name': 'Intentos totales',
+  'game.centralExecutive.result.guessed.name': 'Estímulos acertados',
+  'game.centralExecutive.result.failed.name': 'Estímulos fallados'
 };

@@ -19,36 +19,18 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import {VerbalFluencyGameMetadata} from '../verbal_fluency';
-import {RecognitionGameMetadata} from '../recognition';
-import {CentralExecutiveGameMetadata} from '../central_executive';
+import {GameCallback} from '../callback';
+import check from 'check-types';
 
+export class CentralExecutiveGameCallback extends GameCallback {
+  static buildWith(customCallbacks) {
+    check.assert.object(customCallbacks, 'customCallbacks should be an object');
 
-export class GameMetadataBuilder {
-  static gameIds() {
-    return [
-      VerbalFluencyGameMetadata.ID,
-      RecognitionGameMetadata.ID,
-      CentralExecutiveGameMetadata.ID
-    ];
-  }
+    const callbacks = Object.assign(new CentralExecutiveGameCallback(), customCallbacks);
 
-  static gameMetadataForId(id) {
-    switch (id) {
-      case VerbalFluencyGameMetadata.ID:
-        return VerbalFluencyGameMetadata;
-      case RecognitionGameMetadata.ID:
-        return RecognitionGameMetadata;
-      case CentralExecutiveGameMetadata.ID:
-        return CentralExecutiveGameMetadata;
-      default:
-        throw new Error('Unrecognized game metadata id: ' + id);
-    }
-  }
+    check.assert.function(callbacks.gameStarted, 'customCallbacks.gameStarted should be a function');
+    check.assert.function(callbacks.gameFinished, 'customCallbacks.gameFinished should be a function');
 
-  buildGameMetadata(id) {
-    const metadata = GameMetadataBuilder.gameMetadataForId(id);
-
-    return new metadata();
+    return callbacks;
   }
 }

@@ -43,3 +43,4 @@ export * from './metadata';
 export * from './recognition';
 export * from './stage';
 export * from './verbal_fluency';
+export * from './central_executive';

@@ -115,5 +115,18 @@ export const gl_ES = {
   'game.recognition.result.gameCompleted.name': 'Xogo completado',
   'game.recognition.result.totalTries.name': 'Intentos totais',
   'game.recognition.result.guessed.name': 'Estímulos acertados',
-  'game.recognition.result.failed.name': 'Estímulos fallados'
+  'game.recognition.result.failed.name': 'Estímulos fallados',
+  'game.centralExecutive.name': 'Executivo Central',
+  'game.centralExecutive.description': 'No inicio deste xogo móstranse varios valores dun tipo de cara dos dados durante uns poucos segundos. ' +
+    'A continuación, móstranse tódolos valores do mesmo tipo de cara e terás que seleccionar en orden inverso aqueles mostrados durante o inicio do xogo.',
+  'game.centralExecutive.param.timePerElement.name': 'Tempo de recoñecemento',
+  'game.centralExecutive.param.timePerElement.description': 'Número de segundos que se mostra cada grupo de dados.',
+  'game.centralExecutive.param.numberOfElements.name': 'Número de dados',
+  'game.centralExecutive.param.numberOfElements.description': 'Número de dados mostrados.',
+  'game.centralExecutive.param.responseIntroduction.name': 'Introdución da resposta',
+  'game.centralExecutive.param.responseIntroduction.description': 'Tipo de introdución da resposta (NORMAL ou STERNBERG).',
+  'game.centralExecutive.result.gameCompleted.name': 'Xogo completado',
+  'game.centralExecutive.result.totalTries.name': 'Intentos totais',
+  'game.centralExecutive.result.guessed.name': 'Estímulos acertados',
+  'game.centralExecutive.result.failed.name': 'Estímulos fallados'
 };
