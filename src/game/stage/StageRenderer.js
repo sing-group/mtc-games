@@ -289,4 +289,8 @@ export class StageRenderer extends Phaser.Scene {
   setBackgroundColorFromHex(color) {
     this.cameras.main.setBackgroundColor(Phaser.Display.Color.HexStringToColor(color));
   }
+
+  hideSprite(sprite) {
+    sprite.setAlpha(0);
+  }
 }

@@ -219,11 +219,11 @@ export class CentralExecutiveMainRenderer extends StageRenderer {
       this.shownSprites.splice(this.shownSprites.indexOf(clickedSprite.texture.key), 1);
       this.selectedSprites.push(clickedSprite.texture.key);
       this.drawSelectedDice(clickedSprite.texture.key);
-      clickedSprite.destroy();
       this.status.increaseGuessed();
-    } else {
-      this.status.increaseFailed();
       this.shuffleDices();
+    } else {
+      this.hideSprite(clickedSprite);
+      this.status.increaseFailed();
     }
   }
 
@@ -317,6 +317,7 @@ export class CentralExecutiveMainRenderer extends StageRenderer {
         y: randomCoords[1],
         scaleX: this.configuration.diceScales.normal,
         scaleY: this.configuration.diceScales.normal,
+        alpha: 1,
         duration: 100
       });
     }
