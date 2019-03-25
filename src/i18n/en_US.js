@@ -89,6 +89,8 @@ export const en_US = {
   'game.standard.param.timerVisible.description': 'Whether the timer is visible or not.',
   'game.standard.param.numberOfTries.name': 'Repetitions',
   'game.standard.param.numberOfTries.description': 'Number times that the user can repeat the game.',
+  'game.standard.param.useDrag.name': 'Use Drag',
+  'game.standard.param.useDrag.description': 'Use drag to move elements.',
   'game.task.freeMemory': 'Free memory',
   'game.task.recognition': 'Recognition',
   'game.task.playbackHearing': 'Playback hearing',

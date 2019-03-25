@@ -89,6 +89,8 @@ export const es_ES = {
   'game.standard.param.timerVisible.description': '¿Debe mostrarse el tiempo de juego?',
   'game.standard.param.numberOfTries.name': 'Repeticiones',
   'game.standard.param.numberOfTries.description': 'Número de veces que se puede repetir el juego.',
+  'game.standard.param.useDrag.name': 'Usar Drag',
+  'game.standard.param.useDrag.description': 'Usar drag para mover los elementos.',
   'game.task.freeMemory': 'Recuerdo libre',
   'game.task.recognition': 'Reconocimiento',
   'game.task.playbackHearing': 'Reproducción auditiva',
