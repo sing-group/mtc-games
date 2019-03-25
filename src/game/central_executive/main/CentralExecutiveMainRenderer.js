@@ -23,7 +23,6 @@
 import Phaser from 'phaser';
 
 import {StageRenderer} from '../../stage';
-import {MtcDiceFace} from '../../../dice/MtcDiceFace';
 import {CentralExecutiveMainStageStatus} from './CentralExecutiveMainStageStatus';
 import {backgroundTiledImage, cubeSlotImage, diceSelectFX, dockImage, frameImage} from '../../../assets';
 
@@ -179,6 +178,8 @@ export class CentralExecutiveMainRenderer extends StageRenderer {
           this.status._startCountdown();
           this.status.timeTakenByShow = this.status.secondsElapsed;
           this.drawResultsDock();
+          // eslint-disable-next-line no-console
+          console.log(this.shownSprites);
         }
       }
     }
@@ -217,10 +218,12 @@ export class CentralExecutiveMainRenderer extends StageRenderer {
     this.sound.play('diceSelectFX', this.diceSelectSound);
     if (this.shownSprites[0] === clickedSprite.texture.key) {
       this.shownSprites.splice(this.shownSprites.indexOf(clickedSprite.texture.key), 1);
+      this.shownSpritesToSelect.splice(this.shownSpritesToSelect.indexOf(clickedSprite), 1);
       this.selectedSprites.push(clickedSprite.texture.key);
       this.drawSelectedDice(clickedSprite.texture.key);
       this.status.increaseGuessed();
       this.shuffleDices();
+      clickedSprite.destroy();
     } else {
       this.hideSprite(clickedSprite);
       this.status.increaseFailed();
@@ -303,7 +306,7 @@ export class CentralExecutiveMainRenderer extends StageRenderer {
   shuffleDices() {
     let randomCoords;
 
-    for (let i = 0, len = MtcDiceFace.LETTERS_FACE_VALUES.length; i < len; i++) {
+    for (let i = 0, len = this.shownSpritesToSelect.length; i < len; i++) {
       do {
         randomCoords = this.getRandomScrambleCoords();
       } while (this.isLetterColliding(randomCoords[0], randomCoords[1]));
