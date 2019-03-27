@@ -178,8 +178,6 @@ export class CentralExecutiveMainRenderer extends StageRenderer {
           this.status._startCountdown();
           this.status.timeTakenByShow = this.status.secondsElapsed;
           this.drawResultsDock();
-          // eslint-disable-next-line no-console
-          console.log(this.shownSprites);
         }
       }
     }
