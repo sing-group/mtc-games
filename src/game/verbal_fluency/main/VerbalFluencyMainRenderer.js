@@ -188,16 +188,16 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
       currentSprite.finalY = randomCoords[1];
 
       currentSprite.inputEnabled = true;
-      if (this.game.configuration.useDrag) {
-        currentSprite.input.enableDrag();
-        currentSprite.addListener(Phaser.Input.Events.GAMEOBJECT_DRAG_START, this.onSpriteDragged.bind(this, currentSprite));
-        currentSprite.addListener(Phaser.Input.Events.GAMEOBJECT_DRAG_END, this.onSpriteReleased.bind(this, currentSprite));
-      } else {
-        currentSprite.addListener(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, this.onSpriteClicked.bind(this, currentSprite));
-      }
+      currentSprite.addListener(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, this.onSpriteClicked.bind(this, currentSprite));
 
       this.letterSprites.push(currentSprite);
     }
+
+    if(!this.game.configuration.timerVisible) {
+      this.hideSprite(this.timeFrameSprite);
+      this.timeText.setVisible(false);
+    }
+
     this.status.start();
   }
 

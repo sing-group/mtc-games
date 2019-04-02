@@ -21,15 +21,12 @@
  */
 import {VerbalFluencyGameCallback} from './VerbalFluencyGameCallback';
 import {GameTaskType, StandardGameMetadata} from '../metadata';
-import {BooleanParameter, Parameter} from '../metadata/parameter';
 
 const DEFAULTS = Symbol();
 
 export class VerbalFluencyGameMetadata extends StandardGameMetadata {
   constructor() {
-    super(VerbalFluencyGameMetadata.ID, [GameTaskType.TYPES.VERBAL_FLUENCY], [
-      Parameter.build(BooleanParameter, 'standard', 'useDrag', VerbalFluencyGameMetadata.DEFAULTS.USE_DRAG)
-    ], VerbalFluencyGameCallback);
+    super(VerbalFluencyGameMetadata.ID, [GameTaskType.TYPES.VERBAL_FLUENCY], [], VerbalFluencyGameCallback);
   }
 
   static get ID() {
@@ -38,9 +35,7 @@ export class VerbalFluencyGameMetadata extends StandardGameMetadata {
 
   static get DEFAULTS() {
     if (!VerbalFluencyGameMetadata[DEFAULTS]) {
-      VerbalFluencyGameMetadata[DEFAULTS] = Object.assign({
-        USE_DRAG: false
-      }, StandardGameMetadata.DEFAULTS);
+      VerbalFluencyGameMetadata[DEFAULTS] = Object.assign({}, StandardGameMetadata.DEFAULTS);
 
       Object.freeze(VerbalFluencyGameMetadata[DEFAULTS]);
     }
