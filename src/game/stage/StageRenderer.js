@@ -111,7 +111,7 @@ export class StageRenderer extends Phaser.Scene {
     check.assert.instance(configuration, StageRenderConfiguration, 'configuration should be a StageRenderConfiguration instance');
     check.assert.instance(status, StageStatus, 'status should be a StageStatus instance');
 
-    this._i18n = new I18NStatic(configuration.locale);
+    this._i18n = new I18NStatic(status.gameStatus.configuration.locale);
     this._configuration = configuration;
     this._status = status;
   }

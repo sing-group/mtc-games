@@ -50,13 +50,28 @@ export class StartStageRenderer extends StageRenderer {
 
     for (let paramId of paramIds) {
       try {
-        text += '\n' + this.getText(this.getGameTextId().param(paramId).name()) + ': ' + this.game.configuration[paramId];
+        text += '\n' + this.getText(this.getGameTextId().param(paramId).name()) + ': ' + this._getValueFromParam(paramId);
       } catch (e) {
         // Parameters without text are ignored.
       }
     }
 
     return text;
+  }
+
+  _getValueFromParam(paramId) {
+    const value = this.game.configuration[paramId];
+    if (StartStageRenderer.valueRequireTranslation(value)) {
+      return this.getText(value, undefined);
+    }
+    return value;
+  }
+
+  static valueRequireTranslation(value) {
+    if (value instanceof String || typeof value === 'string') {
+      return value.indexOf('.') !== -1;
+    }
+    return false;
   }
 
   create() {
