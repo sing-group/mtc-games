@@ -25,6 +25,7 @@ import Phaser from 'phaser';
 import {StageRenderer} from '../../stage';
 import {CentralExecutiveMainStageStatus} from './CentralExecutiveMainStageStatus';
 import {backgroundTiledImage, cubeSlotImage, diceSelectFX, dockImage, frameImage} from '../../../assets';
+import {CentralExecutiveGameMetadata} from "../CentralExecutiveGameMetadata";
 
 export class CentralExecutiveMainRenderer extends StageRenderer {
 
@@ -104,6 +105,11 @@ export class CentralExecutiveMainRenderer extends StageRenderer {
     }
     calcSprite.destroy();
 
+    if(!this.game.configuration.timerVisible) {
+      this.hideSprite(this.timeFrameSprite);
+      this.timeText.setVisible(false);
+    }
+
     this.status.start();
   }
 
@@ -173,7 +179,9 @@ export class CentralExecutiveMainRenderer extends StageRenderer {
         this.status.currentDiceIteration++;
 
         if (this.status.currentDiceIteration === this.game.configuration.parameterValues.numberOfElements) {
-          this.shownSprites.reverse();
+          if(this.game.configuration.responseIntroduction === CentralExecutiveGameMetadata.RESPONSE_TYPES[1]) {
+            this.shownSprites.reverse();
+          }
           this.status.phase = CentralExecutiveMainStageStatus.PHASES.DICE_SELECT;
           this.status._startCountdown();
           this.status.timeTakenByShow = this.status.secondsElapsed;

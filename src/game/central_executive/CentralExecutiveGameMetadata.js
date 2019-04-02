@@ -23,6 +23,7 @@ import {MtcDiceFace} from '../../dice';
 import {GameTaskType, StandardGameMetadata} from '../metadata';
 import {EnumStringParameter, IntegerParameter, Parameter, SecondsParameter} from '../metadata/parameter';
 import {CentralExecutiveGameCallback} from './CentralExecutiveGameCallback';
+import {I18NId} from "../../i18n";
 
 const DEFAULTS = Symbol();
 const RESPONSE_TYPES = Symbol();
@@ -58,8 +59,8 @@ export class CentralExecutiveGameMetadata extends StandardGameMetadata {
     if (!CentralExecutiveGameMetadata[DEFAULTS]) {
       CentralExecutiveGameMetadata[DEFAULTS] = Object.assign({
         TIME_PER_ELEMENT: 3,
-        NUMBER_OF_ELEMENTS: Math.floor(MtcDiceFace.COUNT_VALUES / 2),
-        RESPONSE_INTRODUCTION: CentralExecutiveGameMetadata.RESPONSE_TYPES[0]
+        NUMBER_OF_ELEMENTS: Math.floor(MtcDiceFace.COUNT_VALUES / 4),
+        RESPONSE_INTRODUCTION: CentralExecutiveGameMetadata.RESPONSE_TYPES[1]
       }, StandardGameMetadata.DEFAULTS);
 
       Object.freeze(CentralExecutiveGameMetadata[DEFAULTS]);
@@ -71,7 +72,8 @@ export class CentralExecutiveGameMetadata extends StandardGameMetadata {
   static get RESPONSE_TYPES() {
     if (!CentralExecutiveGameMetadata[RESPONSE_TYPES]) {
       CentralExecutiveGameMetadata[RESPONSE_TYPES] = [
-        'NORMAL', 'STERNBERG'
+        I18NId.forConfigParamValue('responseIntroduction').value('direct'),
+        I18NId.forConfigParamValue('responseIntroduction').value('inverse')
       ];
 
       Object.freeze(CentralExecutiveGameMetadata[RESPONSE_TYPES]);
