@@ -22,10 +22,9 @@
 import {RecognitionGameCallback} from './RecognitionGameCallback';
 import {MtcDiceFace} from '../../dice';
 import {GameTaskType, StandardGameMetadata} from '../metadata';
-import {EnumStringParameter, IntegerParameter, Parameter, SecondsParameter} from '../metadata/parameter';
+import {IntegerParameter, Parameter, SecondsParameter} from '../metadata/parameter';
 
 const DEFAULTS = Symbol();
-const RESPONSE_TYPES = Symbol();
 
 export class RecognitionGameMetadata extends StandardGameMetadata {
   constructor() {
@@ -40,10 +39,6 @@ export class RecognitionGameMetadata extends StandardGameMetadata {
         Parameter.build(
           IntegerParameter, RecognitionGameMetadata.ID,
           'numberOfElements', RecognitionGameMetadata.DEFAULTS.NUMBER_OF_ELEMENTS, 1, MtcDiceFace.COUNT_VALUES
-        ),
-        Parameter.build(
-          EnumStringParameter, RecognitionGameMetadata.ID,
-          'responseIntroduction', RecognitionGameMetadata.DEFAULTS.RESPONSE_INTRODUCTION, RecognitionGameMetadata.RESPONSE_TYPES
         )
       ],
       RecognitionGameCallback
@@ -58,25 +53,12 @@ export class RecognitionGameMetadata extends StandardGameMetadata {
     if (!RecognitionGameMetadata[DEFAULTS]) {
       RecognitionGameMetadata[DEFAULTS] = Object.assign({
         TIME_PER_ELEMENT: 3,
-        NUMBER_OF_ELEMENTS: Math.floor(MtcDiceFace.COUNT_VALUES / 2),
-        RESPONSE_INTRODUCTION: RecognitionGameMetadata.RESPONSE_TYPES[0]
+        NUMBER_OF_ELEMENTS: Math.floor(MtcDiceFace.COUNT_VALUES / 2)
       }, StandardGameMetadata.DEFAULTS);
 
       Object.freeze(RecognitionGameMetadata[DEFAULTS]);
     }
 
     return RecognitionGameMetadata[DEFAULTS];
-  }
-
-  static get RESPONSE_TYPES() {
-    if (!RecognitionGameMetadata[RESPONSE_TYPES]) {
-      RecognitionGameMetadata[RESPONSE_TYPES] = [
-        'NORMAL', 'STERNBERG'
-      ];
-
-      Object.freeze(RecognitionGameMetadata[RESPONSE_TYPES]);
-    }
-
-    return RecognitionGameMetadata[RESPONSE_TYPES];
   }
 }

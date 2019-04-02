@@ -103,6 +103,11 @@ export class RecognitionMainRenderer extends StageRenderer {
     }
     calcSprite.destroy();
 
+    if(!this.game.configuration.timerVisible) {
+      this.hideSprite(this.timeFrameSprite);
+      this.timeText.setVisible(false);
+    }
+
     this.status.start();
   }
 
