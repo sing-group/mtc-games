@@ -43,6 +43,10 @@ export class I18NId {
   static forConfigParam(paramId) {
     return new ConfigParamIdBuilder(paramId);
   }
+
+  static forConfigParamValue(paramId) {
+    return new ConfigParamValueIdBuilder(paramId);
+  }
 }
 
 export class GameIdBuilder {
@@ -140,6 +144,24 @@ export class ConfigParamIdBuilder {
 
   description() {
     return I18NId.join(this.id(), ConfigParamIdBuilder.DESCRIPTION_SUFFIX);
+  }
+}
+
+export class ConfigParamValueIdBuilder {
+  static get PREFIX() {
+    return 'game.config.param';
+  }
+
+  constructor(paramId) {
+    this._id = I18NId.join(ConfigParamValueIdBuilder.PREFIX, paramId);
+  }
+
+  id() {
+    return this._id;
+  }
+
+  value(value) {
+    return I18NId.join(this.id(), value);
   }
 }
 
