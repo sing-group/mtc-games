@@ -21,10 +21,12 @@
  */
 import {RecognitionGameCallback} from './RecognitionGameCallback';
 import {MtcDiceFace} from '../../dice';
-import {GameTaskType, StandardGameMetadata} from '../metadata';
+import {EnumStringParameter, GameTaskType, StandardGameMetadata} from '../metadata';
 import {IntegerParameter, Parameter, SecondsParameter} from '../metadata/parameter';
+import {I18NId} from "../../i18n";
 
 const DEFAULTS = Symbol();
+const DICE_FACES_TYPES = Symbol();
 
 export class RecognitionGameMetadata extends StandardGameMetadata {
   constructor() {
@@ -39,7 +41,9 @@ export class RecognitionGameMetadata extends StandardGameMetadata {
         Parameter.build(
           IntegerParameter, RecognitionGameMetadata.ID,
           'numberOfElements', RecognitionGameMetadata.DEFAULTS.NUMBER_OF_ELEMENTS, 1, MtcDiceFace.COUNT_VALUES
-        )
+        ),
+        Parameter.build(EnumStringParameter, RecognitionGameMetadata.ID,
+          'diceFace', RecognitionGameMetadata.DEFAULTS.DICE_FACE, RecognitionGameMetadata.DICE_FACES_TYPES),
       ],
       RecognitionGameCallback
     );
@@ -53,12 +57,31 @@ export class RecognitionGameMetadata extends StandardGameMetadata {
     if (!RecognitionGameMetadata[DEFAULTS]) {
       RecognitionGameMetadata[DEFAULTS] = Object.assign({
         TIME_PER_ELEMENT: 3,
-        NUMBER_OF_ELEMENTS: Math.floor(MtcDiceFace.COUNT_VALUES / 2)
+        NUMBER_OF_ELEMENTS: Math.floor(MtcDiceFace.COUNT_VALUES / 2),
+        DICE_FACE: RecognitionGameMetadata.DICE_FACES_TYPES[6]
       }, StandardGameMetadata.DEFAULTS);
 
       Object.freeze(RecognitionGameMetadata[DEFAULTS]);
     }
 
     return RecognitionGameMetadata[DEFAULTS];
+  }
+
+  static get DICE_FACES_TYPES() {
+    if (!RecognitionGameMetadata[DICE_FACES_TYPES]) {
+      RecognitionGameMetadata[DICE_FACES_TYPES] = [
+        I18NId.forConfigParamValue('diceFace').value('numbers'),
+        I18NId.forConfigParamValue('diceFace').value('letters'),
+        I18NId.forConfigParamValue('diceFace').value('trigrams'),
+        I18NId.forConfigParamValue('diceFace').value('colors'),
+        I18NId.forConfigParamValue('diceFace').value('words'),
+        I18NId.forConfigParamValue('diceFace').value('tools'),
+        I18NId.forConfigParamValue('diceFace').value('random')
+      ];
+
+      Object.freeze(RecognitionGameMetadata[DICE_FACES_TYPES]);
+    }
+
+    return RecognitionGameMetadata[DICE_FACES_TYPES];
   }
 }

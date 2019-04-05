@@ -25,7 +25,7 @@ import check from 'check-types';
 import {RecognitionMainCallback} from './RecognitionMainCallback';
 import {RecognitionGameResult} from '../RecognitionGameResult';
 import {StageStatus} from '../../stage';
-import {MtcDiceRoller} from '../../../dice';
+import {MtcDiceFace, MtcDiceRoller} from '../../../dice';
 
 const PHASES = Symbol();
 
@@ -57,7 +57,7 @@ export class RecognitionMainStageStatus extends StageStatus {
     this._guessed = 0;
     this._failed = 0;
     this._gameRunning = true;
-    this._diceFace = MtcDiceRoller.rollFace();
+    this._diceFace = this._diceFace || MtcDiceRoller.rollFace();
     this._phase = RecognitionMainStageStatus.PHASES.DICE_SHOW;
     this._isShowingDice = false;
     this._currentDiceIteration = 0;
@@ -169,6 +169,25 @@ export class RecognitionMainStageStatus extends StageStatus {
 
   get stimulus() {
     return this._diceFace.stimulus;
+  }
+
+  set stimulus(value) {
+    let stimulusArray = value.split('.');
+    stimulusArray.reverse();
+    switch (stimulusArray[0]) {
+      case (MtcDiceFace.NUMBERS_FACE_STIMULUS):
+        this._diceFace = MtcDiceFace.NUMBERS_FACE;
+        break;
+      case (MtcDiceFace.LETTERS_FACE_STIMULUS):
+        this._diceFace = MtcDiceFace.LETTERS_FACE;
+        break;
+      case (MtcDiceFace.TRIGRAMS_FACE_STIMULUS):
+        this._diceFace = MtcDiceFace.TRIGRAMS_FACE;
+        break;
+      default:
+        this._diceFace = MtcDiceRoller.rollFace();
+        break;
+    }
   }
 
   get stimulusValues() {

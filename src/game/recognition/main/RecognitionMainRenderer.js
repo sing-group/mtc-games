@@ -52,6 +52,9 @@ export class RecognitionMainRenderer extends StageRenderer {
   }
 
   create() {
+    // Add Stimulus
+    this.status.stimulus = this.game.configuration.parameterValues.diceFace;
+
     // Add sounds
     this.diceSelectSound = this.load.audio('diceSelectFX', diceSelectFX);
 

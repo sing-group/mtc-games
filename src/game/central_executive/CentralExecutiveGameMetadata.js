@@ -27,6 +27,7 @@ import {I18NId} from "../../i18n";
 
 const DEFAULTS = Symbol();
 const RESPONSE_TYPES = Symbol();
+const DICE_FACES_TYPES = Symbol();
 
 export class CentralExecutiveGameMetadata extends StandardGameMetadata {
   constructor() {
@@ -45,7 +46,9 @@ export class CentralExecutiveGameMetadata extends StandardGameMetadata {
         Parameter.build(
           EnumStringParameter, CentralExecutiveGameMetadata.ID,
           'responseIntroduction', CentralExecutiveGameMetadata.DEFAULTS.RESPONSE_INTRODUCTION, CentralExecutiveGameMetadata.RESPONSE_TYPES
-        )
+        ),
+        Parameter.build(EnumStringParameter, CentralExecutiveGameMetadata.ID,
+          'diceFace', CentralExecutiveGameMetadata.DEFAULTS.DICE_FACE, CentralExecutiveGameMetadata.DICE_FACES_TYPES),
       ],
       CentralExecutiveGameCallback
     );
@@ -60,7 +63,8 @@ export class CentralExecutiveGameMetadata extends StandardGameMetadata {
       CentralExecutiveGameMetadata[DEFAULTS] = Object.assign({
         TIME_PER_ELEMENT: 3,
         NUMBER_OF_ELEMENTS: Math.floor(MtcDiceFace.COUNT_VALUES / 4),
-        RESPONSE_INTRODUCTION: CentralExecutiveGameMetadata.RESPONSE_TYPES[1]
+        RESPONSE_INTRODUCTION: CentralExecutiveGameMetadata.RESPONSE_TYPES[1],
+        DICE_FACE: CentralExecutiveGameMetadata.DICE_FACES_TYPES[6]
       }, StandardGameMetadata.DEFAULTS);
 
       Object.freeze(CentralExecutiveGameMetadata[DEFAULTS]);
@@ -80,5 +84,23 @@ export class CentralExecutiveGameMetadata extends StandardGameMetadata {
     }
 
     return CentralExecutiveGameMetadata[RESPONSE_TYPES];
+  }
+
+  static get DICE_FACES_TYPES() {
+    if (!CentralExecutiveGameMetadata[DICE_FACES_TYPES]) {
+      CentralExecutiveGameMetadata[DICE_FACES_TYPES] = [
+        I18NId.forConfigParamValue('diceFace').value('numbers'),
+        I18NId.forConfigParamValue('diceFace').value('letters'),
+        I18NId.forConfigParamValue('diceFace').value('trigrams'),
+        I18NId.forConfigParamValue('diceFace').value('colors'),
+        I18NId.forConfigParamValue('diceFace').value('words'),
+        I18NId.forConfigParamValue('diceFace').value('tools'),
+        I18NId.forConfigParamValue('diceFace').value('random')
+      ];
+
+      Object.freeze(CentralExecutiveGameMetadata[DICE_FACES_TYPES]);
+    }
+
+    return CentralExecutiveGameMetadata[DICE_FACES_TYPES];
   }
 }

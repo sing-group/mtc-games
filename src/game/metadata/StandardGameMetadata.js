@@ -21,9 +21,8 @@
  */
 import {GameMetadata} from './GameMetadata';
 import {I18NId} from '../../i18n';
-import {Parameter} from './parameter';
+import {BooleanParameter, IntegerParameter, Parameter, SecondsParameter} from './parameter';
 import {GameCallback} from '../callback';
-import {BooleanParameter, IntegerParameter, SecondsParameter} from './parameter';
 
 const DEFAULTS = Symbol();
 
@@ -32,9 +31,9 @@ export class StandardGameMetadata extends GameMetadata {
   static get DEFAULTS() {
     if (!StandardGameMetadata[DEFAULTS]) {
       StandardGameMetadata[DEFAULTS] = {
-        TIME: 60,
+        TIME: 120,
         TIMER_VISIBLE: true,
-        NUMBER_OF_TRIES: 2
+        NUMBER_OF_TRIES: 3
       };
 
       Object.freeze(StandardGameMetadata[DEFAULTS]);
