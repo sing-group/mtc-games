@@ -24,6 +24,7 @@ import {GameConfig} from '../GameConfig';
 import {VerbalFluencyGame, VerbalFluencyGameMetadata} from '../verbal_fluency';
 import {RecognitionGame, RecognitionGameMetadata} from '../recognition';
 import {CentralExecutiveGame, CentralExecutiveGameMetadata} from '../central_executive';
+import {PlaybackHearingGame, PlaybackHearingGameMetadata} from '../playback_hearing';
 
 export class GameBuilder {
   static gameForId(id) {
@@ -34,6 +35,8 @@ export class GameBuilder {
         return RecognitionGame;
       case CentralExecutiveGameMetadata.ID:
         return CentralExecutiveGame;
+      case PlaybackHearingGameMetadata.ID:
+        return PlaybackHearingGame;
       default:
         throw new Error('Unrecognized game id: ' + id);
     }

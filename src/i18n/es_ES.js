@@ -141,5 +141,22 @@ export const es_ES = {
   'game.centralExecutive.result.gameCompleted.name': 'Juego completado',
   'game.centralExecutive.result.totalTries.name': 'Intentos totales',
   'game.centralExecutive.result.guessed.name': 'Estímulos acertados',
-  'game.centralExecutive.result.failed.name': 'Estímulos fallados'
+  'game.centralExecutive.result.failed.name': 'Estímulos fallados',
+  'game.playbackHearing.name': 'Reproducción Auditiva',
+  'game.playbackHearing.description': 'Sonarán una serie de locuciones previamente grabadas, sin ningún tipo de ' +
+    'información visual más que un altavóz representado en pantalla.',
+  'game.playbackHearing.param.timePerElement.name': 'Tiempo de reconocimiento',
+  'game.playbackHearing.param.timePerElement.description': 'Número de segundos que se muestra cada grupo de dados.',
+  'game.playbackHearing.param.numberOfElements.name': 'Número de dados',
+  'game.playbackHearing.param.numberOfElements.description': 'Número de dados mostrados.',
+  'game.playbackHearing.param.responseIntroduction.name': 'Introducción de la respuesta',
+  'game.playbackHearing.param.responseIntroduction.description': 'Tipo de introducción de la respuesta (DIRECTO o INVERSO).',
+  'game.playbackHearing.param.timeBetweenElements.name': 'Tiempo entre estímulos',
+  'game.playbackHearing.param.timeBetweenElements.description': 'Número de segundos que se esperará entre estímulos.',
+  'game.playbackHearing.param.diceFace.name': 'Tipo de dado',
+  'game.playbackHearing.param.diceFace.description': 'Tipo de dado (NÚMEROS, LETRAS, TRIGRAMAS o ALEATORIO).',
+  'game.playbackHearing.result.gameCompleted.name': 'Juego completado',
+  'game.playbackHearing.result.totalTries.name': 'Intentos totales',
+  'game.playbackHearing.result.guessed.name': 'Estímulos acertados',
+  'game.playbackHearing.result.failed.name': 'Estímulos fallados'
 };

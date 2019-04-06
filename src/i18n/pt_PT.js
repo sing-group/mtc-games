@@ -1,4 +1,4 @@
-/*
+﻿/*
  * MultiTasking Cubes - Games
  * Copyright (C) 2017-2019 - Miguel Reboiro-Jato, Germán Veras Gómez,
  * Andrés Vieira Vázquez, Adolfo Piñón Blanco, Hugo López-Fernández,
@@ -141,5 +141,22 @@ export const pt_PT = {
   'game.centralExecutive.result.gameCompleted.name': 'Jogo completado',
   'game.centralExecutive.result.totalTries.name': 'Tentativas totais',
   'game.centralExecutive.result.guessed.name': 'Estímulos adivinhados',
-  'game.centralExecutive.result.failed.name': 'Estímulos errados'
+  'game.centralExecutive.result.failed.name': 'Estímulos errados',
+  'game.playbackHearing.name': 'Reprodução Auditiva',
+  'game.playbackHearing.description': 'No princípio deste jogo serão mostrados vários valores de um tipo de face dos dados durante alguns poucos segundos. ' +
+    'Logo, são mostrados todos os valores do mesmo tipo de face e você terá que selecionar em ordem inversa os mostrados no princípio.',
+  'game.playbackHearing.param.timePerElement.name': 'Tempo de reconhecimento',
+  'game.playbackHearing.param.timePerElement.description': 'Número de segundos que cada grupo de dados é mostrado.',
+  'game.playbackHearing.param.numberOfElements.name': 'Número de dados',
+  'game.playbackHearing.param.numberOfElements.description': 'Número de dados mostrados.',
+  'game.playbackHearing.param.responseIntroduction.name': 'Introdução dá resposta',
+  'game.playbackHearing.param.responseIntroduction.description': 'Tipo de introdução da resposta (DIRECT o REVERSE).',
+  'game.playbackHearing.param.timeBetweenElements.name': 'Tempo entre estímulos',
+  'game.playbackHearing.param.timeBetweenElements.description': 'Número de segundos que a ser esperado entre estímulos.',
+  'game.playbackHearing.param.diceFace.name': 'Tipo de dado',
+  'game.playbackHearing.param.diceFace.description': 'Tipo de dado (NÚMEROS, LETRAS, TRIGRAMAS o ALEATORIO).',
+  'game.playbackHearing.result.gameCompleted.name': 'Jogo completado',
+  'game.playbackHearing.result.totalTries.name': 'Tentativas totais',
+  'game.playbackHearing.result.guessed.name': 'Estímulos adivinhados',
+  'game.playbackHearing.result.failed.name': 'Estímulos errados'
 };

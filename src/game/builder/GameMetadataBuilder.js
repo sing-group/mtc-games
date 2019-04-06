@@ -22,6 +22,7 @@
 import {VerbalFluencyGameMetadata} from '../verbal_fluency';
 import {RecognitionGameMetadata} from '../recognition';
 import {CentralExecutiveGameMetadata} from '../central_executive';
+import {PlaybackHearingGameMetadata} from '../playback_hearing';
 
 
 export class GameMetadataBuilder {
@@ -29,7 +30,8 @@ export class GameMetadataBuilder {
     return [
       VerbalFluencyGameMetadata.ID,
       RecognitionGameMetadata.ID,
-      CentralExecutiveGameMetadata.ID
+      CentralExecutiveGameMetadata.ID,
+      PlaybackHearingGameMetadata.ID
     ];
   }
 
@@ -41,6 +43,8 @@ export class GameMetadataBuilder {
         return RecognitionGameMetadata;
       case CentralExecutiveGameMetadata.ID:
         return CentralExecutiveGameMetadata;
+      case PlaybackHearingGameMetadata.ID:
+        return PlaybackHearingGameMetadata;
       default:
         throw new Error('Unrecognized game metadata id: ' + id);
     }

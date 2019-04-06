@@ -141,5 +141,22 @@ export const en_US = {
   'game.centralExecutive.result.gameCompleted.name': 'Game completed',
   'game.centralExecutive.result.totalTries.name': 'Total tries',
   'game.centralExecutive.result.guessed.name': 'Guessed stimulus',
-  'game.centralExecutive.result.failed.name': 'Failed stimulus'
+  'game.centralExecutive.result.failed.name': 'Failed stimulus',
+  'game.playbackHearing.name': 'Playback Hearing',
+  'game.playbackHearing.description': 'A series of previously recorded locutions will sound, without any visual ' +
+    'information other than a loudspeaker represented on the screen.',
+  'game.playbackHearing.param.timePerElement.name': 'Recognition time',
+  'game.playbackHearing.param.timePerElement.description': 'Number of seconds that each dice group is shown to the user.',
+  'game.playbackHearing.param.numberOfElements.name': 'Number of dices',
+  'game.playbackHearing.param.numberOfElements.description': 'Number of dices shown.',
+  'game.playbackHearing.param.responseIntroduction.name': 'Response Introduction',
+  'game.playbackHearing.param.responseIntroduction.description': 'Type of response introduction (DIRECT or INVERSE).',
+  'game.playbackHearing.param.timeBetweenElements.name': 'Time between elements',
+  'game.playbackHearing.param.timeBetweenElements.description': 'Number of seconds between sound elements',
+  'game.playbackHearing.param.diceFace.name': 'Dice face',
+  'game.playbackHearing.param.diceFace.description': 'Dice face (NUMBERS, LETTERS, TRIGRAMS o RANDOM).',
+  'game.playbackHearing.result.gameCompleted.name': 'Game completed',
+  'game.playbackHearing.result.totalTries.name': 'Total tries',
+  'game.playbackHearing.result.guessed.name': 'Guessed stimulus',
+  'game.playbackHearing.result.failed.name': 'Failed stimulus'
 };

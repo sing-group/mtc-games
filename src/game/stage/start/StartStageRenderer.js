@@ -99,8 +99,8 @@ export class StartStageRenderer extends StageRenderer {
 
     // Parameters text
     this.gameParametersText = this.add.text(
-      this.worldWidth / 2,
-      (this.worldHeight / 12) * 8,
+      (this.worldWidth / 2),
+      ((this.worldHeight / 12) * 8) - 50,
       this._getParametersAsText(),
       this.configuration.textStyles.parameters
     );

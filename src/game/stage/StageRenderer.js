@@ -25,78 +25,114 @@ import Phaser from 'phaser';
 import check from 'check-types';
 
 import {
-  letterA,
-  letterB,
-  letterC,
-  letterD,
-  letterE,
-  letterF,
-  letterG,
-  letterH,
-  letterI,
-  letterJ,
-  letterK,
-  letterL,
-  number1,
-  number2,
-  number3,
-  number4,
-  number5,
-  number6,
-  number7,
-  number8,
-  number9,
-  number10,
-  number11,
-  number12,
-  colorPink,
-  colorLightBlue,
   colorBlack,
-  colorBrown,
-  colorPurple,
-  colorWhite,
-  colorGray,
   colorBlue,
-  colorRed,
-  colorYellow,
+  colorBrown,
+  colorGray,
   colorGreen,
+  colorLightBlue,
   colorOrange,
-  trigramSap,
-  trigramGem,
-  trigramWid,
-  trigramZof,
-  trigramQuel,
-  trigramRas,
-  trigramBra,
-  trigramBle,
-  trigramPin,
-  trigramCod,
-  trigramTer,
-  trigramNuk,
-  wordEggs,
-  wordWalnuts,
-  wordDrill,
-  wordPear,
-  wordThyme,
-  wordNut,
-  wordApple,
-  wordSaw,
-  wordHam,
-  wordHammer,
-  wordMelon,
-  wordLemon,
-  toolRoller,
-  toolWheelBarrow,
+  colorPink,
+  colorPurple,
+  colorRed,
+  colorWhite,
+  colorYellow,
+  letterA,
+  letterASound,
+  letterB,
+  letterBSound,
+  letterC,
+  letterCSound,
+  letterD,
+  letterDSound,
+  letterE,
+  letterESound,
+  letterF,
+  letterFSound,
+  letterG,
+  letterGSound,
+  letterH,
+  letterHSound,
+  letterI,
+  letterISound,
+  letterJ,
+  letterJSound,
+  letterK,
+  letterKSound,
+  letterL,
+  letterLSound,
+  number1,
+  number10,
+  number10Sound,
+  number11,
+  number11Sound,
+  number12,
+  number12Sound,
+  number1Sound,
+  number2,
+  number2Sound,
+  number3,
+  number3Sound,
+  number4,
+  number4Sound,
+  number5,
+  number5Sound,
+  number6,
+  number6Sound,
+  number7,
+  number7Sound,
+  number8,
+  number8Sound,
+  number9,
+  number9Sound,
+  syllableBleSound,
+  syllableBraSound,
+  syllableCodSound,
+  syllableGemSound,
+  syllableNukSound,
+  syllablePinSound,
+  syllableQuelSound,
+  syllableRasSound,
+  syllableSapSound,
+  syllableTerSound,
+  syllableWidSound,
+  syllableZofSound,
   toolBroom,
+  toolBrush,
   toolHammer,
   toolHandSaw,
-  toolPliers,
-  toolTrowel,
-  toolBrush,
-  toolSaw,
   toolLadder,
+  toolMeasurementTape,
+  toolPliers,
+  toolRoller,
+  toolSaw,
   toolScissors,
-  toolMeasurementTape
+  toolTrowel,
+  toolWheelBarrow,
+  trigramBle,
+  trigramBra,
+  trigramCod,
+  trigramGem,
+  trigramNuk,
+  trigramPin,
+  trigramQuel,
+  trigramRas,
+  trigramSap,
+  trigramTer,
+  trigramWid,
+  trigramZof,
+  wordApple,
+  wordDrill,
+  wordEggs,
+  wordHam,
+  wordHammer,
+  wordLemon,
+  wordMelon,
+  wordNut,
+  wordPear,
+  wordSaw,
+  wordThyme,
+  wordWalnuts
 } from '../../assets';
 
 import {I18NId, I18NStatic} from '../../i18n';
@@ -218,6 +254,47 @@ export class StageRenderer extends Phaser.Scene {
     this.loadImage('tools-ladder', toolLadder);
     this.loadImage('tools-scissors', toolScissors);
     this.loadImage('tools-measurement-tape', toolMeasurementTape);
+  }
+
+  preloadAudios() {
+    this.loadAudio('letters-a-audio', letterASound);
+    this.loadAudio('letters-b-audio', letterBSound);
+    this.loadAudio('letters-c-audio', letterCSound);
+    this.loadAudio('letters-d-audio', letterDSound);
+    this.loadAudio('letters-e-audio', letterESound);
+    this.loadAudio('letters-f-audio', letterFSound);
+    this.loadAudio('letters-g-audio', letterGSound);
+    this.loadAudio('letters-h-audio', letterHSound);
+    this.loadAudio('letters-i-audio', letterISound);
+    this.loadAudio('letters-j-audio', letterJSound);
+    this.loadAudio('letters-k-audio', letterKSound);
+    this.loadAudio('letters-l-audio', letterLSound);
+
+    this.loadAudio('numbers-1-audio', number1Sound);
+    this.loadAudio('numbers-2-audio', number2Sound);
+    this.loadAudio('numbers-3-audio', number3Sound);
+    this.loadAudio('numbers-4-audio', number4Sound);
+    this.loadAudio('numbers-5-audio', number5Sound);
+    this.loadAudio('numbers-6-audio', number6Sound);
+    this.loadAudio('numbers-7-audio', number7Sound);
+    this.loadAudio('numbers-8-audio', number8Sound);
+    this.loadAudio('numbers-9-audio', number9Sound);
+    this.loadAudio('numbers-10-audio', number10Sound);
+    this.loadAudio('numbers-11-audio', number11Sound);
+    this.loadAudio('numbers-12-audio', number12Sound);
+
+    this.loadAudio('trigrams-sap-audio', syllableSapSound);
+    this.loadAudio('trigrams-gem-audio', syllableGemSound);
+    this.loadAudio('trigrams-wid-audio', syllableWidSound);
+    this.loadAudio('trigrams-zof-audio', syllableZofSound);
+    this.loadAudio('trigrams-quel-audio', syllableQuelSound);
+    this.loadAudio('trigrams-ras-audio', syllableRasSound);
+    this.loadAudio('trigrams-bra-audio', syllableBraSound);
+    this.loadAudio('trigrams-ble-audio', syllableBleSound);
+    this.loadAudio('trigrams-pin-audio', syllablePinSound);
+    this.loadAudio('trigrams-cod-audio', syllableCodSound);
+    this.loadAudio('trigrams-ter-audio', syllableTerSound);
+    this.loadAudio('trigrams-nuk-audio', syllableNukSound);
   }
 
   loadImage(id, path) {
