@@ -34,7 +34,7 @@ export class PlaybackHearingMainStageStatus extends StageStatus {
     if (!PlaybackHearingMainStageStatus[PHASES]) {
       PlaybackHearingMainStageStatus[PHASES] = {
         DICE_HEARING: 0,
-        DICE_SELECT: 1
+        DICE_WRITING: 1
       };
 
       Object.freeze(PlaybackHearingMainStageStatus[PHASES]);
@@ -59,7 +59,7 @@ export class PlaybackHearingMainStageStatus extends StageStatus {
     this._gameRunning = true;
     this._diceFace = this._diceFace || MtcDiceRoller.rollFace();
     this._phase = PlaybackHearingMainStageStatus.PHASES.DICE_HEARING;
-    this._isShowingDice = false;
+    this._isHearingDice = false;
     this._currentDiceIteration = 0;
     this._timeTakenByShow = 0;
     this._dicesToSelectShown = false;
@@ -196,12 +196,12 @@ export class PlaybackHearingMainStageStatus extends StageStatus {
     return this._diceFace.values;
   }
 
-  get isShowingDice() {
-    return this._isShowingDice;
+  get isHearingDice() {
+    return this._isHearingDice;
   }
 
-  set isShowingDice(value) {
-    this._isShowingDice = value;
+  set isHearingDice(value) {
+    this._isHearingDice = value;
   }
 
   get currentDiceIteration() {

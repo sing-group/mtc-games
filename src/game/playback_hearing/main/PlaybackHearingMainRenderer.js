@@ -26,7 +26,7 @@ import {StageRenderer} from '../../stage';
 import {PlaybackHearingMainStageStatus} from './PlaybackHearingMainStageStatus';
 import {backgroundTiledImage, diceSelectFX, dockImage, frameImage} from '../../../assets';
 import {PlaybackHearingGameMetadata} from "../PlaybackHearingGameMetadata";
-import {speaker} from "../../../assets/image/game/playback_hearing";
+import {inputBox, speaker} from "../../../assets/image/game/playback_hearing";
 
 export class PlaybackHearingMainRenderer extends StageRenderer {
 
@@ -38,12 +38,14 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
   preload() {
     // Prevents game from pausing when browser loses focus
     this.game.scene.disableVisibilityChange = true;
+    this.sound.pauseOnBlur = false;
 
-    this.currentSoundHearing = null;
+    this.keyCodes = Phaser.Input.Keyboard.KeyCodes;
+
+    this.speakerSprite = null;
     this.lastSoundHearing = null;
     this.soundsHearing = Array();
-    this.selectedSprites = Array();
-    this.soundsHearingToSelect = Array();
+    this.successfulDices = Array();
 
     this.preloadImages();
     this.preloadAudios();
@@ -52,6 +54,7 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
     this.loadImage('dock', dockImage);
     this.loadImage('frame', frameImage);
     this.loadImage('speaker', speaker);
+    this.loadImage('inputBox', inputBox);
     this.loadAudio('diceSelectFX', diceSelectFX);
   }
 
@@ -98,11 +101,6 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
     //Calculate automatic dice scale
     let calcSprite = this.add.sprite(0, 0, this.getRandomStimulusSpriteName());
     calcSprite.width = Math.min(this.worldWidth, this.worldHeight) / 7;
-    if (this.configuration.diceScales.normal < 0) {
-      this.diceScale = calcSprite.scaleX;
-    } else {
-      this.diceScale = this.configuration.diceScales.normal;
-    }
     if (this.configuration.diceScales.shown < 0) {
       this.diceScaleShown = calcSprite.scaleX * 3;
     } else {
@@ -122,8 +120,8 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
     // Calculate the remaining time and set the text accordingly
     let remainingTime = this.game.configuration.time;
 
-    if (this.status.phase === PlaybackHearingMainStageStatus.PHASES.DICE_SELECT) {
-      // Don't update if not in select mode. Let the user breath a little.
+    if (this.status.phase === PlaybackHearingMainStageStatus.PHASES.DICE_WRITING) {
+      // Don't update if not in writing mode. Let the user breath a little.
       remainingTime = remainingTime - this.status.secondsElapsed + this.status.timeTakenByShow;
     }
 
@@ -135,125 +133,84 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
 
     this.updateScore();
 
-    if (!this.status.isRunning()) {
-      //  Ensure elements are not clickable
-      this.soundsHearingToSelect.forEach(element => {
-        element.input.enabled = false;
-      });
-    } else {
-      // Execute the current phase of the game.
-      if (this.status.phase === PlaybackHearingMainStageStatus.PHASES.DICE_HEARING && this.status.currentDiceIteration < this.game.configuration.parameterValues.numberOfElements) {
-        this.diceHearingPhaseUpdate();
-      } else if (this.status.phase === PlaybackHearingMainStageStatus.PHASES.DICE_SELECT) {
-        this.diceSelectPhaseUpdate();
-      }
+    // Execute the current phase of the game.
+    if (this.status.phase === PlaybackHearingMainStageStatus.PHASES.DICE_HEARING && this.status.currentDiceIteration < this.game.configuration.parameterValues.numberOfElements) {
+      this.diceHearingPhaseUpdate();
     }
   }
 
   diceHearingPhaseUpdate() {
-    if (!this.status.isShowingDice) {
+    if (!this.status.isHearingDice) {
       let spriteName = this.getRandomStimulusSpriteNameWithoutDuplicates();
       this.lastSoundHearing = spriteName;
-
       this.soundsHearing.push(spriteName);
-      this.currentSoundHearing = this.add.sprite(this.worldWidth / 2, this.worldHeight / 2, 'speaker');
-      this.currentSoundHearing.setScale(this.diceScaleShown, this.diceScaleShown);
-      this.currentSoundHearing.setOrigin(0.5, 0.5);
-      this.currentSoundHearing.alpha = 0;
+      this.speakerSprite = this.add.sprite(this.worldWidth / 2, this.worldHeight / 2, 'speaker');
+      this.speakerSprite.setScale(this.diceScaleShown, this.diceScaleShown);
+      this.speakerSprite.setOrigin(0.5, 0.5);
+      this.speakerSprite.alpha = 0;
 
       this.playAudioDice(spriteName);
 
       this.tweens.add({
-        targets: this.currentSoundHearing,
+        targets: this.speakerSprite,
         duration: 500,
         alpha: 1
       });
 
       this.dice_show_timestamp = Date.now();
-      this.status.isShowingDice = true;
+      this.status.isHearingDice = true;
     } else {
-      // Check if its moment to hide the dice
       if (Date.now() > this.dice_show_timestamp + (this.game.configuration.parameterValues.timeBetweenElements * 1000)) {
-        if (this.currentSoundHearing !== null) {
+        if (this.speakerSprite !== null) {
           this.tweens.add({
-            targets: this.currentSoundHearing,
+            targets: this.speakerSprite,
             duration: 200,
             alpha: 0
           });
         }
 
-        this.status.isShowingDice = false;
+        this.status.isHearingDice = false;
         this.status.currentDiceIteration++;
 
         if (this.status.currentDiceIteration === this.game.configuration.parameterValues.numberOfElements) {
           if (this.game.configuration.responseIntroduction === PlaybackHearingGameMetadata.RESPONSE_TYPES[1]) {
             this.soundsHearing.reverse();
           }
-          this.status.phase = PlaybackHearingMainStageStatus.PHASES.DICE_SELECT;
-          this.status._startCountdown();
+          this.status.phase = PlaybackHearingMainStageStatus.PHASES.DICE_WRITING;
           this.status.timeTakenByShow = this.status.secondsElapsed;
+          this.status._startCountdown();
           this.drawResultsDock();
+          this.drawResultInput();
+
+          // Add keyboard input event
+          this.input.keyboard.on('keydown', this.onKeyBoardEvent.bind(this));
         }
       }
     }
   }
 
-  diceSelectPhaseUpdate() {
-    if (!this.status.dicesToSelectShown && this.status.isRunning()) {
-      // Add dice sprites
-      for (let i = 0, len = this.status.stimulusValues.length; i < len; i++) {
-        const currentSprite = this.add.sprite(0, 0, this.status.stimulus + '-' + String(this.status.stimulusValues[i]).toLowerCase());
-        currentSprite.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, this.onDiceClick.bind(this, currentSprite)).setInteractive();
-        currentSprite.setScale(this.diceScale, this.diceScale);
-        currentSprite.setOrigin(0.5, 0.5);
-
-        let randomCoords;
-
-        do {
-          randomCoords = this.getRandomScrambleCoords();
-        } while (this.isLetterColliding(randomCoords[0], randomCoords[1]));
-
-        currentSprite.x = randomCoords[0];
-        currentSprite.y = randomCoords[1];
-
-        // Needed to support tween
-        currentSprite.finalX = randomCoords[0];
-        currentSprite.finalY = randomCoords[1];
-
-        currentSprite.inputEnabled = true;
-        this.soundsHearingToSelect.push(currentSprite);
+  onKeyBoardEvent(event) {
+    if (event.keyCode === this.keyCodes.BACKSPACE && this.textEntry.text.length > 0) {
+      this.textEntry.text = this.textEntry.text.substr(0, this.textEntry.text.length - 1);
+    } else if (event.keyCode >= this.keyCodes.ZERO && event.keyCode <= this.keyCodes.NINE && this.textEntry.text.length < 12) {
+      this.textEntry.text += event.key;
+    } else if (event.keyCode >= this.keyCodes.A && event.keyCode <= this.keyCodes.Z && this.textEntry.text.length < 12) {
+      this.textEntry.text += event.key;
+    } else if (event.keyCode >= this.keyCodes.NUMPAD_ZERO && event.keyCode <= this.keyCodes.NUMPAD_NINE && this.textEntry.text.length < 12) {
+      this.textEntry.text += event.key;
+    } else if (event.keyCode === this.keyCodes.ENTER && this.textEntry.text.length > 0) {
+      this.sound.play('diceSelectFX', this.diceSelectSound);
+      let next = this.soundsHearing[0];
+      if (this.textEntry.text.trim().toUpperCase() === next.split('-').reverse()[0].toUpperCase()) {
+        this.soundsHearing.splice(this.soundsHearing.indexOf(next), 1);
+        this.successfulDices.push(next);
+        this.drawSuccessfulDice(next);
+        this.status.increaseGuessed();
+      } else {
+        this.status.increaseFailed();
       }
-      this.status.dicesToSelectShown = true;
+      this.textEntry.text = '';
     }
-  }
-
-  onDiceClick(clickedSprite) {
-    this.sound.play('diceSelectFX', this.diceSelectSound);
-    if (this.soundsHearing[0] === clickedSprite.texture.key) {
-      this.soundsHearing.splice(this.soundsHearing.indexOf(clickedSprite.texture.key), 1);
-      this.soundsHearingToSelect.splice(this.soundsHearingToSelect.indexOf(clickedSprite), 1);
-      this.selectedSprites.push(clickedSprite.texture.key);
-      this.drawSelectedDice(clickedSprite.texture.key);
-      this.status.increaseGuessed();
-      this.shuffleDices();
-      clickedSprite.destroy();
-    } else {
-      this.hideSprite(clickedSprite);
-      this.status.increaseFailed();
-    }
-  }
-
-  isLetterColliding(x, y) {
-    let tempSprite = this.add.sprite(0, 0, this.getRandomStimulusSpriteName());
-    tempSprite.setScale(this.diceScale, this.diceScale);
-    let spriteWidth = tempSprite.displayWidth;
-    tempSprite.destroy();
-
-    let minimumSeparation = Math.sqrt(Math.pow(spriteWidth, 2) + Math.pow(spriteWidth / 2, 2)) + spriteWidth / 10;
-
-    return this.soundsHearingToSelect.some(element =>
-      this.calculateDistance(x, y, element.finalX, element.finalY) < minimumSeparation
-    );
   }
 
   getRandomStimulusSpriteNameWithoutDuplicates() {
@@ -286,6 +243,20 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
     this.scoreText.setColor(this.configuration.colors.scoreSeparator);
   }
 
+  drawResultInput() {
+    // Input introduction
+    this.textLabel = this.add.text(this.worldWidth / 2, (this.worldHeight / 2) - 50,
+      this.getStandardGameText('response'), this.configuration.textStyles.responseLabel);
+    this.textLabel.setOrigin(0.5, 0.5);
+
+    this.textEntrySprite = this.add.sprite(this.textLabel.x, this.textLabel.y + 50, 'inputBox');
+    this.textEntrySprite.setScale(0.4, 0.3);
+    this.textEntrySprite.setOrigin(0.5, 0.5);
+
+    this.textEntry = this.add.text(this.textLabel.x, this.textLabel.y + 50, '', this.configuration.textStyles.responseInput);
+    this.textEntry.setOrigin(0.5, 0.5);
+  }
+
   drawResultsDock() {
     // Add dock sprite
     this.dockSprite = this.add.sprite(0, 0, 'dock');
@@ -294,15 +265,15 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
     this.dockSprite.y = this.calculateCenteredY(this.dockSprite.height);
   }
 
-  drawSelectedDice(selectedElement) {
+  drawSuccessfulDice(selectedElement) {
     const leftOffset = this.dockSprite.x - (this.dockSprite.width / 2) + 45;
     const innerSeparation = 5;
     const currentSprite = this.add.sprite(0, 0, selectedElement);
 
     currentSprite.setOrigin(0.5, 0.5);
     currentSprite.setScale(this.configuration.diceScales.result);
-    currentSprite.x = this.game.input.mousePointer.position.x;
-    currentSprite.y = this.game.input.mousePointer.position.y;
+    currentSprite.x = this.textEntrySprite.x;
+    currentSprite.y = this.textEntrySprite.y;
 
     // Needed to support tween
     currentSprite.finalX = currentSprite.x;
@@ -310,33 +281,10 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
 
     this.tweens.add({
       targets: currentSprite,
-      x: (currentSprite.displayWidth + innerSeparation) * this.selectedSprites.length + leftOffset,
+      x: (currentSprite.displayWidth + innerSeparation) * this.successfulDices.length + leftOffset,
       y: this.dockSprite.y + 10,
       duration: 100
     });
-  }
-
-  shuffleDices() {
-    let randomCoords;
-
-    for (let i = 0, len = this.soundsHearingToSelect.length; i < len; i++) {
-      do {
-        randomCoords = this.getRandomScrambleCoords();
-      } while (this.isLetterColliding(randomCoords[0], randomCoords[1]));
-
-      this.soundsHearingToSelect[i].finalX = randomCoords[0];
-      this.soundsHearingToSelect[i].finalY = randomCoords[1];
-
-      this.tweens.add({
-        targets: this.soundsHearingToSelect[i],
-        x: randomCoords[0],
-        y: randomCoords[1],
-        scaleX: this.configuration.diceScales.normal,
-        scaleY: this.configuration.diceScales.normal,
-        alpha: 1,
-        duration: 100
-      });
-    }
   }
 
   playAudioDice(diceFace) {

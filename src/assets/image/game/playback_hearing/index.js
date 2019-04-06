@@ -20,7 +20,9 @@
  *
  */
 import speaker from './speaker.png';
+import inputBox from './input-box.png';
 
 export {
-  speaker
+  speaker,
+  inputBox
 };

@@ -92,6 +92,7 @@ export const gl_ES = {
   'game.config.param.diceFace.random': 'ALEATORIO',
   'game.standard.time': 'Tempo',
   'game.standard.timeIsUp': 'Fin do tempo',
+  'game.standard.response': 'Introduza a súa resposta',
   'game.standard.param.time.name': 'Tempo',
   'game.standard.param.time.description': 'Tempo de xogo total.',
   'game.standard.param.timerVisible.name': 'Temporizador visible',

@@ -92,6 +92,7 @@ export const en_US = {
   'game.config.param.diceFace.random': 'RANDOM',
   'game.standard.time': 'Time',
   'game.standard.timeIsUp': 'Time\'s up',
+  'game.standard.response': 'Enter your answer',
   'game.standard.param.time.name': 'Time',
   'game.standard.param.time.description': 'Total game play time.',
   'game.standard.param.timerVisible.name': 'Timer visible',

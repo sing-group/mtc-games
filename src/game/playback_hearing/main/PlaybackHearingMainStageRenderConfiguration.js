@@ -81,6 +81,19 @@ export class PlaybackHearingMainStageTextStyles {
           align: 'left',
           stroke: '#00000030',
           strokeThickness: 2
+        },
+        RESPONSE_LABEL: {
+          font: '32px Courier',
+          fill: '#1d3d1e'
+        },
+        RESPONSE_INPUT: {
+          font: '32px Courier',
+          fontFamily: 'Arial',
+          fill: '#1d3d1e',
+          padding: {
+            x: 10,
+            y: 10
+          },
         }
       };
 
@@ -92,10 +105,14 @@ export class PlaybackHearingMainStageTextStyles {
 
   constructor(
     inGameTime = PlaybackHearingMainStageTextStyles.DEFAULTS.IN_GAME_TIME,
-    score = PlaybackHearingMainStageTextStyles.DEFAULTS.SCORE
+    score = PlaybackHearingMainStageTextStyles.DEFAULTS.SCORE,
+    responseLabel = PlaybackHearingMainStageTextStyles.DEFAULTS.RESPONSE_LABEL,
+    responseInput = PlaybackHearingMainStageTextStyles.DEFAULTS.RESPONSE_INPUT,
   ) {
     this._inGameTime = inGameTime;
     this._score = score;
+    this._responseLabel = responseLabel;
+    this._responseInput = responseInput;
   }
 
   get inGameTime() {
@@ -106,6 +123,13 @@ export class PlaybackHearingMainStageTextStyles {
     return Object.assign({}, this._score);
   }
 
+  get responseLabel() {
+    return Object.assign({}, this._responseLabel);
+  }
+
+  get responseInput() {
+    return Object.assign({}, this._responseInput);
+  }
 }
 
 export class PlaybackHearingMainStagePixelOffsets {
