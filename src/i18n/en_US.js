@@ -159,5 +159,18 @@ export const en_US = {
   'game.playbackHearing.result.gameCompleted.name': 'Game completed',
   'game.playbackHearing.result.totalTries.name': 'Total tries',
   'game.playbackHearing.result.guessed.name': 'Guessed stimulus',
-  'game.playbackHearing.result.failed.name': 'Failed stimulus'
+  'game.playbackHearing.result.failed.name': 'Failed stimulus',
+  'game.associatedPairs.name': 'Associated Pairs',
+  'game.associatedPairs.description': 'Pieces of elements always of the same type will be displayed and will remain for a desired time. ' +
+    'Then an element of that pair will be displayed and the user will have to determine the other element.',
+  'game.associatedPairs.param.timePerPair.name': 'Recognition time',
+  'game.associatedPairs.param.timePerPair.description': 'Number of seconds that each pair group is shown to the user.',
+  'game.associatedPairs.param.numberOfPairs.name': 'Number of pairs',
+  'game.associatedPairs.param.numberOfPairs.description': 'Number of pairs shown.',
+  'game.associatedPairs.param.diceFace.name': 'Dice face',
+  'game.associatedPairs.param.diceFace.description': 'Dice face (NUMBERS, LETTERS, TRIGRAMS, COLORS, WORDS, TOOLS o RANDOM).',
+  'game.associatedPairs.result.gameCompleted.name': 'Game completed',
+  'game.associatedPairs.result.totalTries.name': 'Total tries',
+  'game.associatedPairs.result.guessed.name': 'Guessed stimulus',
+  'game.associatedPairs.result.failed.name': 'Failed stimulus'
 };

@@ -159,5 +159,18 @@ export const pt_PT = {
   'game.playbackHearing.result.gameCompleted.name': 'Jogo completado',
   'game.playbackHearing.result.totalTries.name': 'Tentativas totais',
   'game.playbackHearing.result.guessed.name': 'Estímulos adivinhados',
-  'game.playbackHearing.result.failed.name': 'Estímulos errados'
+  'game.playbackHearing.result.failed.name': 'Estímulos errados',
+  'game.associatedPairs.name': 'Pares Associados',
+  'game.associatedPairs.description': 'Peças de elementos sempre do mesmo tipo serão exibidas e permanecerão por um tempo desejado. ' +
+    'Em seguida, um elemento desse par será exibido e o usuário terá que determinar o outro elemento.',
+  'game.associatedPairs.param.timePerPair.name': 'Tempo de reconhecimento',
+  'game.associatedPairs.param.timePerPair.description': 'Número de segundos que cada grupo de pares é mostrado.',
+  'game.associatedPairs.param.numberOfPairs.name': 'Número de pares',
+  'game.associatedPairs.param.numberOfPairs.description': 'Número de pares mostrados.',
+  'game.associatedPairs.param.diceFace.name': 'Tipo de dado',
+  'game.associatedPairs.param.diceFace.description': 'Tipo de dado (NÚMEROS, LETRAS, TRIGRAMAS, CORES, PALAVRAS, FERRAMENTAS o ALEATORIO).',
+  'game.associatedPairs.result.gameCompleted.name': 'Jogo completado',
+  'game.associatedPairs.result.totalTries.name': 'Tentativas totais',
+  'game.associatedPairs.result.guessed.name': 'Estímulos adivinhados',
+  'game.associatedPairs.result.failed.name': 'Estímulos errados'
 };

@@ -19,7 +19,10 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-export * from './scene';
-export * from './playback_hearing';
-export * from './verbal_fluency';
-export * from './associated_pairs';
+import {MainStageCallback} from '../../stage';
+
+export class AssociatedPairsMainCallback extends MainStageCallback {
+  constructor(callbacks) {
+    super(callbacks);
+  }
+}

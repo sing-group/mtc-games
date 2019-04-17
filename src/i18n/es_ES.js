@@ -159,5 +159,18 @@ export const es_ES = {
   'game.playbackHearing.result.gameCompleted.name': 'Juego completado',
   'game.playbackHearing.result.totalTries.name': 'Intentos totales',
   'game.playbackHearing.result.guessed.name': 'Estímulos acertados',
-  'game.playbackHearing.result.failed.name': 'Estímulos fallados'
+  'game.playbackHearing.result.failed.name': 'Estímulos fallados',
+  'game.associatedPairs.name': 'Pares Asociados',
+  'game.associatedPairs.description': 'Se irán mostrando pares de elementos siempre del mismo tipo y se mantienen duranto un tiempo deseado.' +
+    ' Luego se mostrará un elemento de ese par y el usuario tendrá que determinar el otro elemento.',
+  'game.associatedPairs.param.timePerPair.name': 'Tiempo de reconocimiento',
+  'game.associatedPairs.param.timePerPair.description': 'Número de segundos que se muestra cada grupo de pares.',
+  'game.associatedPairs.param.numberOfPairs.name': 'Número de pares',
+  'game.associatedPairs.param.numberOfPairs.description': 'Número de pares mostrados.',
+  'game.associatedPairs.param.diceFace.name': 'Tipo de dado',
+  'game.associatedPairs.param.diceFace.description': 'Tipo de dado (NÚMEROS, LETRAS, TRIGRAMAS, COLORES, PALABRAS, HERRAMIENTAS o ALEATORIO).',
+  'game.associatedPairs.result.gameCompleted.name': 'Juego completado',
+  'game.associatedPairs.result.totalTries.name': 'Intentos totales',
+  'game.associatedPairs.result.guessed.name': 'Estímulos acertados',
+  'game.associatedPairs.result.failed.name': 'Estímulos fallados'
 };

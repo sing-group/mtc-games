@@ -159,5 +159,18 @@ export const gl_ES = {
   'game.playbackHearing.result.gameCompleted.name': 'Xogo completado',
   'game.playbackHearing.result.totalTries.name': 'Intentos totais',
   'game.playbackHearing.result.guessed.name': 'Estímulos acertados',
-  'game.playbackHearing.result.failed.name': 'Estímulos fallados'
+  'game.playbackHearing.result.failed.name': 'Estímulos fallados',
+  'game.associatedPairs.name': 'Executivo Central',
+  'game.associatedPairs.description': 'Amosaranse pezas de elementos sempre do mesmo tipo e permanecerán durante un tempo desexado. ' +
+    'A continuación mostrarase un elemento desa par e o usuario deberá determinar o outro elemento.',
+  'game.associatedPairs.param.timePerPair.name': 'Tempo de recoñecemento',
+  'game.associatedPairs.param.timePerPair.description': 'Número de segundos que se mostra cada grupo de pares.',
+  'game.associatedPairs.param.numberOfPairs.name': 'Número de pares',
+  'game.associatedPairs.param.numberOfPairs.description': 'Número de pares mostrados.',
+  'game.associatedPairs.param.diceFace.name': 'Tipo de dado',
+  'game.associatedPairs.param.diceFace.description': 'Tipo de dado (NÚMEROS, LETRAS, TRIGRAMAS, CORES, PALABRAS, FERRAMIENTAS ou ALEATORIO).',
+  'game.associatedPairs.result.gameCompleted.name': 'Xogo completado',
+  'game.associatedPairs.result.totalTries.name': 'Intentos totais',
+  'game.associatedPairs.result.guessed.name': 'Estímulos acertados',
+  'game.associatedPairs.result.failed.name': 'Estímulos fallados'
 };

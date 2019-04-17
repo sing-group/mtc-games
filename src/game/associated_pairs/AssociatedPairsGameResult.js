@@ -19,7 +19,36 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-export * from './scene';
-export * from './playback_hearing';
-export * from './verbal_fluency';
-export * from './associated_pairs';
+
+import {GameResult} from '../GameResult';
+import check from 'check-types';
+
+export class AssociatedPairsGameResult extends GameResult {
+  constructor(gameCompleted, guessed, failed) {
+    super(['gameCompleted', 'guessed', 'failed', 'totalTries']);
+
+    check.assert.boolean(gameCompleted, 'gameCompleted should be a boolean value');
+    check.assert.greaterOrEqual(guessed, 0, 'guessed should be positive');
+    check.assert.greaterOrEqual(failed, 0, 'failed should be positive');
+
+    this._gameCompleted = gameCompleted;
+    this._guessed = guessed;
+    this._failed = failed;
+  }
+
+  get gameCompleted() {
+    return this._gameCompleted;
+  }
+
+  get guessed() {
+    return this._guessed;
+  }
+
+  get failed() {
+    return this._failed;
+  }
+
+  get totalTries() {
+    return this._guessed + this._failed;
+  }
+}

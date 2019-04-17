@@ -19,7 +19,12 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-export * from './scene';
-export * from './playback_hearing';
-export * from './verbal_fluency';
-export * from './associated_pairs';
+import {Game} from '../Game';
+import {AssociatedPairsGameMetadata} from './AssociatedPairsGameMetadata';
+import {AssociatedPairsStatus} from './AssociatedPairsStatus';
+
+export class AssociatedPairsGame extends Game {
+  constructor(config) {
+    super(new AssociatedPairsGameMetadata(), config, AssociatedPairsStatus);
+  }
+}

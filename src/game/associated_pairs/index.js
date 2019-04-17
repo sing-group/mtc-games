@@ -19,7 +19,17 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-export * from './scene';
-export * from './playback_hearing';
-export * from './verbal_fluency';
-export * from './associated_pairs';
+import {AssociatedPairsGame} from './AssociatedPairsGame';
+import {AssociatedPairsGameCallback} from './AssociatedPairsGameCallback';
+import {AssociatedPairsGameMetadata} from './AssociatedPairsGameMetadata';
+import {AssociatedPairsGameResult} from './AssociatedPairsGameResult';
+import {AssociatedPairsStatus} from './AssociatedPairsStatus';
+
+export {
+  AssociatedPairsGame,
+  AssociatedPairsGameCallback,
+  AssociatedPairsGameMetadata,
+  AssociatedPairsGameResult,
+  AssociatedPairsStatus
+};
+export * from './main';

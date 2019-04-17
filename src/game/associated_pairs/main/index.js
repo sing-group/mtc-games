@@ -19,7 +19,14 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-export * from './scene';
-export * from './playback_hearing';
-export * from './verbal_fluency';
-export * from './associated_pairs';
+import {AssociatedPairsMainCallback} from './AssociatedPairsMainCallback';
+import {AssociatedPairsMainRenderer} from './AssociatedPairsMainRenderer';
+import {AssociatedPairsMainStageRenderConfiguration} from './AssociatedPairsMainStageRenderConfiguration';
+import {AssociatedPairsMainStageStatus} from './AssociatedPairsMainStageStatus';
+
+export {
+  AssociatedPairsMainCallback,
+  AssociatedPairsMainRenderer,
+  AssociatedPairsMainStageRenderConfiguration,
+  AssociatedPairsMainStageStatus
+};

@@ -19,7 +19,18 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-export * from './scene';
-export * from './playback_hearing';
-export * from './verbal_fluency';
-export * from './associated_pairs';
+import {GameCallback} from '../callback';
+import check from 'check-types';
+
+export class AssociatedPairsGameCallback extends GameCallback {
+  static buildWith(customCallbacks) {
+    check.assert.object(customCallbacks, 'customCallbacks should be an object');
+
+    const callbacks = Object.assign(new AssociatedPairsGameCallback(), customCallbacks);
+
+    check.assert.function(callbacks.gameStarted, 'customCallbacks.gameStarted should be a function');
+    check.assert.function(callbacks.gameFinished, 'customCallbacks.gameFinished should be a function');
+
+    return callbacks;
+  }
+}
