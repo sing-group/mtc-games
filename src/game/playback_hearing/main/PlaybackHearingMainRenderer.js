@@ -24,9 +24,8 @@ import Phaser from 'phaser';
 
 import {StageRenderer} from '../../stage';
 import {PlaybackHearingMainStageStatus} from './PlaybackHearingMainStageStatus';
-import {backgroundTiledImage, diceSelectFX, dockImage, frameImage} from '../../../assets';
+import {backgroundTiledImage, diceSelectFX, dockImage, frameImage, inputBox, speaker} from '../../../assets';
 import {PlaybackHearingGameMetadata} from "../PlaybackHearingGameMetadata";
-import {inputBox, speaker} from "../../../assets/image/game/playback_hearing";
 
 export class PlaybackHearingMainRenderer extends StageRenderer {
 

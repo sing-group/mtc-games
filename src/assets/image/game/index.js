@@ -20,4 +20,5 @@
  *
  */
 export * from './scene';
+export * from './playback_hearing';
 export * from './verbal_fluency';
