@@ -134,10 +134,6 @@ export class AssociatedPairsMainRenderer extends StageRenderer {
         : this.getStandardGameText('timeIsUp')
     );
 
-    if (this.status.maxNumberOfTries()) {
-      this.input.enabled = false;
-    }
-
     this.updateScore();
 
     if (!this.status.isRunning()) {
@@ -216,6 +212,7 @@ export class AssociatedPairsMainRenderer extends StageRenderer {
         currentSprite.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, this.onDiceClick.bind(this, currentSprite)).setInteractive();
         currentSprite.setScale(this.diceScale, this.diceScale);
         currentSprite.setOrigin(0.5, 0.5);
+        currentSprite.setAlpha(this.getSpriteAlphaValue(currentSprite));
 
         let randomCoords;
 
@@ -240,24 +237,19 @@ export class AssociatedPairsMainRenderer extends StageRenderer {
   onDiceClick(clickedSprite) {
     this.sound.play('diceSelectFX', this.diceSelectSound);
     if (this.nextPairToSelect[this.pairElementToSelect] === clickedSprite.texture.key) {
-      this.status.increaseGuessed();
-    } else {
-      this.status.increaseFailed();
-    }
-
-    if (this.status.maxNumberOfTries() && !this.status.areAllGuessed()) {
-      this.status.finishGame();
-    } else {
       this.selectedPairs.push(this.nextPairToSelect);
       this.currentShowSprites.forEach(function (sprite) {
         sprite.destroy();
       });
-    }
-
-    if (this.selectedPairs.length !== this.shownPairs.length) {
-      this.generateRandomPairElementToSelect();
-      this.drawPairToSelect();
-      this.shuffleDices();
+      this.status.increaseGuessed();
+      if (!this.status.areAllGuessed()) {
+        this.generateRandomPairElementToSelect();
+        this.drawPairToSelect();
+        this.shuffleDices();
+      }
+    } else {
+      this.hideSprite(clickedSprite);
+      this.status.increaseFailed();
     }
   }
 
@@ -369,10 +361,17 @@ export class AssociatedPairsMainRenderer extends StageRenderer {
         y: randomCoords[1],
         scaleX: this.configuration.diceScales.normal,
         scaleY: this.configuration.diceScales.normal,
-        alpha: 1,
+        alpha: this.getSpriteAlphaValue(this.shownSpritesToSelect[i]),
         duration: 100
       });
     }
+  }
+
+  getSpriteAlphaValue(sprite) {
+    let spriteToHide = this.pairElementToSelect === 0 ? 1 : 0;
+    let spriteKey = sprite.texture.key;
+
+    return this.nextPairToSelect[spriteToHide] === spriteKey ? 0 : 1;
   }
 
 }

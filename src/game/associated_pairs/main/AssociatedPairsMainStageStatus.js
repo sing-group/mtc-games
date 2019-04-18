@@ -264,8 +264,4 @@ export class AssociatedPairsMainStageStatus extends StageStatus {
     this._isRunning = false;
   }
 
-  maxNumberOfTries() {
-    return (this.failed + this.guessed) === this.gameStatus.configuration.numberOfPairs;
-  }
-
 }
