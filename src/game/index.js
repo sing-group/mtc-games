@@ -44,3 +44,5 @@ export * from './stage';
 export * from './recognition';
 export * from './verbal_fluency';
 export * from './central_executive';
+export * from './playback_hearing';
+export * from './associated_pairs';
