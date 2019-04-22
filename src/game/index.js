@@ -40,7 +40,7 @@ export {
 export * from './builder';
 export * from './callback';
 export * from './metadata';
-export * from './recognition';
 export * from './stage';
+export * from './recognition';
 export * from './verbal_fluency';
 export * from './central_executive';

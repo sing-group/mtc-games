@@ -148,7 +148,7 @@ export class RecognitionMainRenderer extends StageRenderer {
 
   diceShowPhaseUpdate() {
     if (!this.status.isShowingDice) {
-      let spriteName = this.getRandomStimulusSpriteName();
+      let spriteName = this.getRandomStimulusSpriteNameWithoutDuplicates();
       this.lastShownSprite = spriteName;
 
       this.shownSprites.push(spriteName);
@@ -249,6 +249,17 @@ export class RecognitionMainRenderer extends StageRenderer {
       randomName = this.status.stimulus + '-' + this.status.stimulusValues[Math.floor((Math.random() * this.status.stimulusValues.length))];
       randomName = randomName.toLowerCase();
     } while (randomName === this.lastShownSprite);
+
+    return randomName;
+  }
+
+  getRandomStimulusSpriteNameWithoutDuplicates() {
+    let randomName = null;
+
+    do {
+      randomName = this.status.stimulus + '-' + this.status.stimulusValues[Math.floor((Math.random() * this.status.stimulusValues.length))];
+      randomName = randomName.toLowerCase();
+    } while (this.shownSprites.indexOf(randomName) !== -1);
 
     return randomName;
   }
