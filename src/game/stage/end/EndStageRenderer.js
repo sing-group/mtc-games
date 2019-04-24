@@ -100,7 +100,7 @@ export class EndStageRenderer extends StageRenderer {
     if (this.status.gameStatus.gameMode === GameStatus.GAME_MODES.NORMAL) {
       this.gameResultsText = this.add.text(
         this.worldWidth / 2,
-        (this.worldHeight / 12) * 8,
+        ((this.worldHeight / 12) * 8) - 50,
         this._getResultsAsText(),
         this.configuration.textStyles.results
       );

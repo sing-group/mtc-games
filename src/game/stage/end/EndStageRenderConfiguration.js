@@ -69,14 +69,14 @@ export class EndStageTextStyles {
           boundsAlignV: 'middle'
         },
         DESCRIPTION: {
-          font: 'bold 24px Arial',
+          font: 'bold 22px Arial',
           fill: '#fafafa',
           boundsAlignH: 'center',
           boundsAlignV: 'middle',
           wordWrap: true
         },
         RESULTS: {
-          font: 'bold 24px Arial',
+          font: 'bold 20px Arial',
           fill: '#fafafa',
           boundsAlignH: 'left',
           boundsAlignV: 'middle'
