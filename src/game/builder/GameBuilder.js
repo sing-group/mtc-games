@@ -26,6 +26,7 @@ import {RecognitionGame, RecognitionGameMetadata} from '../recognition';
 import {CentralExecutiveGame, CentralExecutiveGameMetadata} from '../central_executive';
 import {PlaybackHearingGame, PlaybackHearingGameMetadata} from '../playback_hearing';
 import {AssociatedPairsGame, AssociatedPairsGameMetadata} from '../associated_pairs';
+import {RecognitionSternbergGame, RecognitionSternbergGameMetadata} from '../recognition_sternberg';
 
 export class GameBuilder {
   static gameForId(id) {
@@ -40,6 +41,8 @@ export class GameBuilder {
         return PlaybackHearingGame;
       case AssociatedPairsGameMetadata.ID:
         return AssociatedPairsGame;
+      case RecognitionSternbergGameMetadata.ID:
+        return RecognitionSternbergGame;
       default:
         throw new Error('Unrecognized game id: ' + id);
     }

@@ -19,31 +19,10 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import {Game} from './Game';
-import {GameConfig} from './GameConfig';
-import {GameDesign} from './GameDesign';
-import {GameEvent} from './GameEvent';
-import {GameResult} from './GameResult';
-import {GameStatus} from './GameStatus';
-import {StandardGameStatus} from './StandardGameStatus';
+import {MainStageCallback} from '../../stage';
 
-export {
-  GameConfig,
-  GameDesign,
-  GameEvent,
-  Game,
-  GameResult,
-  GameStatus,
-  StandardGameStatus
-};
-
-export * from './builder';
-export * from './callback';
-export * from './metadata';
-export * from './stage';
-export * from './recognition';
-export * from './verbal_fluency';
-export * from './central_executive';
-export * from './playback_hearing';
-export * from './associated_pairs';
-export * from './recognition_sternberg';
+export class RecognitionSternbergMainCallback extends MainStageCallback {
+  constructor(callbacks) {
+    super(callbacks);
+  }
+}
