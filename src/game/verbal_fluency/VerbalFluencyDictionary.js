@@ -53,46 +53,48 @@ export class VerbalFluencyDictionary {
 
   static get es_ES() {
     return [
-      'abc', 'acle', 'ad', 'afiche', 'ágil', 'ah', 'ahí', 'aje', 'ají', 'aj',
+      'abc', 'acle', 'ad', 'afiche', 'agil', 'ah', 'ahi', 'aje', 'aji', 'aj',
       'al', 'alce', 'ale', 'ali', 'aljibe', 'bache', 'badil', 'bah', 'baile',
-      'bajel', 'balde', 'be', 'beca', 'belga', 'bel', 'bicha', 'bidé', 'biela',
-      'bielga', 'biga', 'bija', 'bla', 'ble', 'ca', 'cabe', 'cable', 'cadí',
-      'café', 'caí', 'caj', 'cajel', 'cal', 'ce', 'cea', 'ceba', 'ceda',
-      'ceiba', 'ceja', 'celda', 'celia', 'cha', 'chalé', 'chal', 'che', 'chef',
-      'chifla', 'chifle', 'chile', 'cid', 'da', 'dable', 'dale', 'de', 'débil',
-      'debla', 'decí', 'decila', 'deja', 'del', 'dela', 'delga', 'di', 'diag',
-      'dial', 'día', 'dicha', 'dije', 'dila', 'dile', 'ea', 'ed', 'edil', 'ef',
-      'égida', 'eh', 'ej', 'el', 'fa', 'fácil', 'fca', 'fe', 'fea', 'fecal',
-      'fecha', 'fiable', 'fía', 'fichaje', 'ficha', 'fie', 'fiel', 'fig',
+      'bajel', 'balde', 'be', 'beca', 'belica', 'belga', 'bel', 'bicha', 'bide', 'biela',
+      'bielga', 'biga', 'bija', 'bla', 'ble', 'ca', 'cabe', 'cable', 'cadi',
+      'cafe', 'cai', 'caj', 'cajel', 'cal', 'ce', 'cea', 'ceba', 'ceda',
+      'ceiba', 'ceja', 'celda', 'celia', 'cha', 'chale', 'chal', 'che', 'chef',
+      'chifla', 'chifle', 'chile', 'cid', 'da', 'dable', 'dale', 'de', 'debia',
+      'debil', 'debla', 'deci', 'decila', 'deja', 'del', 'dela', 'delga', 'di',
+      'diag', 'dial', 'dia', 'dicha', 'dije', 'dila', 'dile', 'ea', 'ed', 'edil',
+      'ef', 'egida', 'eh', 'ej', 'el', 'fa', 'facil', 'fca', 'fe', 'fea', 'fecal',
+      'fecha', 'fiable', 'fia', 'fichaje', 'ficha', 'fie', 'fiel', 'fig',
       'figle', 'fija', 'fil', 'fila', 'flecha', 'gacel', 'gafe', 'gaje', 'gal',
-      'ge', 'gel', 'giba', 'gil', 'gleba', 'ha', 'hab', 'hábil', 'hacé',
+      'ge', 'gel', 'giba', 'gil', 'gleba', 'ha', 'hab', 'habil', 'hace',
       'haced', 'he', 'hice', 'hiel', 'higa', 'hila', 'ib', 'iba', 'ichal', 'id',
-      'ida', 'ideal', 'idea', 'ja', 'jabí', 'jade', 'jalde', 'je', 'jea',
-      'jefa', 'ji', 'jifa', 'jiga', 'ka', 'la', 'le', 'lechiga', 'led', 'lega',
-      'leída', 'leja', 'lejía', 'lía', 'lic', 'lid', 'lie', 'liga', 'lija'
+      'ida', 'ideal', 'idea', 'ja', 'jabi', 'jade', 'jalde', 'je', 'jea',
+      'jefa', 'ji', 'jifa', 'jiga', 'ka', 'la', 'le', 'lechiga', 'lea',
+      'led', 'lega', 'lei', 'leia', 'leida', 'leja', 'lejia', 'lia',
+      'lic', 'lid', 'lie', 'liga', 'lija'
     ];
   }
 
   static get gl_ES() {
     return [
-      'bical', 'débil', 'fácil', 'fecal', 'fiábel', 'fiable', 'hábil', 'ideal',
+      'bical', 'debil', 'facil', 'fecal', 'fiabel', 'fiable', 'habil', 'ideal',
       'belga', 'fiel', 'la', 'cha', 'da', 'del', 'dela', 'beca', 'becha',
       'belida', 'bica', 'bicha', 'biela', 'biga', 'bile', 'cal', 'cea', 'ceba',
       'ceiba', 'ceifa', 'cela', 'chea', 'cheda', 'face', 'fe', 'fecha', 'feila',
-      'fía', 'fibela', 'ficha', 'fiela', 'figa', 'fila', 'gleba', 'hifa', 'ida',
-      'idea', 'lea', 'lei', 'leiba', 'lía', 'lida', 'lide', 'liga', 'alce',
-      'badil', 'baile', 'balde', 'balé', 'be', 'bel', 'bidé', 'cable', 'café',
-      'ce', 'chal', 'chalé', 'chile', 'de', 'día', 'dial', 'edil', 'fa', 'feal',
-      'fecial', 'fel', 'fi', 'iac', 'khi', 'lai', 'lied', 'el', 'ela', 'gafe'
+      'fia', 'fibela', 'ficha', 'fiela', 'figa', 'fila', 'gleba', 'hifa', 'ida',
+      'idea', 'lea', 'lei', 'leiba', 'lia', 'lida', 'lide', 'liga', 'alce',
+      'badil', 'baile', 'balde', 'bale', 'be', 'bel', 'bide', 'cable', 'cafe',
+      'ce', 'chal', 'chale', 'chile', 'de', 'dia', 'dial', 'edil', 'fa', 'feal',
+      'fecial', 'fel', 'fi', 'iac', 'khi', 'lai', 'lied', 'el', 'ela', 'gafe',
+      'belica'
     ];
   }
 
   static get pt_PT() {
     return [
-      'ágil', 'ai', 'alce', 'baile', 'balde', 'belga', 'bidé', 'biela', 'bife',
-      'bilha', 'cabide', 'café', 'cal', 'cela', 'chalé', 'chega', 'cheia',
-      'débil', 'dia', 'dica', 'edil', 'face', 'fácil', 'fecal', 'ficha', 'fiel',
-      'figa', 'flecha', 'galé', 'hábil', 'ideal', 'ilha', 'jade', 'laje', 'lei',
+      'agil', 'ai', 'alce', 'baile', 'balde', 'belga', 'bide', 'biela', 'bife',
+      'bilha', 'cabide', 'cafe', 'cal', 'cela', 'chale', 'chega', 'cheia',
+      'debil', 'dia', 'dica', 'edil', 'face', 'facil', 'fecal', 'ficha', 'fiel',
+      'figa', 'flecha', 'gale', 'habil', 'ideal', 'ilha', 'jade', 'laje', 'lei',
       'lhe', 'liga', 'dila', 'deli', 'dei', 'dai', 'cabe', 'cabei', 'hei',
       'ida', 'ia', 'ide', 'leia'
     ];
