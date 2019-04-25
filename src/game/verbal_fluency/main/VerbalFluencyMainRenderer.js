@@ -37,6 +37,8 @@ import {
   startDragFX
 } from '../../../assets';
 
+import {VerbalFluencyGameMetadata} from "../VerbalFluencyGameMetadata";
+
 export class VerbalFluencyMainRenderer extends StageRenderer {
 
   constructor(configuration, status) {
@@ -47,12 +49,14 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
   preload() {
     this.letterSprites = [];
     this.cubeSlots = [];
+    this.currentWord = Array();
 
     this.diceScaleNormal = this.configuration.diceScales.normal;
     this.diceScaleDocked = this.configuration.diceScales.docked;
     this.diceScaleDragged = this.configuration.diceScales.dragged;
 
     this.draggingSprite = null;
+    this.draggingMode = this.game.configuration.gameMode === VerbalFluencyGameMetadata.GAME_MODE_TYPES[1];
 
     // Prevents game from pausing when browser loses focus
     this.game.scene.disableVisibilityChange = true;
@@ -193,7 +197,7 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
       this.letterSprites.push(currentSprite);
     }
 
-    if(!this.game.configuration.timerVisible) {
+    if (!this.game.configuration.timerVisible) {
       this.hideSprite(this.timeFrameSprite);
       this.timeText.setVisible(false);
     }
@@ -267,11 +271,13 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
   onWordCheck() {
     this.status.checkWord();
     this.shuffleLetters();
+    this.currentWord = Array();
   }
 
   onWordReset() {
     this.status.resetWord();
     this.shuffleLetters();
+    this.currentWord = Array();
   }
 
   shuffleLetters() {
@@ -285,6 +291,11 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
       this.letterSprites[i].finalX = randomCoords[0];
       this.letterSprites[i].finalY = randomCoords[1];
 
+      if (!this.draggingMode) {
+        this.letterSprites[i].removeAllListeners();
+        this.letterSprites[i].addListener(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, this.onSpriteClicked.bind(this, this.letterSprites[i]));
+      }
+
       this.tweens.add({
         targets: this.letterSprites[i],
         x: randomCoords[0],
@@ -297,12 +308,18 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
   }
 
   onSpriteClicked(sprite, pointer) {
-    if (!this.draggingSprite) {
-      this.onSpriteDragged(sprite, pointer);
-      this.draggingSprite = sprite;
+    if (this.draggingMode) {
+      if (!this.draggingSprite) {
+        this.onSpriteDragged(sprite, pointer);
+        this.draggingSprite = sprite;
+      } else {
+        this.onSpriteReleased(sprite, pointer);
+        this.draggingSprite = null;
+      }
     } else {
-      this.onSpriteReleased(sprite, pointer);
-      this.draggingSprite = null;
+      this.sound.play('startDragFX', this.startDragSound);
+      this.currentWord.push(sprite);
+      this.drawSelectedDice(sprite);
     }
   }
 
@@ -365,6 +382,23 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
       targets: sprite,
       scaleX: finalScale.x,
       scaleY: finalScale.y,
+      duration: 50
+    });
+  }
+
+  drawSelectedDice(sprite) {
+    const currentLetter = sprite.texture.key.substr(sprite.texture.key.length - 1);
+
+    sprite.setOrigin(0.5, 0.5);
+    sprite.setScale(this.diceScaleDocked);
+    sprite.removeAllListeners();
+
+    this.status.putLetter(this.currentWord.length - 1, currentLetter);
+
+    this.tweens.add({
+      targets: sprite,
+      x: this.cubeSlots[this.currentWord.length - 1].x,
+      y: this.cubeSlots[this.currentWord.length - 1].y,
       duration: 50
     });
   }

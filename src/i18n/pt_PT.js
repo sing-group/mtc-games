@@ -1,4 +1,4 @@
-﻿/*
+/*
  * MultiTasking Cubes - Games
  * Copyright (C) 2017-2019 - Miguel Reboiro-Jato, Germán Veras Gómez,
  * Andrés Vieira Vázquez, Adolfo Piñón Blanco, Hugo López-Fernández,
@@ -95,6 +95,8 @@ export const pt_PT = {
   'game.config.param.diceFace.words': 'PALAVRAS',
   'game.config.param.diceFace.tools': 'FERRAMENTAS',
   'game.config.param.diceFace.random': 'ALEATORIO',
+  'game.config.param.gameMode.click': 'CLICK',
+  'game.config.param.gameMode.drag': 'DRAG&DROP',
   'game.standard.time': 'Tempo',
   'game.standard.timeIsUp': 'Tempo esgotado',
   'game.standard.response': 'Digite sua resposta',
@@ -106,6 +108,8 @@ export const pt_PT = {
   'game.standard.param.numberOfTries.description': 'Número de tempos que podem repetir o jogo.',
   'game.standard.param.diceFace.name': 'Tipo de dado',
   'game.standard.param.diceFace.description': 'Tipo de dado (NÚMEROS, LETRAS, TRIGRAMAS, CORES, PALAVRAS, FERRAMENTAS ou ALEATORIO).',
+  'game.standard.param.gameMode.name': 'Modo de jogo',
+  'game.standard.param.gameMode.description': 'Modo de jogo (CLICK o DRAG&DROP).',
   'game.task.freeMemory': 'Recordo livre',
   'game.task.recognition': 'Reconhecimento',
   'game.task.playbackHearing': 'Reprodução audível',
@@ -116,6 +120,8 @@ export const pt_PT = {
   'game.task.associatedPairs': 'Pares de sócio',
   'game.verbalFluency.name': 'Fluência verbal',
   'game.verbalFluency.description': 'Neste jogo você criará palavras válidas que usam as cartas da face de cartas de todos os dados.',
+  'game.verbalFluency.param.gameMode.name': 'Modo de jogo',
+  'game.verbalFluency.param.gameMode.description': 'Modo de jogo (CLICK o DRAG&DROP).',
   'game.verbalFluency.result.attempts.name': 'Tentativas',
   'game.verbalFluency.result.guessedWords.name': 'Palavras adivinhadas',
   'game.verbalFluency.result.failedWords.name': 'Palavras erradas',

@@ -20,13 +20,19 @@
  *
  */
 import {VerbalFluencyGameCallback} from './VerbalFluencyGameCallback';
-import {GameTaskType, StandardGameMetadata} from '../metadata';
+import {EnumStringParameter, GameTaskType, Parameter, StandardGameMetadata} from '../metadata';
+import {I18NId} from "../../i18n";
 
 const DEFAULTS = Symbol();
+const GAME_MODE_TYPES = Symbol();
 
 export class VerbalFluencyGameMetadata extends StandardGameMetadata {
   constructor() {
-    super(VerbalFluencyGameMetadata.ID, [GameTaskType.TYPES.VERBAL_FLUENCY], [], VerbalFluencyGameCallback);
+    super(VerbalFluencyGameMetadata.ID, [GameTaskType.TYPES.VERBAL_FLUENCY], [
+      Parameter.build(EnumStringParameter, VerbalFluencyGameMetadata.ID,
+        'gameMode', VerbalFluencyGameMetadata.DEFAULTS.GAME_MODE, VerbalFluencyGameMetadata.GAME_MODE_TYPES),
+
+    ], VerbalFluencyGameCallback);
   }
 
   static get ID() {
@@ -35,11 +41,26 @@ export class VerbalFluencyGameMetadata extends StandardGameMetadata {
 
   static get DEFAULTS() {
     if (!VerbalFluencyGameMetadata[DEFAULTS]) {
-      VerbalFluencyGameMetadata[DEFAULTS] = Object.assign({}, StandardGameMetadata.DEFAULTS);
+      VerbalFluencyGameMetadata[DEFAULTS] = Object.assign({
+        GAME_MODE: VerbalFluencyGameMetadata.GAME_MODE_TYPES[0]
+      }, StandardGameMetadata.DEFAULTS);
 
       Object.freeze(VerbalFluencyGameMetadata[DEFAULTS]);
     }
 
     return VerbalFluencyGameMetadata[DEFAULTS];
+  }
+
+  static get GAME_MODE_TYPES() {
+    if (!VerbalFluencyGameMetadata[GAME_MODE_TYPES]) {
+      VerbalFluencyGameMetadata[GAME_MODE_TYPES] = [
+        I18NId.forConfigParamValue('gameMode').value('click'),
+        I18NId.forConfigParamValue('gameMode').value('drag')
+      ];
+
+      Object.freeze(VerbalFluencyGameMetadata[GAME_MODE_TYPES]);
+    }
+
+    return VerbalFluencyGameMetadata[GAME_MODE_TYPES];
   }
 }
