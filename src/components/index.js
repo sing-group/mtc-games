@@ -20,10 +20,4 @@
  *
  */
 
-export * from './assets';
-export * from './dice';
-export * from './components';
-export * from './game';
-export * from './games_session';
-export * from './i18n';
-export * from './util';
+export * from './game_button';
