@@ -304,15 +304,6 @@ export class StageRenderer extends Phaser.Scene {
     this.load.image(id, path);
   }
 
-  loadSpriteSheet(id, path, frameWidth, frameHeight) {
-    check.assert.nonEmptyString(id, 'id should be a non empty string');
-    check.assert.nonEmptyString(path, 'path should be a non empty string');
-    check.assert.greaterOrEqual(frameWidth, 0, 'frameWidth should be positive');
-    check.assert.greaterOrEqual(frameHeight, 0, 'frameHeight should be positive');
-
-    this.load.spritesheet(id, path, {frameWidth, frameHeight});
-  }
-
   loadAudio(id, path) {
     check.assert.nonEmptyString(id, 'id should be a non empty string');
     check.assert.nonEmptyString(path, 'path should be a non empty string');

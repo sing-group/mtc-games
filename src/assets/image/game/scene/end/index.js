@@ -19,10 +19,5 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import endTutorialButtonImage from './end-tutorial-button-sprite-sheet.png';
-import retryGameButtonImage from './retry-game-button-sprite-sheet.png';
 
-export {
-  endTutorialButtonImage,
-  retryGameButtonImage
-};
+export {};

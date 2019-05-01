@@ -20,6 +20,7 @@
  *
  */
 import {StageRenderConfiguration} from '../../stage';
+import {GameButtonStyle} from '../../../components/game_button';
 
 const DEFAULT_COLORS = Symbol();
 const DEFAULT_TEXT_STYLES = Symbol();
@@ -214,10 +215,34 @@ export class VerbalFluencyMainStagePixelOffsets {
 
 }
 
+export class VerbalFluencyMainStageButtonStyles {
+  constructor() {
+    this._selectedButton = new GameButtonStyle({
+      textColor: '#432210',
+      strokeColor: 0x432210,
+      font: 'bold 20px Arial'
+    });
+    this._unselectedButton = new GameButtonStyle({
+      textColor: '#42633c',
+      strokeColor: 0x42633c,
+      font: '20px Arial'
+    });
+  }
+
+  get selectedButton() {
+    return this._selectedButton;
+  }
+
+  get unselectedButton() {
+    return this._unselectedButton;
+  }
+}
+
 export class VerbalFluencyMainStageRenderConfiguration extends StageRenderConfiguration {
   constructor(
     colors = new VerbalFluencyMainStageColors(),
     textStyles = new VerbalFluencyMainStageTextStyles(),
+    buttonStyles = new VerbalFluencyMainStageButtonStyles(),
     diceScales = new VerbalFluencyMainStageDiceScales(),
     pixelOffsets = new VerbalFluencyMainStagePixelOffsets()
   ) {
@@ -225,6 +250,7 @@ export class VerbalFluencyMainStageRenderConfiguration extends StageRenderConfig
 
     this._colors = colors;
     this._textStyles = textStyles;
+    this._buttonStyles = buttonStyles;
     this._diceScales = diceScales;
     this._pixelOffsets = pixelOffsets;
   }
@@ -235,6 +261,10 @@ export class VerbalFluencyMainStageRenderConfiguration extends StageRenderConfig
 
   get textStyles() {
     return Object.assign(new VerbalFluencyMainStageTextStyles(), this._textStyles);
+  }
+
+  get buttonStyles() {
+    return Object.assign(new VerbalFluencyMainStageButtonStyles(), this._buttonStyles);
   }
 
   get diceScales() {

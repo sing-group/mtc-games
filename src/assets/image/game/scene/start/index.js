@@ -20,8 +20,4 @@
  *
  */
 
-import startGameButtonImage from './start-game-button-sprite-sheet.png';
-
-export {
-  startGameButtonImage
-};
+export {};

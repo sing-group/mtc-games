@@ -23,19 +23,10 @@
 import Phaser from 'phaser';
 
 import {MtcDiceFace} from '../../../dice';
-
 import {StageRenderer} from '../../stage';
+import {GameButton} from '../../../components/game_button';
 
-import {
-  backgroundTiledImage,
-  checkButtonImage,
-  cubeSlotImage,
-  dockImage,
-  endDragFX,
-  frameImage,
-  resetButtonImage,
-  startDragFX
-} from '../../../assets';
+import {backgroundTiledImage, cubeSlotImage, dockImage, endDragFX, frameImage, startDragFX} from '../../../assets';
 
 import {VerbalFluencyGameMetadata} from "../VerbalFluencyGameMetadata";
 
@@ -67,8 +58,6 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
     this.loadImage('cube-slot', cubeSlotImage);
     this.loadImage('dock', dockImage);
     this.loadImage('frame', frameImage);
-    this.loadSpriteSheet('reset-button', resetButtonImage, 114, 34);
-    this.loadSpriteSheet('check-button', checkButtonImage, 114, 34);
     this.loadAudio('startDragFX', startDragFX);
     this.loadAudio('endDragFX', endDragFX);
   }
@@ -120,32 +109,30 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
     this.scoreText.y = this.scoreFrameSprite.y;
 
     // Add check button
-    this.checkButton = this.add.sprite(
+    this.checkButton = new GameButton(
       this.dockSprite.x + pixelOffsets.checkButtonHorizontal,
       this.dockSprite.y + pixelOffsets.checkButtonVertical,
-      'check-button',
-      1
+      110,
+      30,
+      this.getText('game.verbalFluency.checkBtn'),
+      this.onWordCheck,
+      this,
+      this.configuration.buttonStyles.selectedButton,
+      this.configuration.buttonStyles.unselectedButton
     );
-    this.checkButton.setInteractive();
-    this.checkButton.setOrigin(0.5, 0.5);
-    this.checkButton.on('pointerover', this.over);
-    this.checkButton.on('pointerout', this.out);
-    this.checkButton.on('pointerdown', this.onWordCheck, this);
-    this.checkButton.on('pointerup', this.up);
 
     // Add reset button
-    this.resetButton = this.add.sprite(
+    this.resetButton = new GameButton(
       this.dockSprite.x + pixelOffsets.resetButtonHorizontal,
       this.dockSprite.y + pixelOffsets.resetButtonVertical,
-      'reset-button',
-      1
+      110,
+      30,
+      this.getText('game.verbalFluency.resetBtn'),
+      this.onWordReset,
+      this,
+      this.configuration.buttonStyles.selectedButton,
+      this.configuration.buttonStyles.unselectedButton
     );
-    this.resetButton.setInteractive();
-    this.resetButton.setOrigin(0.5, 0.5);
-    this.resetButton.on('pointerover', this.over);
-    this.resetButton.on('pointerout', this.out);
-    this.resetButton.on('pointerdown', this.onWordReset, this);
-    this.resetButton.on('pointerup', this.up);
 
     //Add cube slots
     for (let i = 0, len = 12; i < len; i++) {
@@ -218,9 +205,9 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
     }
 
     if (this.areEmptyAllCubeSlots()) {
-      this.checkButton.disableInteractive()
+      this.checkButton.disable();
     } else {
-      this.checkButton.setInteractive();
+      this.checkButton.enable();
     }
 
     this.updateScore();
@@ -261,8 +248,8 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
 
   disableGame() {
     //Ensure you cant play
-    this.resetButton.inputEnabled = false;
-    this.checkButton.inputEnabled = false;
+    this.resetButton.disable();
+    this.checkButton.disable();
     this.letterSprites.forEach(function (element) {
       element.inputEnabled = false;
     }, this);
@@ -401,17 +388,5 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
       y: this.cubeSlots[this.currentWord.length - 1].y,
       duration: 50
     });
-  }
-
-  up() {
-    this.setTexture(this.texture.key, 1);
-  }
-
-  over() {
-    this.setTexture(this.texture.key, 2);
-  }
-
-  out() {
-    this.setTexture(this.texture.key, 1);
   }
 }

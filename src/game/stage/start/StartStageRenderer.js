@@ -25,8 +25,8 @@ import check from 'check-types';
 import {StartStageRenderConfiguration} from './StartStageRenderConfiguration';
 import {StartStageStatus} from './StartStageStatus';
 import {StageRenderer} from '../../stage';
-import {startGameButtonImage, tutorialButtonImage} from '../../../assets';
 import {I18NId} from '../../../i18n';
+import {GameButton} from '../../../components/game_button';
 
 export class StartStageRenderer extends StageRenderer {
 
@@ -39,8 +39,6 @@ export class StartStageRenderer extends StageRenderer {
   }
 
   preload() {
-    this.loadSpriteSheet('start-game-button', startGameButtonImage, 300, 60);
-    this.loadSpriteSheet('tutorial-button', tutorialButtonImage, 300, 60);
   }
 
   _getParametersAsText() {
@@ -107,32 +105,30 @@ export class StartStageRenderer extends StageRenderer {
     this.gameParametersText.setOrigin(0.5, 0.5);
 
     // Start button
-    this.startGameButton = this.add.sprite(
+    new GameButton(
       (this.worldWidth / 12) * 3,
       (this.worldHeight / 12) * 10,
-      'start-game-button',
-      1
+      300,
+      60,
+      this._i18n.text('game.standard.startGameBtn'),
+      this.onStartGame,
+      this,
+      this.configuration.buttonStyles.selectedButton,
+      this.configuration.buttonStyles.unselectedButton
     );
-
-    this.startGameButton.setInteractive();
-    this.startGameButton.on('pointerover', this.over);
-    this.startGameButton.on('pointerout', this.out);
-    this.startGameButton.on('pointerdown', this.onStartGame.bind(this));
-    this.startGameButton.on('pointerdup', this.up);
 
     // Tutorial button
-    this.tutorialButton = this.add.sprite(
+    new GameButton(
       (this.worldWidth / 12) * 9,
       (this.worldHeight / 12) * 10,
-      'tutorial-button',
-      1
+      300,
+      60,
+      this._i18n.text('game.standard.tutorialBtn'),
+      this.onStartTutorial,
+      this,
+      this.configuration.buttonStyles.selectedButton,
+      this.configuration.buttonStyles.unselectedButton
     );
-
-    this.tutorialButton.setInteractive();
-    this.tutorialButton.on('pointerover', this.over);
-    this.tutorialButton.on('pointerout', this.out);
-    this.tutorialButton.on('pointerdown', this.onStartTutorial.bind(this));
-    this.tutorialButton.on('pointerup', this.up);
   }
 
   update() {
@@ -145,17 +141,5 @@ export class StartStageRenderer extends StageRenderer {
 
   onStartTutorial() {
     this.status.startTutorial();
-  }
-
-  up() {
-    this.setTexture(this.texture.key, 1);
-  }
-
-  over() {
-    this.setTexture(this.texture.key, 2);
-  }
-
-  out() {
-    this.setTexture(this.texture.key, 1);
   }
 }

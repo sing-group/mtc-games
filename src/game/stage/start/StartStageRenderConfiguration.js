@@ -20,6 +20,7 @@
  *
  */
 import {StageRenderConfiguration} from '../StageRenderConfiguration';
+import {GameButtonStyle} from '../../../components/game_button';
 
 const DEFAULT_COLORS = Symbol();
 const DEFAULT_TEXT_STYLES = Symbol();
@@ -103,14 +104,35 @@ export class StartStageTextStyles {
   }
 }
 
+export class StartStageButtonStyles {
+  constructor() {
+    this._selectedButton = new GameButtonStyle({
+      font: 'bold 25px Arial'
+    });
+    this._unselectedButton = new GameButtonStyle({
+      font: '25px Arial'
+    });
+  }
+
+  get selectedButton() {
+    return this._selectedButton;
+  }
+
+  get unselectedButton() {
+    return this._unselectedButton;
+  }
+}
+
 export class StartStageRenderConfiguration extends StageRenderConfiguration {
   constructor(
     colors = new StartStageColors(),
-    textStyles = new StartStageTextStyles()
+    textStyles = new StartStageTextStyles(),
+    buttonStyles = new StartStageButtonStyles()
   ) {
     super();
     this._colors = colors;
     this._textStyles = textStyles;
+    this._buttonStyles = buttonStyles;
   }
 
   get colors() {
@@ -119,5 +141,9 @@ export class StartStageRenderConfiguration extends StageRenderConfiguration {
 
   get textStyles() {
     return Object.assign(new StartStageTextStyles(), this._textStyles);
+  }
+
+  get buttonStyles() {
+    return Object.assign(new StartStageButtonStyles(), this._buttonStyles);
   }
 }

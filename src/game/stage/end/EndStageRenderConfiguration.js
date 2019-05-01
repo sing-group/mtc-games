@@ -20,6 +20,7 @@
  *
  */
 import {StageRenderConfiguration} from '../StageRenderConfiguration';
+import {GameButtonStyle} from '../../../components/game_button';
 
 const DEFAULT_COLORS = Symbol();
 const DEFAULT_TEXT_STYLES = Symbol();
@@ -102,14 +103,35 @@ export class EndStageTextStyles {
   }
 }
 
+export class EndStageButtonStyles {
+  constructor() {
+    this._selectedButton = new GameButtonStyle({
+      font: 'bold 25px Arial'
+    });
+    this._unselectedButton = new GameButtonStyle({
+      font: '25px Arial'
+    });
+  }
+
+  get selectedButton() {
+    return this._selectedButton;
+  }
+
+  get unselectedButton() {
+    return this._unselectedButton;
+  }
+}
+
 export class EndStageRenderConfiguration extends StageRenderConfiguration {
   constructor(
     colors = new EndStageColors(),
-    textStyles = new EndStageTextStyles()
+    textStyles = new EndStageTextStyles(),
+    buttonStyles = new EndStageButtonStyles()
   ) {
     super();
     this._colors = colors;
     this._textStyles = textStyles;
+    this._buttonStyles = buttonStyles;
   }
 
   get colors() {
@@ -118,5 +140,9 @@ export class EndStageRenderConfiguration extends StageRenderConfiguration {
 
   get textStyles() {
     return Object.assign(new EndStageTextStyles(), this._textStyles);
+  }
+
+  get buttonStyles() {
+    return Object.assign(new EndStageButtonStyles(), this._buttonStyles);
   }
 }

@@ -19,14 +19,10 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import checkButtonImage from './check-button-sprite-sheet.png';
 import cubeSlotImage from './cube-slot.png';
 import dockImage from './dock.png';
-import resetButtonImage from './reset-button-sprite-sheet.png';
 
 export {
-  checkButtonImage,
   cubeSlotImage,
   dockImage,
-  resetButtonImage
 };

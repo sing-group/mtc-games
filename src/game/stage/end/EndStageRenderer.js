@@ -26,7 +26,7 @@ import {EndStageRenderConfiguration} from './EndStageRenderConfiguration';
 import {EndStageStatus} from './EndStageStatus';
 import {GameStatus} from '../../GameStatus';
 import {StageRenderer} from '../../stage';
-import {endTutorialButtonImage, retryGameButtonImage} from '../../../assets';
+import {GameButton} from '../../../components/game_button';
 
 export class EndStageRenderer extends StageRenderer {
 
@@ -39,8 +39,6 @@ export class EndStageRenderer extends StageRenderer {
   }
 
   preload() {
-    this.loadSpriteSheet('end-tutorial-button', endTutorialButtonImage, 300, 60);
-    this.loadSpriteSheet('retry-button', retryGameButtonImage, 300, 60);
   }
 
   _getResultsAsText() {
@@ -107,30 +105,32 @@ export class EndStageRenderer extends StageRenderer {
       this.gameResultsText.setOrigin(0.5, 0.5);
 
       if (this.status.gameStatus.canRetry()) {
-        this.retryButton = this.add.sprite(
+        // End Tutorial button
+        new GameButton(
           (this.worldWidth / 12) * 6,
           (this.worldHeight / 12) * 10,
-          'retry-button',
-          1
+          300,
+          60,
+          this._i18n.text('game.standard.retryGameBtn'),
+          this.onEndTutorial,
+          this,
+          this.configuration.buttonStyles.selectedButton,
+          this.configuration.buttonStyles.unselectedButton
         );
-        this.retryButton.setInteractive();
-        this.retryButton.on('pointerover', this.over);
-        this.retryButton.on('pointerout', this.out);
-        this.retryButton.on('pointerdown', this.onEndTutorial.bind(this));
-        this.retryButton.on('pointerdup', this.up);
       }
-    } else {// End Tutorial button
-      this.endTutorialButton = this.add.sprite(
+    } else {
+      // End Tutorial button
+      new GameButton(
         (this.worldWidth / 12) * 6,
         (this.worldHeight / 12) * 10,
-        'end-tutorial-button',
-        1
+        300,
+        60,
+        this._i18n.text('game.standard.endTutorialBtn'),
+        this.onEndTutorial,
+        this,
+        this.configuration.buttonStyles.selectedButton,
+        this.configuration.buttonStyles.unselectedButton
       );
-      this.endTutorialButton.setInteractive();
-      this.endTutorialButton.on('pointerover', this.over);
-      this.endTutorialButton.on('pointerout', this.out);
-      this.endTutorialButton.on('pointerdown', this.onEndTutorial.bind(this));
-      this.endTutorialButton.on('pointerdup', this.up);
     }
   }
 
@@ -140,17 +140,5 @@ export class EndStageRenderer extends StageRenderer {
 
   onEndTutorial() {
     this.status.retry();
-  }
-
-  up() {
-    this.setTexture(this.texture.key, 1);
-  }
-
-  over() {
-    this.setTexture(this.texture.key, 2);
-  }
-
-  out() {
-    this.setTexture(this.texture.key, 1);
   }
 }
