@@ -386,9 +386,15 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
   drawSelectedDice(sprite) {
     const currentLetter = sprite.texture.key.substr(sprite.texture.key.length - 1);
 
+    let originalPosition = this.getOriginalPosition(currentLetter);
+    if (originalPosition.x === 0 && originalPosition.y === 0) {
+      this.setOriginalPosition(sprite);
+    }
+
     sprite.setOrigin(0.5, 0.5);
     sprite.setScale(this.diceScaleDocked);
     sprite.removeAllListeners();
+    sprite.addListener(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, this.recoverSpriteLastPosition.bind(this, sprite));
 
     this.status.putLetter(this.currentWord.length - 1, currentLetter);
 
@@ -400,6 +406,52 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
     });
   }
 
+  recoverSpriteLastPosition(sprite) {
+    const currentLetter = sprite.texture.key.substr(sprite.texture.key.length - 1);
+    let originalPosition = this.getOriginalPosition(currentLetter);
+
+    let letterIndex = this.getIndexInCurrentWord(sprite);
+    this.updateCurrentWord(sprite);
+    this.reDrawLetters(letterIndex);
+
+    sprite.removeAllListeners();
+    sprite.addListener(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, this.onSpriteClicked.bind(this, sprite));
+
+    sprite.x = originalPosition.x;
+    sprite.y = originalPosition.y;
+    sprite.finalX = originalPosition.x;
+    sprite.finalY = originalPosition.y;
+
+    this.tweens.add({
+      targets: sprite,
+      scaleX: this.diceScaleNormal,
+      scaleY: this.diceScaleNormal,
+      duration: 50
+    });
+  }
+
+  updateCurrentWord(selectedSprite) {
+    this.currentWord.forEach((sprite, index) => {
+      if (selectedSprite === sprite) {
+        this.currentWord.splice(index, 1);
+      }
+    });
+  }
+
+  reDrawLetters() {
+    this.status.resetWord();
+    this.currentWord.forEach((sprite, index) => {
+      const currentLetter = sprite.texture.key.substr(sprite.texture.key.length - 1);
+      this.status.putLetter(index, currentLetter);
+      this.tweens.add({
+        targets: sprite,
+        x: this.cubeSlots[index].x,
+        y: this.cubeSlots[index].y,
+        duration: 50
+      });
+    })
+  }
+
   isReleasedOverDock(sprite) {
     let dockLimit = this.dockSprite.y - (this.dockSprite.height / 2) - (sprite.displayHeight / 2);
     let spriteLimit = sprite.y;
@@ -408,7 +460,12 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
   }
 
   setOriginalPosition(sprite) {
-    if (!this.isReleasedOverDock(sprite)) {
+    if (this.draggingMode) {
+      if (!this.isReleasedOverDock(sprite)) {
+        let letter = sprite.texture.key.substr(sprite.texture.key.length - 1);
+        this.originalPositions[letter] = {x: sprite.x, y: sprite.y};
+      }
+    } else {
       let letter = sprite.texture.key.substr(sprite.texture.key.length - 1);
       this.originalPositions[letter] = {x: sprite.x, y: sprite.y};
     }
@@ -416,5 +473,16 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
 
   getOriginalPosition(letter) {
     return this.originalPositions[letter] || {x: 0, y: 0};
+  }
+
+  getIndexInCurrentWord(selectedSprite) {
+    let i = -1;
+    this.currentWord.forEach((sprite, index) => {
+      if (selectedSprite === sprite) {
+        i = index;
+      }
+    });
+
+    return i;
   }
 }
