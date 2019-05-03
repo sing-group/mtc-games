@@ -49,6 +49,8 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
     this.draggingSprite = null;
     this.draggingMode = this.game.configuration.gameMode === VerbalFluencyGameMetadata.GAME_MODE_TYPES[1];
 
+    this.originalPositions = Array();
+
     // Prevents game from pausing when browser loses focus
     this.game.scene.disableVisibilityChange = true;
 
@@ -259,12 +261,14 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
     this.status.checkWord();
     this.shuffleLetters();
     this.currentWord = Array();
+    this.originalPositions = Array();
   }
 
   onWordReset() {
     this.status.resetWord();
     this.shuffleLetters();
     this.currentWord = Array();
+    this.originalPositions = Array();
   }
 
   shuffleLetters() {
@@ -297,6 +301,7 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
   onSpriteClicked(sprite, pointer) {
     if (this.draggingMode) {
       if (!this.draggingSprite) {
+        this.setOriginalPosition(sprite);
         this.onSpriteDragged(sprite, pointer);
         this.draggingSprite = sprite;
       } else {
@@ -359,6 +364,11 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
     //If it was bound to something insert the letter into the temporal word
     if (boundToSomething && boundIndex !== -1) {
       this.status.putLetter(boundIndex, currentLetter);
+    } else {
+      if (this.isReleasedOverDock(sprite)) {
+        sprite.x = this.getOriginalPosition(currentLetter).x;
+        sprite.y = this.getOriginalPosition(currentLetter).y;
+      }
     }
 
     const finalScale = boundToSomething
@@ -388,5 +398,23 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
       y: this.cubeSlots[this.currentWord.length - 1].y,
       duration: 50
     });
+  }
+
+  isReleasedOverDock(sprite) {
+    let dockLimit = this.dockSprite.y - (this.dockSprite.height / 2) - (sprite.displayHeight / 2);
+    let spriteLimit = sprite.y;
+
+    return spriteLimit > dockLimit;
+  }
+
+  setOriginalPosition(sprite) {
+    if (!this.isReleasedOverDock(sprite)) {
+      let letter = sprite.texture.key.substr(sprite.texture.key.length - 1);
+      this.originalPositions[letter] = {x: sprite.x, y: sprite.y};
+    }
+  }
+
+  getOriginalPosition(letter) {
+    return this.originalPositions[letter] || {x: 0, y: 0};
   }
 }
