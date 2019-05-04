@@ -340,11 +340,7 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
         candidate = this.candidateDices.pop();
         this.candidateDices.unshift(candidate);
         break;
-      case 'randomWithDuplicates':
-        index = Math.floor(Math.random() * this.candidateDices.length);
-        candidate = this.candidateDices[index];
-        break;
-      case 'randomWithoutDuplicates':
+      case 'random':
         this.shownCandidates = this.shownCandidates.length === this.candidateDices.length ? Array() : this.shownCandidates;
         do {
           index = Math.floor(Math.random() * this.candidateDices.length);

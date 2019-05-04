@@ -103,8 +103,7 @@ export class RecognitionSternbergGameMetadata extends StandardGameMetadata {
       RecognitionSternbergGameMetadata[CANDIDATE_SHOWN_TYPES] = [
         I18NId.forConfigParamValue('candidateShown').value('direct'),
         I18NId.forConfigParamValue('candidateShown').value('inverse'),
-        I18NId.forConfigParamValue('candidateShown').value('randomWithDuplicates'),
-        I18NId.forConfigParamValue('candidateShown').value('randomWithoutDuplicates')
+        I18NId.forConfigParamValue('candidateShown').value('random')
       ];
 
       Object.freeze(RecognitionSternbergGameMetadata[CANDIDATE_SHOWN_TYPES]);
