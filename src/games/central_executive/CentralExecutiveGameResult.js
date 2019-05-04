@@ -20,11 +20,35 @@
  *
  */
 
-export * from './assets';
-export * from './dice';
-export * from './components';
-export * from './game';
-export * from './games';
-export * from './games_session';
-export * from './i18n';
-export * from './util';
+import {GameResult} from '../../game/GameResult';
+import check from 'check-types';
+
+export class CentralExecutiveGameResult extends GameResult {
+  constructor(gameCompleted, guessed, failed) {
+    super(['gameCompleted', 'guessed', 'failed', 'totalTries']);
+
+    check.assert.boolean(gameCompleted, 'gameCompleted should be a boolean value');
+    check.assert.greaterOrEqual(guessed, 0, 'guessed should be positive');
+    check.assert.greaterOrEqual(failed, 0, 'failed should be positive');
+
+    this._gameCompleted = gameCompleted;
+    this._guessed = guessed;
+    this._failed = failed;
+  }
+
+  get gameCompleted() {
+    return this._gameCompleted;
+  }
+
+  get guessed() {
+    return this._guessed;
+  }
+
+  get failed() {
+    return this._failed;
+  }
+
+  get totalTries() {
+    return this._guessed + this._failed;
+  }
+}

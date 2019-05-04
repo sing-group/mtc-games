@@ -19,12 +19,12 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import {RecognitionStatus} from './RecognitionStatus';
+import {RecognitionGameMetadata} from './RecognitionGameMetadata';
+import {Game} from '../../game/Game';
 
-export * from './assets';
-export * from './dice';
-export * from './components';
-export * from './game';
-export * from './games';
-export * from './games_session';
-export * from './i18n';
-export * from './util';
+export class RecognitionGame extends Game {
+  constructor(config) {
+    super(new RecognitionGameMetadata(), config, RecognitionStatus);
+  }
+}

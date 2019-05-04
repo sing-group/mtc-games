@@ -19,12 +19,18 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import {GameCallback} from '../../game/callback';
+import check from 'check-types';
 
-export * from './assets';
-export * from './dice';
-export * from './components';
-export * from './game';
-export * from './games';
-export * from './games_session';
-export * from './i18n';
-export * from './util';
+export class RecognitionGameCallback extends GameCallback {
+  static buildWith(customCallbacks) {
+    check.assert.object(customCallbacks, 'customCallbacks should be an object');
+
+    const callbacks = Object.assign(new RecognitionGameCallback(), customCallbacks);
+
+    check.assert.function(callbacks.gameStarted, 'customCallbacks.gameStarted should be a function');
+    check.assert.function(callbacks.gameFinished, 'customCallbacks.gameFinished should be a function');
+
+    return callbacks;
+  }
+}

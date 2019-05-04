@@ -19,12 +19,12 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import {VerbalFluencyGameMetadata} from '../verbal_fluency';
-import {RecognitionGameMetadata} from '../recognition';
-import {CentralExecutiveGameMetadata} from '../central_executive';
-import {PlaybackHearingGameMetadata} from '../playback_hearing';
-import {AssociatedPairsGameMetadata} from '../associated_pairs';
-import {RecognitionSternbergGameMetadata} from '../recognition_sternberg';
+import {VerbalFluencyGameMetadata} from '../../games/verbal_fluency';
+import {RecognitionGameMetadata} from '../../games/recognition';
+import {CentralExecutiveGameMetadata} from '../../games/central_executive';
+import {PlaybackHearingGameMetadata} from '../../games/playback_hearing';
+import {AssociatedPairsGameMetadata} from '../../games/associated_pairs';
+import {RecognitionSternbergGameMetadata} from '../../games/recognition_sternberg';
 
 
 export class GameMetadataBuilder {

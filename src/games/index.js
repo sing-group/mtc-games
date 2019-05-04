@@ -20,11 +20,9 @@
  *
  */
 
-export * from './assets';
-export * from './dice';
-export * from './components';
-export * from './game';
-export * from './games';
-export * from './games_session';
-export * from './i18n';
-export * from './util';
+export * from './recognition';
+export * from './verbal_fluency';
+export * from './central_executive';
+export * from './playback_hearing';
+export * from './associated_pairs';
+export * from './recognition_sternberg';

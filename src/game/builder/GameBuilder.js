@@ -21,12 +21,12 @@
  */
 import check from 'check-types';
 import {GameConfig} from '../GameConfig';
-import {VerbalFluencyGame, VerbalFluencyGameMetadata} from '../verbal_fluency';
-import {RecognitionGame, RecognitionGameMetadata} from '../recognition';
-import {CentralExecutiveGame, CentralExecutiveGameMetadata} from '../central_executive';
-import {PlaybackHearingGame, PlaybackHearingGameMetadata} from '../playback_hearing';
-import {AssociatedPairsGame, AssociatedPairsGameMetadata} from '../associated_pairs';
-import {RecognitionSternbergGame, RecognitionSternbergGameMetadata} from '../recognition_sternberg';
+import {VerbalFluencyGame, VerbalFluencyGameMetadata} from '../../games/verbal_fluency';
+import {RecognitionGame, RecognitionGameMetadata} from '../../games/recognition';
+import {CentralExecutiveGame, CentralExecutiveGameMetadata} from '../../games/central_executive';
+import {PlaybackHearingGame, PlaybackHearingGameMetadata} from '../../games/playback_hearing';
+import {AssociatedPairsGame, AssociatedPairsGameMetadata} from '../../games/associated_pairs';
+import {RecognitionSternbergGame, RecognitionSternbergGameMetadata} from '../../games/recognition_sternberg';
 
 export class GameBuilder {
   static gameForId(id) {
