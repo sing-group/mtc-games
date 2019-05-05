@@ -26,6 +26,7 @@ import {StageRenderer} from '../../../game/stage';
 import {RecognitionSternbergMainStageStatus} from './RecognitionSternbergMainStageStatus';
 
 import {backgroundTiledImage, cubeSlotImage, diceSelectFX, dockImage, frameImage} from '../../../assets';
+import {Countdown} from "../../../components/countdown";
 
 export class RecognitionSternbergMainRenderer extends StageRenderer {
 
@@ -38,7 +39,6 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
     // Prevents game from pausing when browser loses focus
     this.game.scene.disableVisibilityChange = true;
 
-    this.countdownEvent = null;
     this.currentShowSprite = null;
     this.currentShowCandidate = null;
     this.lastShownSprite = null;
@@ -114,6 +114,9 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
       this.timeText.setVisible(false);
     }
 
+    this.countdown = new Countdown(this.worldWidth / 2, this.worldHeight / 2, this._i18n.text('game.standard.countdownToStart'),
+      3, this.configuration.textStyles.countdownToStartText, this.configuration.textStyles.countdownToStartTime, this.startSelectDicePhase, this);
+
     this.status.start();
   }
 
@@ -146,7 +149,7 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
       } else if (this.status.phase === RecognitionSternbergMainStageStatus.PHASES.DICE_SELECT) {
         this.candidateSelectPhaseUpdate();
       } else if (this.status.phase === RecognitionSternbergMainStageStatus.PHASES.COUNTDOWN_TO_START) {
-        this.showCountdownToStartPhase();
+        this.updateCountdownPhase();
       }
     }
   }
@@ -186,6 +189,7 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
 
         if (this.status.currentDiceIteration === this.game.configuration.parameterValues.numberOfElements) {
           this.status.phase = RecognitionSternbergMainStageStatus.PHASES.COUNTDOWN_TO_START;
+          this.countdown.start();
         }
       }
     }
@@ -228,18 +232,14 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
     }
   }
 
-  showCountdownToStartPhase() {
-    if (this.countdownEvent == null) {
-      this.countdownEvent = this.time.delayedCall(3000, this.startSelectDicePhase, [], this);
-      this.drawCountdown();
-    } else {
-      this.updateCountdown();
+  updateCountdownPhase() {
+    if (this.countdown) {
+      this.countdown.update();
     }
   }
 
   startSelectDicePhase() {
-    this.textCountdown.destroy();
-    this.timeCountdown.destroy();
+    this.countdown.destroy();
     this.status.phase = RecognitionSternbergMainStageStatus.PHASES.DICE_SELECT;
     this.status.timeTakenByShow = this.status.secondsElapsed;
     this.status._startCountdown();
@@ -282,24 +282,6 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
     } while (this.shownSprites.indexOf(randomName) !== -1);
 
     return randomName;
-  }
-
-  drawCountdown() {
-    this.textCountdown = this.add.text(400, 300, this._i18n.text('game.standard.countdownToStart'), this.configuration.textStyles.countdownToStartText);
-    this.textCountdown.setOrigin(0.5, 1);
-    this.timeCountdown = this.add.text(400, 300, '', this.configuration.textStyles.countdownToStartTime);
-    this.timeCountdown.setOrigin(0.5, 0);
-  }
-
-  updateCountdown() {
-    let progress = 100 - Math.floor(this.countdownEvent.getProgress() * 100) + 1;
-    if (progress < 33) {
-      this.timeCountdown.setText("1");
-    } else if (progress < 66) {
-      this.timeCountdown.setText("2");
-    } else {
-      this.timeCountdown.setText("3");
-    }
   }
 
   updateScore() {
