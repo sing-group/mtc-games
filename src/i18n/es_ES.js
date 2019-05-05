@@ -103,6 +103,7 @@ export const es_ES = {
   'game.standard.startGameBtn': 'EMPEZAR',
   'game.standard.retryGameBtn': 'REPETIR',
   'game.standard.response': 'Introduce tu respuesta',
+  'game.standard.countdownToStart': 'El juego comenzará en',
   'game.standard.param.time.name': 'Tiempo',
   'game.standard.param.time.description': 'Tiempo de juego total.',
   'game.standard.param.timerVisible.name': 'Temporizador visible',

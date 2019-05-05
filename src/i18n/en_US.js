@@ -104,6 +104,7 @@ export const en_US = {
   'game.standard.startGameBtn': 'START GAME',
   'game.standard.retryGameBtn': 'RETRY GAME',
   'game.standard.param.time.name': 'Time',
+  'game.standard.countdownToStart': 'The game will start in',
   'game.standard.param.time.description': 'Total game play time.',
   'game.standard.param.timerVisible.name': 'Timer visible',
   'game.standard.param.timerVisible.description': 'Whether the timer is visible or not.',

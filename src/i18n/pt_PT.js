@@ -103,6 +103,7 @@ export const pt_PT = {
   'game.standard.startGameBtn': 'COMEÇAR',
   'game.standard.retryGameBtn': 'REPETIR',
   'game.standard.response': 'Digite sua resposta',
+  'game.standard.countdownToStart': 'O jogo vai começar em',
   'game.standard.param.time.name': 'Tempo',
   'game.standard.param.time.description': 'Tempo total do jogo.',
   'game.standard.param.timerVisible.name': 'Temporizador visível',

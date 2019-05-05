@@ -81,7 +81,15 @@ export class RecognitionSternbergMainStageTextStyles {
           align: 'left',
           stroke: '#00000030',
           strokeThickness: 2
-        }
+        },
+        COUNTDOWN_TO_START_TEXT: {
+          font: 'bold 30px Bookman Old Style',
+          fill: '#fafafa'
+        },
+        COUNTDOWN_TO_START_TIME: {
+          font: 'bold 70px Bookman Old Style',
+          fill: '#fafafa',
+        },
       };
 
       Object.freeze(RecognitionSternbergMainStageTextStyles[DEFAULT_TEXT_STYLES]);
@@ -92,10 +100,14 @@ export class RecognitionSternbergMainStageTextStyles {
 
   constructor(
     inGameTime = RecognitionSternbergMainStageTextStyles.DEFAULTS.IN_GAME_TIME,
-    score = RecognitionSternbergMainStageTextStyles.DEFAULTS.SCORE
+    score = RecognitionSternbergMainStageTextStyles.DEFAULTS.SCORE,
+    countdownToStartText = RecognitionSternbergMainStageTextStyles.DEFAULTS.COUNTDOWN_TO_START_TEXT,
+    countdownToStartTime = RecognitionSternbergMainStageTextStyles.DEFAULTS.COUNTDOWN_TO_START_TIME
   ) {
     this._inGameTime = inGameTime;
     this._score = score;
+    this._countdownToStartText = countdownToStartText;
+    this._countdownToStartTime = countdownToStartTime;
   }
 
   get inGameTime() {
@@ -106,6 +118,13 @@ export class RecognitionSternbergMainStageTextStyles {
     return Object.assign({}, this._score);
   }
 
+  get countdownToStartText() {
+    return Object.assign({}, this._countdownToStartText);
+  }
+
+  get countdownToStartTime() {
+    return Object.assign({}, this._countdownToStartTime);
+  }
 }
 
 export class RecognitionSternbergMainStagePixelOffsets {

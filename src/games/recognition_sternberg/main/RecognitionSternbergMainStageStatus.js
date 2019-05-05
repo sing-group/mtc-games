@@ -34,7 +34,8 @@ export class RecognitionSternbergMainStageStatus extends StageStatus {
     if (!RecognitionSternbergMainStageStatus[PHASES]) {
       RecognitionSternbergMainStageStatus[PHASES] = {
         DICE_SHOW: 0,
-        DICE_SELECT: 1
+        DICE_SELECT: 1,
+        COUNTDOWN_TO_START: 2
       };
 
       Object.freeze(RecognitionSternbergMainStageStatus[PHASES]);

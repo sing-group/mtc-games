@@ -103,6 +103,7 @@ export const gl_ES = {
   'game.standard.startGameBtn': 'COMENZAR',
   'game.standard.retryGameBtn': 'REPETIR',
   'game.standard.response': 'Introduza a súa resposta',
+  'game.standard.countdownToStart': 'O xogo comezará en',
   'game.standard.param.time.name': 'Tempo',
   'game.standard.param.time.description': 'Tempo de xogo total.',
   'game.standard.param.timerVisible.name': 'Temporizador visible',
