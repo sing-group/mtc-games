@@ -19,6 +19,8 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import {Countdown} from "./Countdown";
 
-export * from './game_button';
-export * from './countdown';
+export {
+  Countdown
+};
