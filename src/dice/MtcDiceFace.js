@@ -22,6 +22,7 @@
 import check from 'check-types';
 
 const FACES = Symbol();
+const AUDIO_FACES = Symbol();
 
 const NUMBERS_FACE = Symbol();
 const LETTERS_FACE = Symbol();
@@ -196,6 +197,18 @@ export class MtcDiceFace {
     }
 
     return MtcDiceFace[FACES];
+  }
+
+  static get AUDIO_FACES() {
+    if (!MtcDiceFace[AUDIO_FACES]) {
+      MtcDiceFace[AUDIO_FACES] = [
+        MtcDiceFace.NUMBERS_FACE,
+        MtcDiceFace.LETTERS_FACE,
+        MtcDiceFace.TRIGRAMS_FACE
+      ];
+    }
+
+    return MtcDiceFace[AUDIO_FACES];
   }
 
   static get FACE_NAMES() {

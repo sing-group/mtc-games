@@ -57,7 +57,7 @@ export class PlaybackHearingMainStageStatus extends StageStatus {
     this._guessed = 0;
     this._failed = 0;
     this._gameRunning = true;
-    this._diceFace = this._diceFace || MtcDiceRoller.rollFace();
+    this._diceFace = this._diceFace || MtcDiceRoller.rollAudioFace();
     this._phase = PlaybackHearingMainStageStatus.PHASES.DICE_HEARING;
     this._isHearingDice = false;
     this._currentDiceIteration = 0;
@@ -187,7 +187,7 @@ export class PlaybackHearingMainStageStatus extends StageStatus {
         this._diceFace = MtcDiceFace.TRIGRAMS_FACE;
         break;
       default:
-        this._diceFace = MtcDiceRoller.rollFace();
+        this._diceFace = MtcDiceRoller.rollAudioFace();
         break;
     }
   }

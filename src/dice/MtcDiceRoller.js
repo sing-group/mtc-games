@@ -58,4 +58,10 @@ export class MtcDiceRoller {
 
     return faces[MtcDiceRoller.RANDOM_GENERATOR(faces.length)];
   }
+
+  static rollAudioFace() {
+    const audioFaces = MtcDiceFace.AUDIO_FACES;
+
+    return audioFaces[MtcDiceRoller.RANDOM_GENERATOR(audioFaces.length)];
+  }
 }
