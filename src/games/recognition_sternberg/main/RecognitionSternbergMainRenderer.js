@@ -25,7 +25,15 @@ import Phaser from 'phaser';
 import {StageRenderer} from '../../../game/stage';
 import {RecognitionSternbergMainStageStatus} from './RecognitionSternbergMainStageStatus';
 
-import {backgroundTiledImage, cubeSlotImage, diceSelectFX, dockImage, frameImage} from '../../../assets';
+import {
+  backgroundTiledImage,
+  cancelImage,
+  confirmImage,
+  cubeSlotImage,
+  diceSelectFX,
+  dockImage,
+  frameImage
+} from '../../../assets';
 import {Countdown} from "../../../components/countdown";
 
 export class RecognitionSternbergMainRenderer extends StageRenderer {
@@ -49,6 +57,9 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
     this.selectedSprites = Array();
 
     this.falsePositive = false;
+    this.isValidSelection = false;
+    this.clickedSprite = null;
+    this.selectionConfirmation = null;
 
     this.preloadImages();
 
@@ -56,6 +67,8 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
     this.loadImage('cube-slot', cubeSlotImage);
     this.loadImage('dock', dockImage);
     this.loadImage('frame', frameImage);
+    this.loadImage('confirm', confirmImage);
+    this.loadImage('cancel', cancelImage);
     this.loadAudio('diceSelectFX', diceSelectFX);
   }
 
@@ -150,6 +163,8 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
         this.candidateSelectPhaseUpdate();
       } else if (this.status.phase === RecognitionSternbergMainStageStatus.PHASES.COUNTDOWN_TO_START) {
         this.updateCountdownPhase();
+      } else if (this.status.phase === RecognitionSternbergMainStageStatus.PHASES.DICE_RESULT) {
+        this.selectionResultDrawPhase()
       }
     }
   }
@@ -200,7 +215,7 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
       let spriteName = this.getCandidateToShow();
       this.currentShowCandidate = this.add.sprite(this.worldWidth / 2, this.worldHeight / 2, spriteName);
       this.currentShowCandidate.setScale(this.diceScaleShown, this.diceScaleShown);
-      this.currentShowCandidate.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, this.onDiceClick.bind(this, this.currentShowCandidate)).setInteractive();
+      this.currentShowCandidate.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, this.onDiceClick.bind(this, this.currentShowCandidate));
       this.currentShowCandidate.setOrigin(0.5, 0.5);
       this.currentShowCandidate.alpha = 0;
 
@@ -208,8 +223,11 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
 
       this.tweens.add({
         targets: this.currentShowCandidate,
-        duration: 500,
-        alpha: 1
+        duration: 300,
+        alpha: 1,
+        onComplete: (event, arraySprites) => {
+          arraySprites[0].setInteractive();
+        }
       });
 
       this.candidateShowTimestamp = Date.now();
@@ -238,6 +256,38 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
     }
   }
 
+  selectionResultDrawPhase() {
+    let sprite = this.isValidSelection ? 'confirm' : 'cancel';
+    if (!this.status.isShowingValidation) {
+      this.status.isShowingValidation = true;
+      this.selectionConfirmation = this.add.sprite(this.worldWidth / 2, this.worldHeight / 2, sprite);
+      this.selectionConfirmation.setOrigin(0.5, 0.5);
+      this.selectionConfirmation.alpha = 0;
+
+      this.tweens.add({
+        targets: this.selectionConfirmation,
+        duration: 300,
+        alpha: 1
+      });
+
+      this.validationSimestamp = Date.now();
+    } else {
+      if (Date.now() > this.validationSimestamp + (1000)) {
+        if (this.selectionConfirmation !== null) {
+          this.tweens.add({
+            targets: this.selectionConfirmation,
+            duration: 200,
+            alpha: 0
+          });
+        }
+        this.selectionConfirmation.destroy();
+        this.updateSelectionResult();
+        this.status.phase = RecognitionSternbergMainStageStatus.PHASES.DICE_SELECT;
+        this.status.isShowingValidation = false;
+      }
+    }
+  }
+
   startSelectDicePhase() {
     this.countdown.destroy();
     this.status.phase = RecognitionSternbergMainStageStatus.PHASES.DICE_SELECT;
@@ -249,14 +299,22 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
   }
 
   onDiceClick(clickedSprite) {
+    this.currentShowCandidate.disableInteractive();
     this.sound.play('diceSelectFX', this.diceSelectSound);
     let key = clickedSprite.texture.key;
-    if (this.checkSelectedCandidate(key)) {
-      this.candidateDices.splice(this.candidateDices.indexOf(key), 1);
-      this.selectedSprites.push(clickedSprite.texture.key);
-      this.drawSelectedCandidate(clickedSprite.texture.key);
+    clickedSprite.alpha = 0;
+    this.clickedSprite = clickedSprite;
+    this.isValidSelection = this.checkSelectedCandidate(key);
+    this.status.phase = RecognitionSternbergMainStageStatus.PHASES.DICE_RESULT;
+  }
+
+  updateSelectionResult() {
+    if (this.isValidSelection) {
+      this.candidateDices.splice(this.candidateDices.indexOf(this.clickedSprite.texture.key), 1);
+      this.selectedSprites.push(this.clickedSprite.texture.key);
+      this.drawSelectedCandidate(this.clickedSprite.texture.key);
       this.status.increaseGuessed();
-      clickedSprite.destroy();
+      this.clickedSprite.destroy();
     } else {
       this.status.increaseFailed();
     }

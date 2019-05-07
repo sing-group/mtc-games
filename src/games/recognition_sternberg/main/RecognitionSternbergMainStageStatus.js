@@ -35,7 +35,8 @@ export class RecognitionSternbergMainStageStatus extends StageStatus {
       RecognitionSternbergMainStageStatus[PHASES] = {
         DICE_SHOW: 0,
         DICE_SELECT: 1,
-        COUNTDOWN_TO_START: 2
+        COUNTDOWN_TO_START: 2,
+        DICE_RESULT: 3
       };
 
       Object.freeze(RecognitionSternbergMainStageStatus[PHASES]);
@@ -63,6 +64,7 @@ export class RecognitionSternbergMainStageStatus extends StageStatus {
     this._phase = RecognitionSternbergMainStageStatus.PHASES.DICE_SHOW;
     this._isShowingDice = false;
     this._isShowingCandidate = false;
+    this._isShowingValidation = false;
     this._currentDiceIteration = 0;
     this._timeTakenByShow = 0;
     this._dicesToSelectShown = false;
@@ -224,6 +226,14 @@ export class RecognitionSternbergMainStageStatus extends StageStatus {
 
   set isShowingCandidate(value) {
     this._isShowingCandidate = value;
+  }
+
+  get isShowingValidation() {
+    return this._isShowingValidation;
+  }
+
+  set isShowingValidation(value) {
+    this._isShowingValidation = value;
   }
 
   get currentDiceIteration() {
