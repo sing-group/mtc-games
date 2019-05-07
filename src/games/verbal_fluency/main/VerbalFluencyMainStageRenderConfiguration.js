@@ -218,8 +218,8 @@ export class VerbalFluencyMainStagePixelOffsets {
 export class VerbalFluencyMainStageButtonStyles {
   constructor() {
     this._selectedButton = new GameButtonStyle({
-      textColor: '#432210',
-      strokeColor: 0x432210,
+      textColor: '#fafafa',
+      strokeColor: 0xfafafa,
       font: 'bold 20px Arial'
     });
     this._unselectedButton = new GameButtonStyle({
