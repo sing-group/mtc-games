@@ -316,9 +316,8 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
   }
 
   onSpriteDragged(sprite) {
-    // Bring sprite to top
-    this.scene.bringToTop(sprite.texture.key);
     this.sound.play('startDragFX', this.startDragSound);
+    sprite.setDepth(1);
 
     //Scale the dice so it makes the illusion of lifting it
     let tween = this.tweens.add({
@@ -335,6 +334,7 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
 
   onSpriteReleased(sprite) {
     this.sound.play('endDragFX', this.endDragSound);
+    sprite.setDepth(0);
 
     const currentLetter = sprite.texture.key.substr(sprite.texture.key.length - 1);
     const currentLetterIndex = this.status.currentWord.indexOf(currentLetter);
@@ -407,6 +407,7 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
   }
 
   recoverSpriteLastPosition(sprite) {
+    this.sound.play('endDragFX', this.endDragSound);
     const currentLetter = sprite.texture.key.substr(sprite.texture.key.length - 1);
     let originalPosition = this.getOriginalPosition(currentLetter);
 
