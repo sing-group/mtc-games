@@ -106,11 +106,7 @@ export class RecognitionMainRenderer extends StageRenderer {
     }
     calcSprite.destroy();
 
-    if(!this.game.configuration.timerVisible) {
-      this.hideSprite(this.timeFrameSprite);
-      this.timeText.setVisible(false);
-    }
-
+    this.hideGamePanels();
     this.status.start();
   }
 
@@ -183,6 +179,7 @@ export class RecognitionMainRenderer extends StageRenderer {
           this.status.phase = RecognitionMainStageStatus.PHASES.DICE_SELECT;
           this.status._startCountdown();
           this.status.timeTakenByShow = this.status.secondsElapsed;
+          this.showGamePanels();
         }
       }
     }
@@ -270,6 +267,22 @@ export class RecognitionMainRenderer extends StageRenderer {
     this.scoreText.setColor(this.configuration.colors.scoreSeparator, this.scoreText.text.indexOf('/'));
     this.scoreText.setColor(this.configuration.colors.scoreFailed, this.scoreText.text.indexOf('/') + 1);
     this.scoreText.setColor(this.configuration.colors.scoreSeparator);
+  }
+
+  hideGamePanels() {
+    this.timeFrameSprite.setAlpha(0);
+    this.timeText.setVisible(false);
+    this.scoreFrameSprite.setAlpha(0);
+    this.scoreText.setVisible(false);
+  }
+
+  showGamePanels() {
+    if (this.game.configuration.timerVisible) {
+      this.timeFrameSprite.setAlpha(1);
+      this.timeText.setVisible(true);
+    }
+    this.scoreFrameSprite.setAlpha(1);
+    this.scoreText.setVisible(true);
   }
 
 }

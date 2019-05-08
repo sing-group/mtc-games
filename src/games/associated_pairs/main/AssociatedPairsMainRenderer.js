@@ -111,11 +111,7 @@ export class AssociatedPairsMainRenderer extends StageRenderer {
     }
     calcSprite.destroy();
 
-    if (!this.game.configuration.timerVisible) {
-      this.hideSprite(this.timeFrameSprite);
-      this.timeText.setVisible(false);
-    }
-
+    this.hideGamePanels();
     this.status.start();
   }
 
@@ -199,6 +195,7 @@ export class AssociatedPairsMainRenderer extends StageRenderer {
           this.generateRandomPairElementToSelect();
           this.drawResultsDock();
           this.drawPairToSelect();
+          this.showGamePanels();
         }
       }
     }
@@ -372,6 +369,22 @@ export class AssociatedPairsMainRenderer extends StageRenderer {
     let spriteKey = sprite.texture.key;
 
     return this.nextPairToSelect[spriteToHide] === spriteKey ? 0 : 1;
+  }
+
+  hideGamePanels() {
+    this.timeFrameSprite.setAlpha(0);
+    this.timeText.setVisible(false);
+    this.scoreFrameSprite.setAlpha(0);
+    this.scoreText.setVisible(false);
+  }
+
+  showGamePanels() {
+    if (this.game.configuration.timerVisible) {
+      this.timeFrameSprite.setAlpha(1);
+      this.timeText.setVisible(true);
+    }
+    this.scoreFrameSprite.setAlpha(1);
+    this.scoreText.setVisible(true);
   }
 
 }

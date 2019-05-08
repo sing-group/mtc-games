@@ -122,14 +122,10 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
     }
     calcSprite.destroy();
 
-    if (!this.game.configuration.timerVisible) {
-      this.hideSprite(this.timeFrameSprite);
-      this.timeText.setVisible(false);
-    }
-
     this.countdown = new Countdown(this.worldWidth / 2, this.worldHeight / 2, this._i18n.text('game.standard.countdownToStart'),
       3, this.configuration.textStyles.countdownToStartText, this.configuration.textStyles.countdownToStartTime, this.startSelectDicePhase, this);
 
+    this.hideGamePanels();
     this.status.start();
   }
 
@@ -294,6 +290,7 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
     this.status.timeTakenByShow = this.status.secondsElapsed;
     this.status._startCountdown();
     this.drawResultsDock();
+    this.showGamePanels();
     this.generateCandidateDices();
     this.generateCandidatesOrderToSelect();
   }
@@ -446,5 +443,21 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
   checkFalsePositive(showingCandidate) {
     let currentStatus = this.falsePositive && this.candidateDices.indexOf(this.currentShowCandidate.texture.key) !== -1;
     return currentStatus && this.checkSelectedCandidate(showingCandidate);
+  }
+
+  hideGamePanels() {
+    this.timeFrameSprite.setAlpha(0);
+    this.timeText.setVisible(false);
+    this.scoreFrameSprite.setAlpha(0);
+    this.scoreText.setVisible(false);
+  }
+
+  showGamePanels() {
+    if (this.game.configuration.timerVisible) {
+      this.timeFrameSprite.setAlpha(1);
+      this.timeText.setVisible(true);
+    }
+    this.scoreFrameSprite.setAlpha(1);
+    this.scoreText.setVisible(true);
   }
 }

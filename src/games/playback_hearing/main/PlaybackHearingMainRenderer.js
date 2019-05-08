@@ -107,11 +107,7 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
     }
     calcSprite.destroy();
 
-    if (!this.game.configuration.timerVisible) {
-      this.hideSprite(this.timeFrameSprite);
-      this.timeText.setVisible(false);
-    }
-
+    this.hideGamePanels();
     this.status.start();
   }
 
@@ -180,6 +176,7 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
           this.status._startCountdown();
           this.drawResultsDock();
           this.drawResultInput();
+          this.showGamePanels();
 
           // Add keyboard input event
           this.input.keyboard.on('keydown', this.onKeyBoardEvent.bind(this));
@@ -293,4 +290,21 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
       config: {}
     });
   }
+
+  hideGamePanels() {
+    this.timeFrameSprite.setAlpha(0);
+    this.timeText.setVisible(false);
+    this.scoreFrameSprite.setAlpha(0);
+    this.scoreText.setVisible(false);
+  }
+
+  showGamePanels() {
+    if (this.game.configuration.timerVisible) {
+      this.timeFrameSprite.setAlpha(1);
+      this.timeText.setVisible(true);
+    }
+    this.scoreFrameSprite.setAlpha(1);
+    this.scoreText.setVisible(true);
+  }
+
 }
