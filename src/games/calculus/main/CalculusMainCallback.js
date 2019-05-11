@@ -19,9 +19,10 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-export * from './scene';
-export * from './playback_hearing';
-export * from './verbal_fluency';
-export * from './associated_pairs';
-export * from './recognition_sternberg';
-export * from './calculus';
+import {MainStageCallback} from '../../../game/stage';
+
+export class CalculusMainCallback extends MainStageCallback {
+  constructor(callbacks) {
+    super(callbacks);
+  }
+}

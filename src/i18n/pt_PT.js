@@ -209,5 +209,19 @@ export const pt_PT = {
   'game.recognitionSternberg.result.totalTries.name': 'Tentativas totais',
   'game.recognitionSternberg.result.guessed.name': 'Estímulos adivinhados',
   'game.recognitionSternberg.result.failed.name': 'Estímulos errados',
-  'game.recognitionSternberg.result.falsePositives.name': 'Estímulos perdidos'
+  'game.recognitionSternberg.result.falsePositives.name': 'Estímulos perdidos',
+  'game.calculus.name': 'Cálculo',
+  'game.calculus.description': 'No início deste jogo, várias operações são mostradas e terão que ser resolvidas em um determinado tempo.',
+  'game.calculus.param.numberOfTries.name': 'Repetições',
+  'game.calculus.param.numberOfTries.description': 'Número de vezes que o jogo pode ser repetido.',
+  'game.calculus.param.numberOfOperations.name': 'Número de operações',
+  'game.calculus.param.numberOfOperations.description': 'Número de operações que são mostradas para resolver.',
+  'game.calculus.param.timePerOperation.name': 'Tempo de operação',
+  'game.calculus.param.timePerOperation.description': 'Número de segundos para executar a operação.',
+  'game.calculus.param.shownOperationTime.name': 'Tempo de mostra',
+  'game.calculus.param.shownOperationTime.description': 'Número de segundos que cada operação é mostrada.',
+  'game.calculus.result.gameCompleted.name': 'Jogo completado',
+  'game.calculus.result.totalTries.name': 'Tentativas totai',
+  'game.calculus.result.guessed.name': 'Estímulos adivinhados',
+  'game.calculus.result.failed.name': 'Estímulos errados'
 };

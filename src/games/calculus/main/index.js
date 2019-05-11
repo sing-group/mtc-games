@@ -19,9 +19,14 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-export * from './scene';
-export * from './playback_hearing';
-export * from './verbal_fluency';
-export * from './associated_pairs';
-export * from './recognition_sternberg';
-export * from './calculus';
+import {CalculusMainCallback} from './CalculusMainCallback';
+import {CalculusMainRenderer} from './CalculusMainRenderer';
+import {CalculusMainStageRenderConfiguration} from './CalculusMainStageRenderConfiguration';
+import {CalculusMainStageStatus} from './CalculusMainStageStatus';
+
+export {
+  CalculusMainCallback,
+  CalculusMainRenderer,
+  CalculusMainStageRenderConfiguration,
+  CalculusMainStageStatus
+};

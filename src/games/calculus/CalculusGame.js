@@ -19,9 +19,12 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-export * from './scene';
-export * from './playback_hearing';
-export * from './verbal_fluency';
-export * from './associated_pairs';
-export * from './recognition_sternberg';
-export * from './calculus';
+import {CalculusGameStatus} from './CalculusGameStatus';
+import {CalculusGameMetadata} from './CalculusGameMetadata';
+import {Game} from '../../game/Game';
+
+export class CalculusGame extends Game {
+  constructor(config) {
+    super(new CalculusGameMetadata(), config, CalculusGameStatus);
+  }
+}

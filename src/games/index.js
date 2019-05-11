@@ -26,3 +26,4 @@ export * from './central_executive';
 export * from './playback_hearing';
 export * from './associated_pairs';
 export * from './recognition_sternberg';
+export * from './calculus';

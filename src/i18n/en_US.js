@@ -209,5 +209,19 @@ export const en_US = {
   'game.recognitionSternberg.result.totalTries.name': 'Total tries',
   'game.recognitionSternberg.result.guessed.name': 'Guessed stimulus',
   'game.recognitionSternberg.result.failed.name': 'Failed stimulus',
-  'game.recognitionSternberg.result.falsePositives.name': 'False positives'
+  'game.recognitionSternberg.result.falsePositives.name': 'False positives',
+  'game.calculus.name': 'Calculus',
+  'game.calculus.description': 'At the beginning of this game there are several operations that must be resolved within a certain time.',
+  'game.calculus.param.numberOfTries.name': 'Repetitions',
+  'game.calculus.param.numberOfTries.description': 'Number times that the user can repeat the game.',
+  'game.calculus.param.numberOfOperations.name': 'Number of operations',
+  'game.calculus.param.numberOfOperations.description': 'Number of operations that will have to be resolved.',
+  'game.calculus.param.timePerOperation.name': 'Time per operation',
+  'game.calculus.param.timePerOperation.description': 'Number of seconds that will be taken to solve each operation.',
+  'game.calculus.param.shownOperationTime.name': 'Operation shown',
+  'game.calculus.param.shownOperationTime.description': 'Number of seconds each operation is displayed.',
+  'game.calculus.result.gameCompleted.name': 'Game completed',
+  'game.calculus.result.totalTries.name': 'Total tries',
+  'game.calculus.result.guessed.name': 'Guessed stimulus',
+  'game.calculus.result.failed.name': 'Failed stimulus'
 };

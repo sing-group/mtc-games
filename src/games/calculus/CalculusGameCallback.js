@@ -19,9 +19,18 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-export * from './scene';
-export * from './playback_hearing';
-export * from './verbal_fluency';
-export * from './associated_pairs';
-export * from './recognition_sternberg';
-export * from './calculus';
+import {GameCallback} from '../../game/callback';
+import check from 'check-types';
+
+export class CalculusGameCallback extends GameCallback {
+  static buildWith(customCallbacks) {
+    check.assert.object(customCallbacks, 'customCallbacks should be an object');
+
+    const callbacks = Object.assign(new CalculusGameCallback(), customCallbacks);
+
+    check.assert.function(callbacks.gameStarted, 'customCallbacks.gameStarted should be a function');
+    check.assert.function(callbacks.gameFinished, 'customCallbacks.gameFinished should be a function');
+
+    return callbacks;
+  }
+}
