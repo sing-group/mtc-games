@@ -44,7 +44,7 @@ export class StartStageRenderer extends StageRenderer {
   _getParametersAsText() {
     const paramIds = this.game.metadata.parameterIds();
 
-    let text = this.getText(I18NId.forGame('standard').param('time').name()) + ': ' + this.game.configuration.time;
+    let text = paramIds.indexOf('time') !== -1 ? this.getText(I18NId.forGame('standard').param('time').name()) + ': ' + this.game.configuration.time : '';
 
     for (let paramId of paramIds) {
       try {
