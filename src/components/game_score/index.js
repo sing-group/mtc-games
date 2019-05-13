@@ -19,7 +19,10 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import {GameScore} from './GameScore';
+import {GameScoreStyle} from './GameScoreStyle';
 
-export * from './game_button';
-export * from './game_score';
-export * from './countdown';
+export {
+  GameScore,
+  GameScoreStyle
+};
