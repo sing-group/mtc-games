@@ -19,8 +19,10 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import {GameTime} from './GameTime';
+import {GameTimeStyle} from './GameTimeStyle';
 
-export * from './game_button';
-export * from './game_score';
-export * from './game_time';
-export * from './countdown';
+export {
+  GameTime,
+  GameTimeStyle
+};
