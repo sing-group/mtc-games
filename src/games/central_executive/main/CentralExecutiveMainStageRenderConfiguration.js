@@ -20,6 +20,7 @@
  *
  */
 import {StageRenderConfiguration} from '../../../game/stage';
+import {GameScoreStyle, GameTimeStyle} from '../../../components';
 
 const DEFAULT_DICE_SCALES = Symbol();
 const DEFAULT_PIXEL_OFFSETS = Symbol();
@@ -32,7 +33,8 @@ export class CentralExecutiveMainStageColors {
       CentralExecutiveMainStageColors[DEFAULT_COLORS] = {
         SCORE_SEPARATOR: '#FAFAFA',
         SCORE_GUESSED: '#00FF00',
-        SCORE_FAILED: '#FF0000'
+        SCORE_FAILED: '#FF0000',
+        IN_GAME_TIME: '#FAFAFA'
       };
 
       Object.freeze(CentralExecutiveMainStageColors[DEFAULT_COLORS]);
@@ -44,11 +46,13 @@ export class CentralExecutiveMainStageColors {
   constructor(
     scoreSeparator = CentralExecutiveMainStageColors.DEFAULTS.SCORE_SEPARATOR,
     scoreGuessed = CentralExecutiveMainStageColors.DEFAULTS.SCORE_GUESSED,
-    scoreFailed = CentralExecutiveMainStageColors.DEFAULTS.SCORE_FAILED
+    scoreFailed = CentralExecutiveMainStageColors.DEFAULTS.SCORE_FAILED,
+    inGameTime = CentralExecutiveMainStageColors.DEFAULTS.IN_GAME_TIME
   ) {
     this._scoreSeparator = scoreSeparator;
     this._scoreGuessed = scoreGuessed;
     this._scoreFailed = scoreFailed;
+    this._inGameTime = inGameTime;
   }
 
   get scoreSeparator() {
@@ -62,26 +66,35 @@ export class CentralExecutiveMainStageColors {
   get scoreFailed() {
     return this._scoreFailed;
   }
+
+  get inGameTime() {
+    return this._inGameTime;
+  }
+
 }
 
 export class CentralExecutiveMainStageTextStyles {
   static get DEFAULTS() {
     if (!CentralExecutiveMainStageTextStyles[DEFAULT_TEXT_STYLES]) {
       CentralExecutiveMainStageTextStyles[DEFAULT_TEXT_STYLES] = {
-        IN_GAME_TIME: {
+        IN_GAME_TIME: new GameTimeStyle({
           font: '24px Arial',
-          fill: '#fafafa',
-          align: 'left',
+          fill: CentralExecutiveMainStageColors.DEFAULTS.IN_GAME_TIME,
           stroke: '#00000030',
           strokeThickness: 2
-        },
-        SCORE: {
+        }),
+        SCORE_GUESSED: new GameScoreStyle({
           font: '24px Arial',
-          fill: '#fafafa',
-          align: 'left',
+          fill: CentralExecutiveMainStageColors.DEFAULTS.SCORE_GUESSED,
           stroke: '#00000030',
           strokeThickness: 2
-        }
+        }),
+        SCORE_FAILED: new GameScoreStyle({
+          font: '24px Arial',
+          fill: CentralExecutiveMainStageColors.DEFAULTS.SCORE_FAILED,
+          stroke: '#00000030',
+          strokeThickness: 2
+        })
       };
 
       Object.freeze(CentralExecutiveMainStageTextStyles[DEFAULT_TEXT_STYLES]);
@@ -92,18 +105,25 @@ export class CentralExecutiveMainStageTextStyles {
 
   constructor(
     inGameTime = CentralExecutiveMainStageTextStyles.DEFAULTS.IN_GAME_TIME,
-    score = CentralExecutiveMainStageTextStyles.DEFAULTS.SCORE
+    scoreGuessed = CentralExecutiveMainStageTextStyles.DEFAULTS.SCORE_GUESSED,
+    scoreFailed = CentralExecutiveMainStageTextStyles.DEFAULTS.SCORE_FAILED,
   ) {
     this._inGameTime = inGameTime;
-    this._score = score;
+    this._scoreGuessed = scoreGuessed;
+    this._scoreFailed = scoreFailed;
   }
+
 
   get inGameTime() {
-    return Object.assign({}, this._inGameTime);
+    return this._inGameTime;
   }
 
-  get score() {
-    return Object.assign({}, this._score);
+  get scoreGuessed() {
+    return this._scoreGuessed;
+  }
+
+  get scoreFailed() {
+    return this._scoreFailed;
   }
 
 }

@@ -34,7 +34,7 @@ import {
   dockImage,
   frameImage
 } from '../../../assets';
-import {Countdown} from "../../../components/countdown";
+import {Countdown, GameScore, GameTime} from '../../../components';
 
 export class RecognitionSternbergMainRenderer extends StageRenderer {
 
@@ -82,35 +82,11 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
     // Add background image
     this.add.tileSprite(0, 0, this.worldWidth * 4, this.worldHeight * 4, 'background');
 
-    // Add time frame image
-    this.timeFrameSprite = this.add.sprite(0, 0, 'frame');
-    this.timeFrameSprite.setOrigin(0, 0.5);
-    this.timeFrameSprite.x = this.configuration.pixelOffsets.frameX;
-    this.timeFrameSprite.y = this.timeFrameSprite.height / 2 + this.configuration.pixelOffsets.frameY;
+    this.scorePanel = new GameScore(this.worldWidth - this.configuration.pixelOffsets.frameX, this.configuration.pixelOffsets.frameY,
+      'frame', [0, 0], [this.configuration.textStyles.scoreGuessed, this.configuration.textStyles.scoreFailed], this);
 
-    // Add score frame image
-    this.scoreFrameSprite = this.add.sprite(0, 0, 'frame');
-    this.scoreFrameSprite.setOrigin(1, 0.5);
-    this.scoreFrameSprite.x = this.worldWidth - this.configuration.pixelOffsets.frameX;
-    this.scoreFrameSprite.y = this.scoreFrameSprite.height / 2 + this.configuration.pixelOffsets.frameY;
-
-    // Add time text
-    this.timeText = this.add.text(0, 0,
-      this._i18n.text('game.standard.time') + ': ' + this.game.configuration.time,
-      this.configuration.textStyles.inGameTime
-    );
-    this.timeText.setOrigin(0.5, 0.5);
-    this.timeText.x = this.timeFrameSprite.x + this.timeFrameSprite.width / 2;
-    this.timeText.y = this.timeFrameSprite.y;
-
-    // Add score text
-    this.scoreText = this.add.text(0, 0,
-      '0 / 0',
-      this.configuration.textStyles.score
-    );
-    this.scoreText.setOrigin(0.5, 0.5);
-    this.scoreText.x = this.scoreFrameSprite.x - this.scoreFrameSprite.width / 2;
-    this.scoreText.y = this.scoreFrameSprite.y;
+    this.timePanel = new GameTime(this.configuration.pixelOffsets.frameX, this.configuration.pixelOffsets.frameY,
+      'frame', this.getStandardGameText('time') + ': ' + this.game.configuration.time, this.configuration.textStyles.inGameTime, this);
 
     //Calculate automatic dice scale
     let calcSprite = this.add.sprite(0, 0, this.getRandomStimulusSpriteName());
@@ -130,20 +106,8 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
   }
 
   update() {
-    // Calculate the remaining time and set the text accordingly
-    let remainingTime = this.game.configuration.time;
 
-    if (this.status.phase === RecognitionSternbergMainStageStatus.PHASES.DICE_SELECT) {
-      // Don't update if not in select mode. Let the user breath a little.
-      remainingTime = remainingTime - this.status.secondsElapsed + this.status.timeTakenByShow;
-    }
-
-    this.timeText.setText(
-      remainingTime > 0
-        ? this.getStandardGameText('time') + ': ' + Math.ceil(remainingTime)
-        : this.getStandardGameText('timeIsUp')
-    );
-
+    this.updateTime();
     this.updateScore();
 
     if (!this.status.isRunning()) {
@@ -340,11 +304,23 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
   }
 
   updateScore() {
-    this.scoreText.text = String(this.status.guessed) + ' / ' + String(this.status.failed);
-    this.scoreText.setColor(this.configuration.colors.scoreGuessed, 0);
-    this.scoreText.setColor(this.configuration.colors.scoreSeparator, this.scoreText.text.indexOf('/'));
-    this.scoreText.setColor(this.configuration.colors.scoreFailed, this.scoreText.text.indexOf('/') + 1);
-    this.scoreText.setColor(this.configuration.colors.scoreSeparator);
+    this.scorePanel.update([this.status.guessed, this.status.failed]);
+  }
+
+  updateTime() {
+    // Calculate the remaining time and set the text accordingly
+    let remainingTime = this.game.configuration.time;
+
+    if (this.status.phase === RecognitionSternbergMainStageStatus.PHASES.DICE_SELECT) {
+      // Don't update if not in select mode. Let the user breath a little.
+      remainingTime = remainingTime - this.status.secondsElapsed + this.status.timeTakenByShow;
+    }
+
+    this.timePanel.update(
+      remainingTime > 0
+        ? this.getStandardGameText('time') + ': ' + Math.ceil(remainingTime)
+        : this.getStandardGameText('timeIsUp')
+    );
   }
 
   drawResultsDock() {
@@ -446,18 +422,15 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
   }
 
   hideGamePanels() {
-    this.timeFrameSprite.setAlpha(0);
-    this.timeText.setVisible(false);
-    this.scoreFrameSprite.setAlpha(0);
-    this.scoreText.setVisible(false);
+    this.scorePanel.hide();
+    this.timePanel.hide();
   }
 
   showGamePanels() {
     if (this.game.configuration.timerVisible) {
-      this.timeFrameSprite.setAlpha(1);
-      this.timeText.setVisible(true);
+      this.timePanel.show();
     }
-    this.scoreFrameSprite.setAlpha(1);
-    this.scoreText.setVisible(true);
+    this.scorePanel.show();
   }
+
 }

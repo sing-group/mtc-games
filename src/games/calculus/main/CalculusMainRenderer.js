@@ -33,6 +33,7 @@ import {
   multiplication,
   subtraction
 } from '../../../assets';
+import {GameScore} from '../../../components';
 
 export class CalculusMainRenderer extends StageRenderer {
 
@@ -90,11 +91,7 @@ export class CalculusMainRenderer extends StageRenderer {
    * @private
    */
   _updateScore() {
-    this.scoreText.text = String(this.status.guessed) + ' / ' + String(this.status.failed);
-    this.scoreText.setColor(this.configuration.colors.scoreGuessed, 0);
-    this.scoreText.setColor(this.configuration.colors.scoreSeparator, this.scoreText.text.indexOf('/'));
-    this.scoreText.setColor(this.configuration.colors.scoreFailed, this.scoreText.text.indexOf('/') + 1);
-    this.scoreText.setColor(this.configuration.colors.scoreSeparator);
+    this.scorePanel.update([this.status.guessed, this.status.failed]);
   }
 
   /**
@@ -440,15 +437,8 @@ export class CalculusMainRenderer extends StageRenderer {
    * @private
    */
   _drawScorePanel() {
-    this.scoreFrameSprite = this.add.sprite(0, 0, 'frame');
-    this.scoreFrameSprite.setOrigin(0.5, 0.5);
-    this.scoreFrameSprite.x = this.worldWidth / 2;
-    this.scoreFrameSprite.y = this.scoreFrameSprite.height / 2 + this.configuration.pixelOffsets.frameY;
-
-    this.scoreText = this.add.text(0, 0, '0 / 0', this.configuration.textStyles.score);
-    this.scoreText.setOrigin(0.5, 0.5);
-    this.scoreText.x = this.scoreFrameSprite.x;
-    this.scoreText.y = this.scoreFrameSprite.y;
+    this.scorePanel = new GameScore(this.worldWidth / 2 + (210 / 2), this.configuration.pixelOffsets.frameY,
+      'frame', [0, 0], [this.configuration.textStyles.scoreGuessed, this.configuration.textStyles.scoreFailed], this);
   }
 
   /**
@@ -504,8 +494,7 @@ export class CalculusMainRenderer extends StageRenderer {
    * @private
    */
   _hideGamePanels() {
-    this.scoreFrameSprite.setAlpha(0);
-    this.scoreText.setVisible(false);
+    this.scorePanel.hide();
   }
 
   /**
@@ -513,8 +502,7 @@ export class CalculusMainRenderer extends StageRenderer {
    * @private
    */
   _showGamePanels() {
-    this.scoreFrameSprite.setAlpha(1);
-    this.scoreText.setVisible(true);
+    this.scorePanel.show();
   }
 
   /**

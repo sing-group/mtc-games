@@ -20,6 +20,7 @@
  *
  */
 import {StageRenderConfiguration} from '../../../game/stage';
+import {GameScoreStyle, GameTimeStyle} from '../../../components';
 
 const DEFAULT_DICE_SCALES = Symbol();
 const DEFAULT_PIXEL_OFFSETS = Symbol();
@@ -32,7 +33,8 @@ export class RecognitionSternbergMainStageColors {
       RecognitionSternbergMainStageColors[DEFAULT_COLORS] = {
         SCORE_SEPARATOR: '#FAFAFA',
         SCORE_GUESSED: '#00FF00',
-        SCORE_FAILED: '#FF0000'
+        SCORE_FAILED: '#FF0000',
+        IN_GAME_TIME: '#FAFAFA'
       };
 
       Object.freeze(RecognitionSternbergMainStageColors[DEFAULT_COLORS]);
@@ -44,11 +46,13 @@ export class RecognitionSternbergMainStageColors {
   constructor(
     scoreSeparator = RecognitionSternbergMainStageColors.DEFAULTS.SCORE_SEPARATOR,
     scoreGuessed = RecognitionSternbergMainStageColors.DEFAULTS.SCORE_GUESSED,
-    scoreFailed = RecognitionSternbergMainStageColors.DEFAULTS.SCORE_FAILED
+    scoreFailed = RecognitionSternbergMainStageColors.DEFAULTS.SCORE_FAILED,
+    inGameTime = RecognitionSternbergMainStageColors.DEFAULTS.IN_GAME_TIME
   ) {
     this._scoreSeparator = scoreSeparator;
     this._scoreGuessed = scoreGuessed;
     this._scoreFailed = scoreFailed;
+    this._inGameTime = inGameTime;
   }
 
   get scoreSeparator() {
@@ -62,26 +66,35 @@ export class RecognitionSternbergMainStageColors {
   get scoreFailed() {
     return this._scoreFailed;
   }
+
+  get inGameTime() {
+    return this._inGameTime;
+  }
+
 }
 
 export class RecognitionSternbergMainStageTextStyles {
   static get DEFAULTS() {
     if (!RecognitionSternbergMainStageTextStyles[DEFAULT_TEXT_STYLES]) {
       RecognitionSternbergMainStageTextStyles[DEFAULT_TEXT_STYLES] = {
-        IN_GAME_TIME: {
+        IN_GAME_TIME: new GameTimeStyle({
           font: '24px Arial',
-          fill: '#fafafa',
-          align: 'left',
+          fill: RecognitionSternbergMainStageColors.DEFAULTS.IN_GAME_TIME,
           stroke: '#00000030',
           strokeThickness: 2
-        },
-        SCORE: {
+        }),
+        SCORE_GUESSED: new GameScoreStyle({
           font: '24px Arial',
-          fill: '#fafafa',
-          align: 'left',
+          fill: RecognitionSternbergMainStageColors.DEFAULTS.SCORE_GUESSED,
           stroke: '#00000030',
           strokeThickness: 2
-        },
+        }),
+        SCORE_FAILED: new GameScoreStyle({
+          font: '24px Arial',
+          fill: RecognitionSternbergMainStageColors.DEFAULTS.SCORE_FAILED,
+          stroke: '#00000030',
+          strokeThickness: 2
+        }),
         COUNTDOWN_TO_START_TEXT: {
           font: 'bold 30px Bookman Old Style',
           fill: '#fafafa'
@@ -100,22 +113,28 @@ export class RecognitionSternbergMainStageTextStyles {
 
   constructor(
     inGameTime = RecognitionSternbergMainStageTextStyles.DEFAULTS.IN_GAME_TIME,
-    score = RecognitionSternbergMainStageTextStyles.DEFAULTS.SCORE,
+    scoreGuessed = RecognitionSternbergMainStageTextStyles.DEFAULTS.SCORE_GUESSED,
+    scoreFailed = RecognitionSternbergMainStageTextStyles.DEFAULTS.SCORE_FAILED,
     countdownToStartText = RecognitionSternbergMainStageTextStyles.DEFAULTS.COUNTDOWN_TO_START_TEXT,
     countdownToStartTime = RecognitionSternbergMainStageTextStyles.DEFAULTS.COUNTDOWN_TO_START_TIME
   ) {
     this._inGameTime = inGameTime;
-    this._score = score;
+    this._scoreGuessed = scoreGuessed;
+    this._scoreFailed = scoreFailed;
     this._countdownToStartText = countdownToStartText;
     this._countdownToStartTime = countdownToStartTime;
   }
 
   get inGameTime() {
-    return Object.assign({}, this._inGameTime);
+    return this._inGameTime;
   }
 
-  get score() {
-    return Object.assign({}, this._score);
+  get scoreGuessed() {
+    return this._scoreGuessed;
+  }
+
+  get scoreFailed() {
+    return this._scoreFailed;
   }
 
   get countdownToStartText() {

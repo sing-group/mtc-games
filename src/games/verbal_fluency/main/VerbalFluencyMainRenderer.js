@@ -24,11 +24,11 @@ import Phaser from 'phaser';
 
 import {MtcDiceFace} from '../../../dice';
 import {StageRenderer} from '../../../game/stage';
-import {GameButton} from '../../../components/game_button';
 
 import {backgroundTiledImage, cubeSlotImage, dockImage, endDragFX, frameImage, startDragFX} from '../../../assets';
 
-import {VerbalFluencyGameMetadata} from "../VerbalFluencyGameMetadata";
+import {VerbalFluencyGameMetadata} from '../VerbalFluencyGameMetadata';
+import {GameButton, GameScore, GameTime} from '../../../components';
 
 export class VerbalFluencyMainRenderer extends StageRenderer {
 
@@ -80,60 +80,25 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
     this.dockSprite.x = this.worldWidth / 2;
     this.dockSprite.y = this.calculateCenteredY(this.dockSprite.height);
 
-    // Add time frame image
-    this.timeFrameSprite = this.add.sprite(0, 0, 'frame');
-    this.timeFrameSprite.setOrigin(0, 0.5);
-    this.timeFrameSprite.x = pixelOffsets.frameX;
-    this.timeFrameSprite.y = this.timeFrameSprite.height / 2 + pixelOffsets.frameY;
+    this.scorePanel = new GameScore(this.worldWidth - pixelOffsets.frameX, pixelOffsets.frameY,
+      'frame', [0, 0, 0], [this.configuration.textStyles.scoreGuessed,
+        this.configuration.textStyles.scoreRepetition, this.configuration.textStyles.scoreFailed], this);
 
-    // Add score frame image
-    this.scoreFrameSprite = this.add.sprite(0, 0, 'frame');
-    this.scoreFrameSprite.setOrigin(1, 0.5);
-    this.scoreFrameSprite.x = this.worldWidth - pixelOffsets.frameX;
-    this.scoreFrameSprite.y = this.scoreFrameSprite.height / 2 + pixelOffsets.frameY;
-
-    // Add time text
-    this.timeText = this.add.text(0, 0,
-      this.getStandardGameText('time') + ': ' + this.game.configuration.time,
-      this.configuration.textStyles.inGameTime
-    );
-    this.timeText.setOrigin(0.5, 0.5);
-    this.timeText.x = this.timeFrameSprite.x + this.timeFrameSprite.width / 2;
-    this.timeText.y = this.timeFrameSprite.y;
-
-    // Add score text
-    this.scoreText = this.add.text(0, 0,
-      '0 / 0',
-      this.configuration.textStyles.score
-    );
-    this.scoreText.setOrigin(0.5, 0.5);
-    this.scoreText.x = this.scoreFrameSprite.x - this.scoreFrameSprite.width / 2;
-    this.scoreText.y = this.scoreFrameSprite.y;
+    this.timePanel = new GameTime(pixelOffsets.frameX, pixelOffsets.frameY, 'frame',
+      this.getStandardGameText('time') + ': ' + this.game.configuration.time, this.configuration.textStyles.inGameTime, this);
 
     // Add check button
     this.checkButton = new GameButton(
-      this.dockSprite.x + pixelOffsets.checkButtonHorizontal,
-      this.dockSprite.y + pixelOffsets.checkButtonVertical,
-      110,
-      30,
-      this.getText('game.verbalFluency.checkBtn'),
-      this.onWordCheck,
-      this,
-      this.configuration.buttonStyles.selectedButton,
-      this.configuration.buttonStyles.unselectedButton
+      this.dockSprite.x + pixelOffsets.checkButtonHorizontal, this.dockSprite.y + pixelOffsets.checkButtonVertical,
+      110, 30, this.getText('game.verbalFluency.checkBtn'), this.onWordCheck, this,
+      this.configuration.buttonStyles.selectedButton, this.configuration.buttonStyles.unselectedButton
     );
 
     // Add reset button
     this.resetButton = new GameButton(
-      this.dockSprite.x + pixelOffsets.resetButtonHorizontal,
-      this.dockSprite.y + pixelOffsets.resetButtonVertical,
-      110,
-      30,
-      this.getText('game.verbalFluency.resetBtn'),
-      this.onWordReset,
-      this,
-      this.configuration.buttonStyles.selectedButton,
-      this.configuration.buttonStyles.unselectedButton
+      this.dockSprite.x + pixelOffsets.resetButtonHorizontal, this.dockSprite.y + pixelOffsets.resetButtonVertical,
+      110, 30, this.getText('game.verbalFluency.resetBtn'), this.onWordReset, this,
+      this.configuration.buttonStyles.selectedButton, this.configuration.buttonStyles.unselectedButton
     );
 
     //Add cube slots
@@ -187,19 +152,17 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
     }
 
     if (!this.game.configuration.timerVisible) {
-      this.hideSprite(this.timeFrameSprite);
-      this.timeText.setVisible(false);
+      this.timePanel.hide()
     }
 
     this.status.start();
   }
 
   update() {
-    this.timeText.setText(
-      this.status.isRunning()
-        ? this.getStandardGameText('time', text => text + ': ' + Math.ceil(this.status.secondsLeft))
-        : this.getStandardGameText('timeIsUp')
-    );
+
+    this.timePanel.update(this.status.isRunning()
+      ? this.getStandardGameText('time', text => text + ': ' + Math.ceil(this.status.secondsLeft))
+      : this.getStandardGameText('timeIsUp'));
 
     if (this.draggingSprite) {
       this.draggingSprite.x = this.game.input.mouse.manager.mousePointer.position.x;
@@ -220,13 +183,11 @@ export class VerbalFluencyMainRenderer extends StageRenderer {
   }
 
   updateScore() {
-    this.scoreText.text = String(this.status.countGuessedWords()) + ' / ' + String(this.status.countRepeatedWords()) + ' / ' + String(this.status.countFailedWords());
-    this.scoreText.setColor(this.configuration.colors.scoreSuccess, 0);
-    this.scoreText.setColor(this.configuration.colors.scoreSeparator, this.scoreText.text.indexOf('/'));
-    this.scoreText.setColor(this.configuration.colors.scoreRepetition, this.scoreText.text.indexOf('/') + 1);
-    this.scoreText.setColor(this.configuration.colors.scoreSeparator, this.scoreText.text.lastIndexOf('/'));
-    this.scoreText.setColor(this.configuration.colors.scoreIntrusion, this.scoreText.text.lastIndexOf('/') + 1);
-    this.scoreText.setColor(this.configuration.colors.scoreSeparator);
+    this.scorePanel.update([
+      this.status.countGuessedWords(),
+      this.status.countRepeatedWords(),
+      this.status.countFailedWords()
+    ]);
   }
 
   isLetterColliding(x, y) {

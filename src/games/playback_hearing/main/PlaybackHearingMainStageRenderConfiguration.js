@@ -20,6 +20,7 @@
  *
  */
 import {StageRenderConfiguration} from '../../../game/stage';
+import {GameScoreStyle, GameTimeStyle} from '../../../components';
 
 const DEFAULT_DICE_SCALES = Symbol();
 const DEFAULT_PIXEL_OFFSETS = Symbol();
@@ -32,7 +33,8 @@ export class PlaybackHearingMainStageColors {
       PlaybackHearingMainStageColors[DEFAULT_COLORS] = {
         SCORE_SEPARATOR: '#FAFAFA',
         SCORE_GUESSED: '#00FF00',
-        SCORE_FAILED: '#FF0000'
+        SCORE_FAILED: '#FF0000',
+        IN_GAME_TIME: '#FAFAFA'
       };
 
       Object.freeze(PlaybackHearingMainStageColors[DEFAULT_COLORS]);
@@ -44,11 +46,13 @@ export class PlaybackHearingMainStageColors {
   constructor(
     scoreSeparator = PlaybackHearingMainStageColors.DEFAULTS.SCORE_SEPARATOR,
     scoreGuessed = PlaybackHearingMainStageColors.DEFAULTS.SCORE_GUESSED,
-    scoreFailed = PlaybackHearingMainStageColors.DEFAULTS.SCORE_FAILED
+    scoreFailed = PlaybackHearingMainStageColors.DEFAULTS.SCORE_FAILED,
+    inGameTime = PlaybackHearingMainStageColors.DEFAULTS.IN_GAME_TIME
   ) {
     this._scoreSeparator = scoreSeparator;
     this._scoreGuessed = scoreGuessed;
     this._scoreFailed = scoreFailed;
+    this._inGameTime = inGameTime;
   }
 
   get scoreSeparator() {
@@ -62,26 +66,35 @@ export class PlaybackHearingMainStageColors {
   get scoreFailed() {
     return this._scoreFailed;
   }
+
+  get inGameTime() {
+    return this._inGameTime;
+  }
+
 }
 
 export class PlaybackHearingMainStageTextStyles {
   static get DEFAULTS() {
     if (!PlaybackHearingMainStageTextStyles[DEFAULT_TEXT_STYLES]) {
       PlaybackHearingMainStageTextStyles[DEFAULT_TEXT_STYLES] = {
-        IN_GAME_TIME: {
+        IN_GAME_TIME: new GameTimeStyle({
           font: '24px Arial',
-          fill: '#fafafa',
-          align: 'left',
+          fill: PlaybackHearingMainStageColors.DEFAULTS.IN_GAME_TIME,
           stroke: '#00000030',
           strokeThickness: 2
-        },
-        SCORE: {
+        }),
+        SCORE_GUESSED: new GameScoreStyle({
           font: '24px Arial',
-          fill: '#fafafa',
-          align: 'left',
+          fill: PlaybackHearingMainStageColors.DEFAULTS.SCORE_GUESSED,
           stroke: '#00000030',
           strokeThickness: 2
-        },
+        }),
+        SCORE_FAILED: new GameScoreStyle({
+          font: '24px Arial',
+          fill: PlaybackHearingMainStageColors.DEFAULTS.SCORE_FAILED,
+          stroke: '#00000030',
+          strokeThickness: 2
+        }),
         RESPONSE_LABEL: {
           font: '32px Courier',
           fill: '#1d3d1e'
@@ -105,22 +118,28 @@ export class PlaybackHearingMainStageTextStyles {
 
   constructor(
     inGameTime = PlaybackHearingMainStageTextStyles.DEFAULTS.IN_GAME_TIME,
-    score = PlaybackHearingMainStageTextStyles.DEFAULTS.SCORE,
+    scoreGuessed = PlaybackHearingMainStageTextStyles.DEFAULTS.SCORE_GUESSED,
+    scoreFailed = PlaybackHearingMainStageTextStyles.DEFAULTS.SCORE_FAILED,
     responseLabel = PlaybackHearingMainStageTextStyles.DEFAULTS.RESPONSE_LABEL,
     responseInput = PlaybackHearingMainStageTextStyles.DEFAULTS.RESPONSE_INPUT,
   ) {
     this._inGameTime = inGameTime;
-    this._score = score;
+    this._scoreGuessed = scoreGuessed;
+    this._scoreFailed = scoreFailed;
     this._responseLabel = responseLabel;
     this._responseInput = responseInput;
   }
 
   get inGameTime() {
-    return Object.assign({}, this._inGameTime);
+    return this._inGameTime;
   }
 
-  get score() {
-    return Object.assign({}, this._score);
+  get scoreGuessed() {
+    return this._scoreGuessed;
+  }
+
+  get scoreFailed() {
+    return this._scoreFailed;
   }
 
   get responseLabel() {

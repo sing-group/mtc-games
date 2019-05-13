@@ -20,7 +20,7 @@
  *
  */
 import {StageRenderConfiguration} from '../../../game/stage';
-import {GameButtonStyle} from '../../../components/game_button';
+import {GameButtonStyle, GameScoreStyle, GameTimeStyle} from '../../../components';
 
 const DEFAULT_COLORS = Symbol();
 const DEFAULT_TEXT_STYLES = Symbol();
@@ -32,12 +32,14 @@ export class VerbalFluencyMainStageColors {
     scoreSeparator = VerbalFluencyMainStageColors.DEFAULTS.SCORE_SEPARATOR,
     scoreSuccess = VerbalFluencyMainStageColors.DEFAULTS.SCORE_SUCCESS,
     scoreIntrusion = VerbalFluencyMainStageColors.DEFAULTS.SCORE_INTRUSION,
-    scoreRepetition = VerbalFluencyMainStageColors.DEFAULTS.SCORE_REPETITION
+    scoreRepetition = VerbalFluencyMainStageColors.DEFAULTS.SCORE_REPETITION,
+    inGameTime = VerbalFluencyMainStageColors.DEFAULTS.IN_GAME_TIME
   ) {
     this._scoreSeparator = scoreSeparator;
     this._scoreSuccess = scoreSuccess;
     this._scoreIntrusion = scoreIntrusion;
     this._scoreRepetition = scoreRepetition;
+    this._inGameTime = inGameTime;
   }
 
   static get DEFAULTS() {
@@ -46,7 +48,8 @@ export class VerbalFluencyMainStageColors {
         SCORE_SEPARATOR: '#FAFAFA',
         SCORE_SUCCESS: '#00FF00',
         SCORE_INTRUSION: '#FF0000',
-        SCORE_REPETITION: '#FFFF00'
+        SCORE_REPETITION: '#FFFF00',
+        IN_GAME_TIME: '#FAFAFA'
       };
 
       Object.freeze(VerbalFluencyMainStageColors[DEFAULT_COLORS]);
@@ -70,34 +73,52 @@ export class VerbalFluencyMainStageColors {
   get scoreRepetition() {
     return this._scoreRepetition;
   }
+
+  get inGameTime() {
+    return this._inGameTime;
+  }
 }
 
 export class VerbalFluencyMainStageTextStyles {
   constructor(
     inGameTime = VerbalFluencyMainStageTextStyles.DEFAULTS.IN_GAME_TIME,
-    score = VerbalFluencyMainStageTextStyles.DEFAULTS.SCORE
+    scoreGuessed = VerbalFluencyMainStageTextStyles.DEFAULTS.SCORE_GUESSED,
+    scoreFailed = VerbalFluencyMainStageTextStyles.DEFAULTS.SCORE_FAILED,
+    scoreRepetition = VerbalFluencyMainStageTextStyles.DEFAULTS.SCORE_REPETITION
   ) {
     this._inGameTime = inGameTime;
-    this._score = score;
+    this._scoreGuessed = scoreGuessed;
+    this._scoreFailed = scoreFailed;
+    this._scoreRepetition = scoreRepetition;
   }
 
   static get DEFAULTS() {
     if (!VerbalFluencyMainStageTextStyles[DEFAULT_TEXT_STYLES]) {
       VerbalFluencyMainStageTextStyles[DEFAULT_TEXT_STYLES] = {
-        IN_GAME_TIME: {
+        IN_GAME_TIME: new GameTimeStyle({
           font: '24px Arial',
-          fill: '#fafafa',
-          align: 'left',
+          fill: VerbalFluencyMainStageColors.DEFAULTS.IN_GAME_TIME,
           stroke: '#00000030',
           strokeThickness: 2
-        },
-        SCORE: {
+        }),
+        SCORE_GUESSED: new GameScoreStyle({
           font: '24px Arial',
-          fill: '#fafafa',
-          align: 'left',
+          fill: VerbalFluencyMainStageColors.DEFAULTS.SCORE_SUCCESS,
           stroke: '#00000030',
           strokeThickness: 2
-        }
+        }),
+        SCORE_FAILED: new GameScoreStyle({
+          font: '24px Arial',
+          fill: VerbalFluencyMainStageColors.DEFAULTS.SCORE_INTRUSION,
+          stroke: '#00000030',
+          strokeThickness: 2
+        }),
+        SCORE_REPETITION: new GameScoreStyle({
+          font: '24px Arial',
+          fill: VerbalFluencyMainStageColors.DEFAULTS.SCORE_REPETITION,
+          stroke: '#00000030',
+          strokeThickness: 2
+        })
       };
 
       Object.freeze(VerbalFluencyMainStageTextStyles[DEFAULT_TEXT_STYLES]);
@@ -107,13 +128,20 @@ export class VerbalFluencyMainStageTextStyles {
   }
 
   get inGameTime() {
-    return Object.assign({}, this._inGameTime);
+    return this._inGameTime;
   }
 
-  get score() {
-    return Object.assign({}, this._score);
+  get scoreGuessed() {
+    return this._scoreGuessed;
   }
 
+  get scoreFailed() {
+    return this._scoreFailed;
+  }
+
+  get scoreRepetition() {
+    return this._scoreRepetition;
+  }
 }
 
 export class VerbalFluencyMainStageDiceScales {

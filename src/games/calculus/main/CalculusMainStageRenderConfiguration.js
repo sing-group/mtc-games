@@ -20,6 +20,7 @@
  *
  */
 import {StageRenderConfiguration} from '../../../game/stage';
+import {GameScoreStyle, GameTimeStyle} from '../../../components';
 
 const DEFAULT_DICE_SCALES = Symbol();
 const DEFAULT_PIXEL_OFFSETS = Symbol();
@@ -32,7 +33,8 @@ export class CalculusMainStageColors {
       CalculusMainStageColors[DEFAULT_COLORS] = {
         SCORE_SEPARATOR: '#FAFAFA',
         SCORE_GUESSED: '#00FF00',
-        SCORE_FAILED: '#FF0000'
+        SCORE_FAILED: '#FF0000',
+        IN_GAME_TIME: '#FAFAFA'
       };
 
       Object.freeze(CalculusMainStageColors[DEFAULT_COLORS]);
@@ -44,11 +46,13 @@ export class CalculusMainStageColors {
   constructor(
     scoreSeparator = CalculusMainStageColors.DEFAULTS.SCORE_SEPARATOR,
     scoreGuessed = CalculusMainStageColors.DEFAULTS.SCORE_GUESSED,
-    scoreFailed = CalculusMainStageColors.DEFAULTS.SCORE_FAILED
+    scoreFailed = CalculusMainStageColors.DEFAULTS.SCORE_FAILED,
+    inGameTime = CalculusMainStageColors.DEFAULTS.IN_GAME_TIME
   ) {
     this._scoreSeparator = scoreSeparator;
     this._scoreGuessed = scoreGuessed;
     this._scoreFailed = scoreFailed;
+    this._inGameTime = inGameTime;
   }
 
   get scoreSeparator() {
@@ -62,26 +66,34 @@ export class CalculusMainStageColors {
   get scoreFailed() {
     return this._scoreFailed;
   }
+
+  get inGameTime() {
+    return this._inGameTime;
+  }
 }
 
 export class CalculusMainStageTextStyles {
   static get DEFAULTS() {
     if (!CalculusMainStageTextStyles[DEFAULT_TEXT_STYLES]) {
       CalculusMainStageTextStyles[DEFAULT_TEXT_STYLES] = {
-        IN_GAME_TIME: {
+        IN_GAME_TIME: new GameTimeStyle({
           font: '24px Arial',
-          fill: '#fafafa',
-          align: 'left',
+          fill: CalculusMainStageColors.DEFAULTS.IN_GAME_TIME,
           stroke: '#00000030',
           strokeThickness: 2
-        },
-        SCORE: {
+        }),
+        SCORE_GUESSED: new GameScoreStyle({
           font: '24px Arial',
-          fill: '#fafafa',
-          align: 'left',
+          fill: CalculusMainStageColors.DEFAULTS.SCORE_GUESSED,
           stroke: '#00000030',
           strokeThickness: 2
-        },
+        }),
+        SCORE_FAILED: new GameScoreStyle({
+          font: '24px Arial',
+          fill: CalculusMainStageColors.DEFAULTS.SCORE_FAILED,
+          stroke: '#00000030',
+          strokeThickness: 2
+        }),
         RESPONSE_LABEL: {
           font: '32px Courier',
           fill: '#1d3d1e'
@@ -105,22 +117,28 @@ export class CalculusMainStageTextStyles {
 
   constructor(
     inGameTime = CalculusMainStageTextStyles.DEFAULTS.IN_GAME_TIME,
-    score = CalculusMainStageTextStyles.DEFAULTS.SCORE,
+    scoreGuessed = CalculusMainStageTextStyles.DEFAULTS.SCORE_GUESSED,
+    scoreFailed = CalculusMainStageTextStyles.DEFAULTS.SCORE_FAILED,
     responseLabel = CalculusMainStageTextStyles.DEFAULTS.RESPONSE_LABEL,
     responseInput = CalculusMainStageTextStyles.DEFAULTS.RESPONSE_INPUT,
   ) {
     this._inGameTime = inGameTime;
-    this._score = score;
+    this._scoreGuessed = scoreGuessed;
+    this._scoreFailed = scoreFailed;
     this._responseLabel = responseLabel;
     this._responseInput = responseInput;
   }
 
   get inGameTime() {
-    return Object.assign({}, this._inGameTime);
+    return this._inGameTime;
   }
 
-  get score() {
-    return Object.assign({}, this._score);
+  get scoreGuessed() {
+    return this._scoreGuessed;
+  }
+
+  get scoreFailed() {
+    return this._scoreFailed;
   }
 
   get responseLabel() {
