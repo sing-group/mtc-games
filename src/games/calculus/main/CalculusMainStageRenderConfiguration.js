@@ -95,12 +95,11 @@ export class CalculusMainStageTextStyles {
           strokeThickness: 2
         }),
         RESPONSE_LABEL: {
-          font: '32px Courier',
+          font: '32px Arial',
           fill: '#1d3d1e'
         },
         RESPONSE_INPUT: {
-          font: '32px Courier',
-          fontFamily: 'Arial',
+          font: '32px Arial',
           fill: '#1d3d1e',
           padding: {
             x: 10,

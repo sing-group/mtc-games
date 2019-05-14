@@ -96,11 +96,11 @@ export class RecognitionSternbergMainStageTextStyles {
           strokeThickness: 2
         }),
         COUNTDOWN_TO_START_TEXT: {
-          font: 'bold 30px Bookman Old Style',
+          font: 'bold 30px Arial',
           fill: '#fafafa'
         },
         COUNTDOWN_TO_START_TIME: {
-          font: 'bold 70px Bookman Old Style',
+          font: 'bold 70px Arial',
           fill: '#fafafa',
         },
       };

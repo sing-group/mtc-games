@@ -68,7 +68,7 @@ const config = {
         }]
       },
       {
-        test: /\.(wav|m4a)$/,
+        test: /\.(wav|m4a|mp3)$/,
         include: fs.realpathSync(path.resolve(__dirname, 'src/assets/audio')),
         use: [{
           loader: 'url-loader',
@@ -84,12 +84,12 @@ const config = {
   },
   resolve: {
     modules: [path.resolve('./node_modules'), path.resolve('./src')],
-    extensions: ['.png', '.jpg', '.wav', '.m4a', '.js']
+    extensions: ['.png', '.jpg', '.wav', '.m4a', '.js', 'mp3']
   },
   plugins: [
     new CleanWebpackPlugin(),
     new CircularDependencyPlugin({
-      exclude: /\.(png|jpg)$|\.(wav|m4a)$|node_modules/,
+      exclude: /\.(png|jpg)$|\.(wav|m4a|mp3)$|node_modules/,
       failOnerror: true,
       cwd: process.cwd()
     })

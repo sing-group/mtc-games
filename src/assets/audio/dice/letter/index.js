@@ -19,18 +19,18 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import letterASound from './a.m4a';
-import letterBSound from './b.m4a';
-import letterCSound from './c.m4a';
-import letterDSound from './d.m4a';
-import letterESound from './e.m4a';
-import letterFSound from './f.m4a';
-import letterGSound from './g.m4a';
-import letterHSound from './h.m4a';
-import letterISound from './i.m4a';
-import letterJSound from './j.m4a';
-import letterKSound from './k.m4a';
-import letterLSound from './l.m4a';
+import letterASound from './a.mp3';
+import letterBSound from './b.mp3';
+import letterCSound from './c.mp3';
+import letterDSound from './d.mp3';
+import letterESound from './e.mp3';
+import letterFSound from './f.mp3';
+import letterGSound from './g.mp3';
+import letterHSound from './h.mp3';
+import letterISound from './i.mp3';
+import letterJSound from './j.mp3';
+import letterKSound from './k.mp3';
+import letterLSound from './l.mp3';
 
 export {
   letterASound,

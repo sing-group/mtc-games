@@ -19,9 +19,9 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-export * from './colors';
-export * from './letters';
-export * from './numbers';
-export * from './tools';
-export * from './trigrams';
-export * from './words';
+export * from './color';
+export * from './letter';
+export * from './number';
+export * from './tool';
+export * from './trigram';
+export * from './word';

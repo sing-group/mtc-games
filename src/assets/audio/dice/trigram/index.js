@@ -19,30 +19,30 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import syllableBleSound from './ble.m4a';
-import syllableBraSound from './bra.m4a';
-import syllableCodSound from './cod.m4a';
-import syllableGemSound from './gem.m4a';
-import syllableNukSound from './nuk.m4a';
-import syllablePinSound from './pin.m4a';
-import syllableQuelSound from './quel.m4a';
-import syllableRasSound from './ras.m4a';
-import syllableSapSound from './sap.m4a';
-import syllableTerSound from './ter.m4a';
-import syllableWidSound from './wid.m4a';
-import syllableZofSound from './zof.m4a';
+import trigramBleSound from './ble.mp3';
+import trigramBraSound from './bra.mp3';
+import trigramCodSound from './cod.mp3';
+import trigramGemSound from './gem.mp3';
+import trigramNukSound from './nuk.mp3';
+import trigramPinSound from './pin.mp3';
+import trigramQuelSound from './quel.mp3';
+import trigramRasSound from './ras.mp3';
+import trigramSabSound from './sab.mp3';
+import trigramTerSound from './ter.mp3';
+import trigramWidSound from './wid.mp3';
+import trigramZofSound from './zof.mp3';
 
 export {
-  syllableBleSound,
-  syllableBraSound,
-  syllableCodSound,
-  syllableGemSound,
-  syllableNukSound,
-  syllablePinSound,
-  syllableQuelSound,
-  syllableRasSound,
-  syllableSapSound,
-  syllableTerSound,
-  syllableWidSound,
-  syllableZofSound
+  trigramBleSound,
+  trigramBraSound,
+  trigramCodSound,
+  trigramGemSound,
+  trigramNukSound,
+  trigramPinSound,
+  trigramQuelSound,
+  trigramRasSound,
+  trigramSabSound,
+  trigramTerSound,
+  trigramWidSound,
+  trigramZofSound
 };

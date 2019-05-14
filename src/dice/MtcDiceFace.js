@@ -54,7 +54,7 @@ export class MtcDiceFace {
 
   static get TRIGRAMS_FACE_VALUES() {
     return [
-      'sap', 'gem', 'wid', 'zof',
+      'sab', 'gem', 'wid', 'zof',
       'quel', 'ras', 'bra', 'ble',
       'pin', 'cod', 'ter', 'nuk'
     ];
@@ -63,7 +63,7 @@ export class MtcDiceFace {
   static get WORDS_FACE_VALUES() {
     return [
       'eggs', 'walnuts', 'drill', 'pear',
-      'thyme', 'nut', 'apple', 'saw',
+      'thyme', 'nuts', 'apple', 'saw',
       'ham', 'hammer', 'melon', 'lemon'
     ];
   }

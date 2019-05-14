@@ -118,6 +118,15 @@ export class AssociatedPairsMainStageStatus extends StageStatus {
       case (MtcDiceFace.TRIGRAMS_FACE_STIMULUS):
         this._diceFace = MtcDiceFace.TRIGRAMS_FACE;
         break;
+      case (MtcDiceFace.COLORS_FACE_STIMULUS):
+        this._diceFace = MtcDiceFace.COLORS_FACE;
+        break;
+      case (MtcDiceFace.WORDS_FACE_STIMULUS):
+        this._diceFace = MtcDiceFace.WORDS_FACE;
+        break;
+      case (MtcDiceFace.TOOLS_FACE_STIMULUS):
+        this._diceFace = MtcDiceFace.TOOLS_FACE;
+        break;
       default:
         this._diceFace = MtcDiceRoller.rollFace();
         break;

@@ -26,17 +26,29 @@ import check from 'check-types';
 
 import {
   colorBlack,
+  colorBlackSound,
   colorBlue,
+  colorBlueSound,
   colorBrown,
+  colorBrownSound,
   colorGray,
+  colorGraySound,
   colorGreen,
+  colorGreenSound,
   colorLightBlue,
+  colorLightBlueSound,
   colorOrange,
+  colorOrangeSound,
   colorPink,
+  colorPinkSound,
   colorPurple,
+  colorPurpleSound,
   colorRed,
+  colorRedSound,
   colorWhite,
+  colorWhiteSound,
   colorYellow,
+  colorYellowSound,
   letterA,
   letterASound,
   letterB,
@@ -85,54 +97,78 @@ import {
   number8Sound,
   number9,
   number9Sound,
-  syllableBleSound,
-  syllableBraSound,
-  syllableCodSound,
-  syllableGemSound,
-  syllableNukSound,
-  syllablePinSound,
-  syllableQuelSound,
-  syllableRasSound,
-  syllableSapSound,
-  syllableTerSound,
-  syllableWidSound,
-  syllableZofSound,
   toolBroom,
+  toolBroomSound,
   toolBrush,
+  toolBrushSound,
   toolHammer,
+  toolHammerSound,
   toolHandSaw,
+  toolHandSawSound,
   toolLadder,
+  toolLadderSound,
   toolMeasurementTape,
+  toolMeasurementTapeSound,
   toolPliers,
+  toolPliersSound,
   toolRoller,
+  toolRollerSound,
   toolSaw,
+  toolSawSound,
   toolScissors,
+  toolScissorsSound,
   toolTrowel,
+  toolTrowelSound,
   toolWheelBarrow,
+  toolWheelBarrowSound,
   trigramBle,
+  trigramBleSound,
   trigramBra,
+  trigramBraSound,
   trigramCod,
+  trigramCodSound,
   trigramGem,
+  trigramGemSound,
   trigramNuk,
+  trigramNukSound,
   trigramPin,
+  trigramPinSound,
   trigramQuel,
+  trigramQuelSound,
   trigramRas,
-  trigramSap,
+  trigramRasSound,
+  trigramSab,
+  trigramSabSound,
   trigramTer,
+  trigramTerSound,
   trigramWid,
+  trigramWidSound,
   trigramZof,
+  trigramZofSound,
   wordApple,
+  wordAppleSound,
   wordDrill,
+  wordDrillSound,
   wordEggs,
+  wordEggsSound,
   wordHam,
   wordHammer,
+  wordHammerSound,
+  wordHamSound,
   wordLemon,
+  wordLemonSound,
   wordMelon,
-  wordNut,
+  wordMelonSound,
+  wordNuts,
+  wordNutsSound,
   wordPear,
+  wordPearSound,
   wordSaw,
+  wordSawSound,
   wordThyme,
-  wordWalnuts
+  wordThymeSound,
+  wordWalnuts,
+  wordWalnutsSound
 } from '../../assets';
 
 import {I18NId, I18NStatic} from '../../i18n';
@@ -216,7 +252,7 @@ export class StageRenderer extends Phaser.Scene {
     this.loadImage('colors-green', colorGreen);
     this.loadImage('colors-orange', colorOrange);
 
-    this.loadImage('trigrams-sap', trigramSap);
+    this.loadImage('trigrams-sab', trigramSab);
     this.loadImage('trigrams-gem', trigramGem);
     this.loadImage('trigrams-wid', trigramWid);
     this.loadImage('trigrams-zof', trigramZof);
@@ -234,7 +270,7 @@ export class StageRenderer extends Phaser.Scene {
     this.loadImage('words-drill', wordDrill);
     this.loadImage('words-pear', wordPear);
     this.loadImage('words-thyme', wordThyme);
-    this.loadImage('words-nut', wordNut);
+    this.loadImage('words-nuts', wordNuts);
     this.loadImage('words-apple', wordApple);
     this.loadImage('words-saw', wordSaw);
     this.loadImage('words-ham', wordHam);
@@ -283,18 +319,57 @@ export class StageRenderer extends Phaser.Scene {
     this.loadAudio('numbers-11-audio', number11Sound);
     this.loadAudio('numbers-12-audio', number12Sound);
 
-    this.loadAudio('trigrams-sap-audio', syllableSapSound);
-    this.loadAudio('trigrams-gem-audio', syllableGemSound);
-    this.loadAudio('trigrams-wid-audio', syllableWidSound);
-    this.loadAudio('trigrams-zof-audio', syllableZofSound);
-    this.loadAudio('trigrams-quel-audio', syllableQuelSound);
-    this.loadAudio('trigrams-ras-audio', syllableRasSound);
-    this.loadAudio('trigrams-bra-audio', syllableBraSound);
-    this.loadAudio('trigrams-ble-audio', syllableBleSound);
-    this.loadAudio('trigrams-pin-audio', syllablePinSound);
-    this.loadAudio('trigrams-cod-audio', syllableCodSound);
-    this.loadAudio('trigrams-ter-audio', syllableTerSound);
-    this.loadAudio('trigrams-nuk-audio', syllableNukSound);
+    this.loadAudio('colors-pink-audio', colorPinkSound);
+    this.loadAudio('colors-light-blue-audio', colorLightBlueSound);
+    this.loadAudio('colors-black-audio', colorBlackSound);
+    this.loadAudio('colors-brown-audio', colorBrownSound);
+    this.loadAudio('colors-purple-audio', colorPurpleSound);
+    this.loadAudio('colors-white-audio', colorWhiteSound);
+    this.loadAudio('colors-gray-audio', colorGraySound);
+    this.loadAudio('colors-blue-audio', colorBlueSound);
+    this.loadAudio('colors-red-audio', colorRedSound);
+    this.loadAudio('colors-yellow-audio', colorYellowSound);
+    this.loadAudio('colors-green-audio', colorGreenSound);
+    this.loadAudio('colors-orange-audio', colorOrangeSound);
+
+    this.loadAudio('trigrams-sab-audio', trigramSabSound);
+    this.loadAudio('trigrams-gem-audio', trigramGemSound);
+    this.loadAudio('trigrams-wid-audio', trigramWidSound);
+    this.loadAudio('trigrams-zof-audio', trigramZofSound);
+    this.loadAudio('trigrams-quel-audio', trigramQuelSound);
+    this.loadAudio('trigrams-ras-audio', trigramRasSound);
+    this.loadAudio('trigrams-bra-audio', trigramBraSound);
+    this.loadAudio('trigrams-ble-audio', trigramBleSound);
+    this.loadAudio('trigrams-pin-audio', trigramPinSound);
+    this.loadAudio('trigrams-cod-audio', trigramCodSound);
+    this.loadAudio('trigrams-ter-audio', trigramTerSound);
+    this.loadAudio('trigrams-nuk-audio', trigramNukSound);
+
+    this.loadAudio('words-eggs-audio', wordEggsSound);
+    this.loadAudio('words-walnuts-audio', wordWalnutsSound);
+    this.loadAudio('words-drill-audio', wordDrillSound);
+    this.loadAudio('words-pear-audio', wordPearSound);
+    this.loadAudio('words-thyme-audio', wordThymeSound);
+    this.loadAudio('words-nuts-audio', wordNutsSound);
+    this.loadAudio('words-apple-audio', wordAppleSound);
+    this.loadAudio('words-saw-audio', wordSawSound);
+    this.loadAudio('words-ham-audio', wordHamSound);
+    this.loadAudio('words-hammer-audio', wordHammerSound);
+    this.loadAudio('words-melon-audio', wordMelonSound);
+    this.loadAudio('words-lemon-audio', wordLemonSound);
+
+    this.loadAudio('tools-roller-audio', toolRollerSound);
+    this.loadAudio('tools-wheel-barrow-audio', toolWheelBarrowSound);
+    this.loadAudio('tools-broom-audio', toolBroomSound);
+    this.loadAudio('tools-hammer-tools-audio', toolHammerSound);
+    this.loadAudio('tools-hand-saw-audio', toolHandSawSound);
+    this.loadAudio('tools-pliers-audio', toolPliersSound);
+    this.loadAudio('tools-trowel-audio', toolTrowelSound);
+    this.loadAudio('tools-brush-audio', toolBrushSound);
+    this.loadAudio('tools-saw-tools-audio', toolSawSound);
+    this.loadAudio('tools-ladder-audio', toolLadderSound);
+    this.loadAudio('tools-scissors-audio', toolScissorsSound);
+    this.loadAudio('tools-measurement-tape-audio', toolMeasurementTapeSound);
   }
 
   loadImage(id, path) {

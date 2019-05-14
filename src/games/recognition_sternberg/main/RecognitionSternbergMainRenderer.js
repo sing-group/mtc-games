@@ -355,7 +355,8 @@ export class RecognitionSternbergMainRenderer extends StageRenderer {
 
   generateCandidateDices() {
     this.candidateDices = this.status.stimulusValues.map(value => {
-      return this.status.stimulus + '-' + value;
+      let candidate = this.status.stimulus + '-' + value;
+      return candidate.toLowerCase();
     });
   }
 

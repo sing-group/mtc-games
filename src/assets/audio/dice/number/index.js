@@ -19,18 +19,18 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import number1Sound from './1.m4a';
-import number2Sound from './2.m4a';
-import number3Sound from './3.m4a';
-import number4Sound from './4.m4a';
-import number5Sound from './5.m4a';
-import number6Sound from './6.m4a';
-import number7Sound from './7.m4a';
-import number8Sound from './8.m4a';
-import number9Sound from './9.m4a';
-import number10Sound from './10.m4a';
-import number11Sound from './11.m4a';
-import number12Sound from './12.m4a';
+import number1Sound from './1.mp3';
+import number2Sound from './2.mp3';
+import number3Sound from './3.mp3';
+import number4Sound from './4.mp3';
+import number5Sound from './5.mp3';
+import number6Sound from './6.mp3';
+import number7Sound from './7.mp3';
+import number8Sound from './8.mp3';
+import number9Sound from './9.mp3';
+import number10Sound from './10.mp3';
+import number11Sound from './11.mp3';
+import number12Sound from './12.mp3';
 
 export {
   number1Sound,

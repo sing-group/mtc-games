@@ -54,8 +54,8 @@ export class CalculusGameMetadata extends GameMetadata {
       CalculusGameMetadata[DEFAULTS] = Object.assign({
         NUMBER_OF_TRIES: 3,
         NUMBER_OF_OPERATIONS: 5,
-        TIME_PER_OPERATION: 5,
-        SHOWN_OPERATION_TIME: 2
+        TIME_PER_OPERATION: 7,
+        SHOWN_OPERATION_TIME: 7
       }, {});
 
       Object.freeze(CalculusGameMetadata[DEFAULTS]);
