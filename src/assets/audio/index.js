@@ -19,5 +19,10 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+import {AudioAssets} from './AudioAssets';
+
 export * from './dice';
 export * from './fx';
+
+export {AudioAssets};

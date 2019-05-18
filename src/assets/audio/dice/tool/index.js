@@ -32,6 +32,8 @@ import toolScissorsSound from './scissors.mp3';
 import toolTrowelSound from './trowel.mp3';
 import toolWheelBarrowSound from './wheel-barrow.mp3';
 
+import {AudioDiceToolAssets} from './AudioDiceToolAssets';
+
 export {
   toolBroomSound,
   toolBrushSound,
@@ -46,3 +48,5 @@ export {
   toolTrowelSound,
   toolWheelBarrowSound
 };
+
+export {AudioDiceToolAssets};

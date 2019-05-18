@@ -32,6 +32,8 @@ import letterJSound from './j.mp3';
 import letterKSound from './k.mp3';
 import letterLSound from './l.mp3';
 
+import {AudioDiceLetterAssets} from './AudioDiceLetterAssets';
+
 export {
   letterASound,
   letterBSound,
@@ -46,3 +48,5 @@ export {
   letterKSound,
   letterLSound
 };
+
+export {AudioDiceLetterAssets};

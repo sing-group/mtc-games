@@ -32,6 +32,8 @@ import trigramTer from './ter.png';
 import trigramWid from './wid.png';
 import trigramZof from './zof.png';
 
+import {ImageDiceTrigramAssets} from './ImageDiceTrigramAssets';
+
 export {
   trigramBle,
   trigramBra,
@@ -46,3 +48,5 @@ export {
   trigramWid,
   trigramZof
 };
+
+export {ImageDiceTrigramAssets};

@@ -32,6 +32,8 @@ import colorRedSound from './red.mp3';
 import colorWhiteSound from './white.mp3';
 import colorYellowSound from './yellow.mp3';
 
+import {AudioDiceColorAssets} from './AudioDiceColorAssets';
+
 export {
   colorBlackSound,
   colorBlueSound,
@@ -46,3 +48,5 @@ export {
   colorWhiteSound,
   colorYellowSound
 };
+
+export {AudioDiceColorAssets};

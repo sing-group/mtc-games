@@ -19,9 +19,13 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import {AudioDiceAssets} from './AudioDiceAssets';
+
 export * from './color';
 export * from './letter';
 export * from './number';
 export * from './tool';
 export * from './trigram';
 export * from './word';
+
+export {AudioDiceAssets};

@@ -32,6 +32,8 @@ import trigramTerSound from './ter.mp3';
 import trigramWidSound from './wid.mp3';
 import trigramZofSound from './zof.mp3';
 
+import {AudioDiceTrigramAssets} from './AudioDiceTrigramAssets';
+
 export {
   trigramBleSound,
   trigramBraSound,
@@ -46,3 +48,5 @@ export {
   trigramWidSound,
   trigramZofSound
 };
+
+export {AudioDiceTrigramAssets};

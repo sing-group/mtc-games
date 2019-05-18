@@ -32,6 +32,8 @@ import number10Sound from './10.mp3';
 import number11Sound from './11.mp3';
 import number12Sound from './12.mp3';
 
+import {AudioDiceNumberAssets} from './AudioDiceNumberAssets';
+
 export {
   number1Sound,
   number2Sound,
@@ -46,3 +48,5 @@ export {
   number11Sound,
   number12Sound
 };
+
+export {AudioDiceNumberAssets};

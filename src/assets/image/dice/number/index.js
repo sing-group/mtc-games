@@ -32,6 +32,8 @@ import number10 from './10.png';
 import number11 from './11.png';
 import number12 from './12.png';
 
+import {ImageDiceNumberAssets} from './ImageDiceNumberAssets';
+
 export {
   number1,
   number2,
@@ -46,3 +48,5 @@ export {
   number11,
   number12
 };
+
+export {ImageDiceNumberAssets};

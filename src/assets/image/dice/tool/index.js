@@ -32,6 +32,8 @@ import toolScissors from './scissors.png';
 import toolTrowel from './trowel.png';
 import toolWheelBarrow from './wheel-barrow.png';
 
+import {ImageDiceToolAssets} from './ImageDiceToolAssets';
+
 export {
   toolBroom,
   toolBrush,
@@ -46,3 +48,5 @@ export {
   toolTrowel,
   toolWheelBarrow
 };
+
+export {ImageDiceToolAssets};

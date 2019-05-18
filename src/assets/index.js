@@ -22,3 +22,7 @@
 
 export * from './audio';
 export * from './image';
+
+export * from './Assets'
+export * from './AssetsResources'
+export * from './AssetsStatic'

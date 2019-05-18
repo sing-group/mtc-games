@@ -32,6 +32,8 @@ import letterJ from './j.png';
 import letterK from './k.png';
 import letterL from './l.png';
 
+import {ImageDiceLetterAssets} from './ImageDiceLetterAssets';
+
 export {
   letterA,
   letterB,
@@ -46,3 +48,6 @@ export {
   letterK,
   letterL
 };
+
+export {ImageDiceLetterAssets};
+

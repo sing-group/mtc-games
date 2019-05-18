@@ -32,6 +32,8 @@ import colorRed from './red.png';
 import colorWhite from './white.png';
 import colorYellow from './yellow.png';
 
+import {ImageDiceColorAssets} from './ImageDiceColorAssets';
+
 export {
   colorBlack,
   colorBlue,
@@ -46,3 +48,6 @@ export {
   colorWhite,
   colorYellow
 };
+
+export {ImageDiceColorAssets};
+

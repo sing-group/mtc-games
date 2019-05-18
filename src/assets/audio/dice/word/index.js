@@ -32,6 +32,8 @@ import wordSawSound from './saw.mp3';
 import wordThymeSound from './thyme.mp3';
 import wordWalnutsSound from './walnuts.mp3';
 
+import {AudioDiceWordAssets} from './AudioDiceWordAssets';
+
 export {
   wordAppleSound,
   wordDrillSound,
@@ -46,3 +48,5 @@ export {
   wordThymeSound,
   wordWalnutsSound
 };
+
+export {AudioDiceWordAssets};

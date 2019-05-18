@@ -19,30 +19,112 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import wordApple from './apple.png';
-import wordDrill from './drill.png';
-import wordEggs from './eggs.png';
-import wordHammer from './hammer.png';
-import wordHam from './ham.png';
-import wordLemon from './lemon.png';
-import wordMelon from './melon.png';
-import wordNuts from './nuts.png';
-import wordPear from './pear.png';
-import wordSaw from './saw.png';
-import wordThyme from './thyme.png';
-import wordWalnuts from './walnuts.png';
+import wordAppleEnglish from './en_US/apple.png';
+import wordDrillEnglish from './en_US/drill.png';
+import wordEggsEnglish from './en_US/eggs.png';
+import wordHammerEnglish from './en_US/hammer.png';
+import wordHamEnglish from './en_US/ham.png';
+import wordLemonEnglish from './en_US/lemon.png';
+import wordMelonEnglish from './en_US/melon.png';
+import wordNutsEnglish from './en_US/nuts.png';
+import wordPearEnglish from './en_US/pear.png';
+import wordSawEnglish from './en_US/saw.png';
+import wordThymeEnglish from './en_US/thyme.png';
+import wordWalnutsEnglish from './en_US/walnuts.png';
+
+import wordAppleSpanish from './es_ES/apple.png';
+import wordDrillSpanish from './es_ES/drill.png';
+import wordEggsSpanish from './es_ES/eggs.png';
+import wordHammerSpanish from './es_ES/hammer.png';
+import wordHamSpanish from './es_ES/ham.png';
+import wordLemonSpanish from './es_ES/lemon.png';
+import wordMelonSpanish from './es_ES/melon.png';
+import wordNutsSpanish from './es_ES/nuts.png';
+import wordPearSpanish from './es_ES/pear.png';
+import wordSawSpanish from './es_ES/saw.png';
+import wordThymeSpanish from './es_ES/thyme.png';
+import wordWalnutsSpanish from './es_ES/walnuts.png'
+
+import wordAppleGalician from './gl_ES/apple.png';
+import wordDrillGalician from './gl_ES/drill.png';
+import wordEggsGalician from './gl_ES/eggs.png';
+import wordHammerGalician from './gl_ES/hammer.png';
+import wordHamGalician from './gl_ES/ham.png';
+import wordLemonGalician from './gl_ES/lemon.png';
+import wordMelonGalician from './gl_ES/melon.png';
+import wordNutsGalician from './gl_ES/nuts.png';
+import wordPearGalician from './gl_ES/pear.png';
+import wordSawGalician from './gl_ES/saw.png';
+import wordThymeGalician from './gl_ES/thyme.png';
+import wordWalnutsGalician from './gl_ES/walnuts.png';
+
+import wordApplePortuguese from './pt_PT/apple.png';
+import wordDrillPortuguese from './pt_PT/drill.png';
+import wordEggsPortuguese from './pt_PT/eggs.png';
+import wordHammerPortuguese from './pt_PT/hammer.png';
+import wordHamPortuguese from './pt_PT/ham.png';
+import wordLemonPortuguese from './pt_PT/lemon.png';
+import wordMelonPortuguese from './pt_PT/melon.png';
+import wordNutsPortuguese from './pt_PT/nuts.png';
+import wordPearPortuguese from './pt_PT/pear.png';
+import wordSawPortuguese from './pt_PT/saw.png';
+import wordThymePortuguese from './pt_PT/thyme.png';
+import wordWalnutsPortuguese from './pt_PT/walnuts.png'
+
+import {ImageDiceWordAssets} from './ImageDiceWordAssets';
 
 export {
-  wordApple,
-  wordDrill,
-  wordEggs,
-  wordHammer,
-  wordHam,
-  wordLemon,
-  wordMelon,
-  wordNuts,
-  wordPear,
-  wordSaw,
-  wordThyme,
-  wordWalnuts,
+  wordAppleEnglish,
+  wordDrillEnglish,
+  wordEggsEnglish,
+  wordHammerEnglish,
+  wordHamEnglish,
+  wordLemonEnglish,
+  wordMelonEnglish,
+  wordNutsEnglish,
+  wordPearEnglish,
+  wordSawEnglish,
+  wordThymeEnglish,
+  wordWalnutsEnglish,
+
+  wordAppleSpanish,
+  wordDrillSpanish,
+  wordEggsSpanish,
+  wordHammerSpanish,
+  wordHamSpanish,
+  wordLemonSpanish,
+  wordMelonSpanish,
+  wordNutsSpanish,
+  wordPearSpanish,
+  wordSawSpanish,
+  wordThymeSpanish,
+  wordWalnutsSpanish,
+
+  wordAppleGalician,
+  wordDrillGalician,
+  wordEggsGalician,
+  wordHammerGalician,
+  wordHamGalician,
+  wordLemonGalician,
+  wordMelonGalician,
+  wordNutsGalician,
+  wordPearGalician,
+  wordSawGalician,
+  wordThymeGalician,
+  wordWalnutsGalician,
+
+  wordApplePortuguese,
+  wordDrillPortuguese,
+  wordEggsPortuguese,
+  wordHammerPortuguese,
+  wordHamPortuguese,
+  wordLemonPortuguese,
+  wordMelonPortuguese,
+  wordNutsPortuguese,
+  wordPearPortuguese,
+  wordSawPortuguese,
+  wordThymePortuguese,
+  wordWalnutsPortuguese,
 };
+
+export {ImageDiceWordAssets}
