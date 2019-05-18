@@ -21,12 +21,8 @@
  */
 import backgroundTiledImage from './background-tiled.png';
 import frameImage from './frame.png';
-import scoreFrameImage from './score-frame.png';
-import timeFrameImage from './time-frame.png';
 
 export {
   backgroundTiledImage,
-  frameImage,
-  scoreFrameImage,
-  timeFrameImage
+  frameImage
 };
