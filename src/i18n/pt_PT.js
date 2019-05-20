@@ -49,7 +49,7 @@ export const pt_PT = {
   'nuk': 'Nuk',
   'eggs': 'Ovos',
   'walnuts': 'Nozes',
-  'drill': 'Broca',
+  'drill': 'Berbequin',
   'pear': 'Pêra',
   'thyme': 'Tomilho',
   'nuts': 'Porcas',
