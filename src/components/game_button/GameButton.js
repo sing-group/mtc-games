@@ -106,6 +106,16 @@ export class GameButton {
     this._buttonContainer.on('pointerdown', this._onClick.bind(this._context));
   }
 
+  hide() {
+    this._buttonContainer.setAlpha(0);
+    this._textContainer.setVisible(false);
+  }
+
+  show() {
+    this._buttonContainer.setAlpha(1);
+    this._textContainer.setVisible(true);
+  }
+
   disable() {
     this._buttonContainer.removeInteractive();
     this.initButtonStyle()
