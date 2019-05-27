@@ -22,9 +22,11 @@
 import addition from './addition.png';
 import multiplication from './multiplication.png';
 import subtraction from './subtraction.png';
+import inputBox from './input-box.png';
 
 export {
   addition,
   multiplication,
-  subtraction
+  subtraction,
+  inputBox
 };
