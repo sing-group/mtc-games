@@ -19,9 +19,12 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import {GameInputGrid} from './GameInputGrid';
+import {GameInputElement} from './GameInputElement';
+import {GameInputStyle} from './GameInputStyle';
 
-export * from './game_button';
-export * from './game_score';
-export * from './game_time';
-export * from './game_input';
-export * from './countdown';
+export {
+  GameInputGrid,
+  GameInputElement,
+  GameInputStyle
+};
