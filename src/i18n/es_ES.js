@@ -163,6 +163,7 @@ export const es_ES = {
   'game.playbackHearing.name': 'Reproducción Auditiva',
   'game.playbackHearing.description': 'Sonarán una serie de locuciones previamente grabadas, sin ningún tipo de ' +
     'información visual más que un altavóz representado en pantalla.',
+  'game.playbackHearing.checkBtn': 'VALIDAR',
   'game.playbackHearing.param.timePerElement.name': 'Tiempo de reconocimiento',
   'game.playbackHearing.param.timePerElement.description': 'Número de segundos que se muestra cada grupo de dados.',
   'game.playbackHearing.param.numberOfElements.name': 'Número de dados',

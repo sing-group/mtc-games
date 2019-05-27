@@ -163,6 +163,7 @@ export const pt_PT = {
   'game.playbackHearing.name': 'Reprodução Auditiva',
   'game.playbackHearing.description': 'No princípio deste jogo serão mostrados vários valores de um tipo de face dos dados durante alguns poucos segundos. ' +
     'Logo, são mostrados todos os valores do mesmo tipo de face e você terá que selecionar em ordem inversa os mostrados no princípio.',
+  'game.playbackHearing.checkBtn': 'CHECAR',
   'game.playbackHearing.param.timePerElement.name': 'Tempo de reconhecimento',
   'game.playbackHearing.param.timePerElement.description': 'Número de segundos que cada grupo de dados é mostrado.',
   'game.playbackHearing.param.numberOfElements.name': 'Número de dados',

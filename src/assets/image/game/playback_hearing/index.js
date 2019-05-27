@@ -20,9 +20,9 @@
  *
  */
 import speaker from './speaker.png';
-import inputBox from './input-box.png';
+import unrecognized from './unrecognized.png';
 
 export {
   speaker,
-  inputBox
+  unrecognized
 };

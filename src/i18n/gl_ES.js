@@ -163,6 +163,7 @@ export const gl_ES = {
   'game.playbackHearing.name': 'Reproducción Auditiva',
   'game.playbackHearing.description': 'Soarán unha serie de locucións gravadas previamente sen ningunha información ' +
     'visual distinta dun altofalante representado na pantalla.',
+  'game.playbackHearing.checkBtn': 'REVISAR',
   'game.playbackHearing.param.timePerElement.name': 'Tempo de recoñecemento',
   'game.playbackHearing.param.timePerElement.description': 'Número de segundos que se mostra cada grupo de dados.',
   'game.playbackHearing.param.numberOfElements.name': 'Número de dados',

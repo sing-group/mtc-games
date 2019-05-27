@@ -163,6 +163,7 @@ export const en_US = {
   'game.playbackHearing.name': 'Playback Hearing',
   'game.playbackHearing.description': 'A series of previously recorded locutions will sound, without any visual ' +
     'information other than a loudspeaker represented on the screen.',
+  'game.playbackHearing.checkBtn': 'CHECK',
   'game.playbackHearing.param.timePerElement.name': 'Recognition time',
   'game.playbackHearing.param.timePerElement.description': 'Number of seconds that each dice group is shown to the user.',
   'game.playbackHearing.param.numberOfElements.name': 'Number of dices',

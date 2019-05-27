@@ -24,9 +24,9 @@ import Phaser from 'phaser';
 
 import {StageRenderer} from '../../../game/stage';
 import {PlaybackHearingMainStageStatus} from './PlaybackHearingMainStageStatus';
-import {backgroundTiledImage, diceSelectFX, dockImage, frameImage, inputBox, speaker} from '../../../assets';
+import {backgroundTiledImage, cancelImage, confirmImage, frameImage, speaker, unrecognized} from '../../../assets';
 import {PlaybackHearingGameMetadata} from '../PlaybackHearingGameMetadata';
-import {GameScore, GameTime} from '../../../components';
+import {GameButton, GameInputGrid, GameScore, GameTime} from '../../../components';
 
 export class PlaybackHearingMainRenderer extends StageRenderer {
 
@@ -45,25 +45,22 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
     this.speakerSprite = null;
     this.lastSoundHearing = null;
     this.soundsHearing = Array();
-    this.successfulDices = Array();
+    this.changeSpriteEvent = null;
 
     this.preloadImages();
     this.preloadAudios();
 
     this.loadImage('background', backgroundTiledImage);
-    this.loadImage('dock', dockImage);
     this.loadImage('frame', frameImage);
     this.loadImage('speaker', speaker);
-    this.loadImage('inputBox', inputBox);
-    this.loadAudio('diceSelectFX', diceSelectFX);
+    this.loadImage('unrecognized', unrecognized);
+    this.loadImage('confirm', confirmImage);
+    this.loadImage('cancel', cancelImage);
   }
 
   create() {
     // Add Stimulus
     this.status.stimulus = this.game.configuration.parameterValues.diceFace;
-
-    // Add sounds
-    this.diceSelectSound = this.load.audio('diceSelectFX', diceSelectFX);
 
     // Add background image
     this.add.tileSprite(0, 0, this.worldWidth * 4, this.worldHeight * 4, 'background');
@@ -74,18 +71,13 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
     this.timePanel = new GameTime(this.configuration.pixelOffsets.frameX, this.configuration.pixelOffsets.frameY,
       'frame', this.getStandardGameText('time') + ': ' + this.game.configuration.time, this.configuration.textStyles.inGameTime, this);
 
-    //Calculate automatic dice scale
-    let calcSprite = this.add.sprite(0, 0, this.getRandomStimulusSpriteName());
-    calcSprite.width = Math.min(this.worldWidth, this.worldHeight) / 7;
-    if (this.configuration.diceScales.shown < 0) {
-      this.diceScaleShown = calcSprite.scaleX * 3;
-    } else {
-      this.diceScaleShown = this.configuration.diceScales.shown;
-    }
-    calcSprite.destroy();
+    this.inputElements = new GameInputGrid(this.game.configuration.parameterValues.numberOfElements, 175, 30, 'unrecognized', null, null, this);
 
-    this.hideGamePanels();
-    this.status.start();
+    this.checkButton = new GameButton(this.worldHorizontalMiddle, this.worldHeight - 40, 200, 40, this.getText('game.playbackHearing.checkBtn'), this.checkResponse, this, null, null);
+
+    this._calculateDiceScale();
+    this._hideGamePanels();
+    this._startGame();
   }
 
   update() {
@@ -139,9 +131,8 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
           this.status.phase = PlaybackHearingMainStageStatus.PHASES.DICE_WRITING;
           this.status.timeTakenByShow = this.status.secondsElapsed;
           this.status._startCountdown();
-          this.drawResultsDock();
-          this.drawResultInput();
-          this.showGamePanels();
+          this._showGamePanels();
+          this.inputElements.changeFocus(0);
 
           // Add keyboard input event
           this.input.keyboard.on('keydown', this.onKeyBoardEvent.bind(this));
@@ -151,27 +142,77 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
   }
 
   onKeyBoardEvent(event) {
-    if (event.keyCode === this.keyCodes.BACKSPACE && this.textEntry.text.length > 0) {
-      this.textEntry.text = this.textEntry.text.substr(0, this.textEntry.text.length - 1);
-    } else if (event.keyCode >= this.keyCodes.ZERO && event.keyCode <= this.keyCodes.NINE && this.textEntry.text.length < 12) {
-      this.textEntry.text += event.key;
-    } else if (event.keyCode >= this.keyCodes.A && event.keyCode <= this.keyCodes.Z && this.textEntry.text.length < 12) {
-      this.textEntry.text += event.key;
-    } else if (event.keyCode >= this.keyCodes.NUMPAD_ZERO && event.keyCode <= this.keyCodes.NUMPAD_NINE && this.textEntry.text.length < 12) {
-      this.textEntry.text += event.key;
-    } else if (event.keyCode === this.keyCodes.ENTER && this.textEntry.text.length > 0) {
-      this.sound.play('diceSelectFX', this.diceSelectSound);
-      let next = this.soundsHearing[0];
-      if (this.textEntry.text.trim().toUpperCase() === next.split('-').reverse()[0].toUpperCase()) {
-        this.soundsHearing.splice(this.soundsHearing.indexOf(next), 1);
-        this.successfulDices.push(next);
-        this.drawSuccessfulDice(next);
+    event.preventDefault();
+    event.stopPropagation();
+
+    let currentFocusPosition = this.inputElements.getFocusedElementPosition();
+
+    if (currentFocusPosition !== null) {
+
+      let currentText = this.inputElements.getText() || '';
+      let hasText = currentText.length > 0;
+      let canWrite = currentText.length <= 8;
+      let isBackSpace = event.keyCode === this.keyCodes.BACKSPACE;
+      let isTab = event.keyCode === this.keyCodes.TAB;
+      let isNumeric = event.keyCode >= this.keyCodes.ZERO && event.keyCode <= this.keyCodes.NINE;
+      let isNumpad = event.keyCode >= this.keyCodes.NUMPAD_ZERO && event.keyCode <= this.keyCodes.NUMPAD_NINE;
+      let isLetter = event.keyCode >= this.keyCodes.A && event.keyCode <= this.keyCodes.Z;
+
+      if (isBackSpace && hasText) {
+        this._changeSprite();
+        this.inputElements.setText(currentText.substr(0, currentText.length - 1));
+      } else if ((isNumeric || isLetter || isNumpad) && canWrite) {
+        this._changeSprite();
+        this.inputElements.setText(currentText + event.key.toUpperCase());
+      } else if (isTab) {
+        let nextFocusPosition = (currentFocusPosition + 1 < this.inputElements.getValues().length) ? currentFocusPosition + 1 : 0;
+        this.inputElements.changeFocus(nextFocusPosition);
+      }
+    }
+  }
+
+  _changeSprite() {
+    if (this.changeSpriteEvent) {
+      this.changeSpriteEvent.remove(false);
+    }
+    this.changeSpriteEvent = this.time.addEvent({
+      delay: 100, callback: this.doChange, callbackScope: this, loop: false
+    });
+  }
+
+  doChange() {
+    let existentDice = false;
+    let stimulus = this.status.stimulus + '-' + this.inputElements.getText().toLowerCase();
+    this.status.stimulusValues.forEach((value) => {
+      let val = (typeof value === 'string') ? value.toLowerCase() : value;
+      if (this.status.stimulus + '-' + val === stimulus) {
+        existentDice = true;
+      }
+    });
+    let position = this.inputElements.getFocusedElementPosition();
+    if (position !== -1) {
+      this.inputElements.changeSprite(position, existentDice ? stimulus : 'unrecognized', 0.1);
+    }
+  }
+
+  checkResponse() {
+    this.checkButton.disable();
+    this.inputElements.disable();
+    let values = this.inputElements.getValues();
+    this.soundsHearing.forEach((value, index) => {
+      let response = values[index].trim().toUpperCase();
+      let input = value.split('-').reverse()[0].toUpperCase();
+      if (response === input) {
+        this.inputElements.changeSprite(index, 'confirm', 0.3);
         this.status.increaseGuessed();
       } else {
+        this.inputElements.changeSprite(index, 'cancel', 0.3);
         this.status.increaseFailed();
       }
-      this.textEntry.text = '';
-    }
+    });
+    this.time.addEvent({
+      delay: 1000, callback: this._endGame, callbackScope: this, loop: false
+    });
   }
 
   getRandomStimulusSpriteNameWithoutDuplicates() {
@@ -216,50 +257,6 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
     );
   }
 
-  drawResultInput() {
-    // Input introduction
-    this.textLabel = this.add.text(this.worldWidth / 2, (this.worldHeight / 2) - 50,
-      this.getStandardGameText('response'), this.configuration.textStyles.responseLabel);
-    this.textLabel.setOrigin(0.5, 0.5);
-
-    this.textEntrySprite = this.add.sprite(this.textLabel.x, this.textLabel.y + 50, 'inputBox');
-    this.textEntrySprite.setScale(0.4, 0.3);
-    this.textEntrySprite.setOrigin(0.5, 0.5);
-
-    this.textEntry = this.add.text(this.textLabel.x, this.textLabel.y + 50, '', this.configuration.textStyles.responseInput);
-    this.textEntry.setOrigin(0.5, 0.5);
-  }
-
-  drawResultsDock() {
-    // Add dock sprite
-    this.dockSprite = this.add.sprite(0, 0, 'dock');
-    this.dockSprite.setOrigin(0.5, 0.5);
-    this.dockSprite.x = this.worldWidth / 2;
-    this.dockSprite.y = this.calculateCenteredY(this.dockSprite.height);
-  }
-
-  drawSuccessfulDice(selectedElement) {
-    const leftOffset = this.dockSprite.x - (this.dockSprite.width / 2) + 45;
-    const innerSeparation = 5;
-    const currentSprite = this.add.sprite(0, 0, selectedElement);
-
-    currentSprite.setOrigin(0.5, 0.5);
-    currentSprite.setScale(this.configuration.diceScales.result);
-    currentSprite.x = this.textEntrySprite.x;
-    currentSprite.y = this.textEntrySprite.y;
-
-    // Needed to support tween
-    currentSprite.finalX = currentSprite.x;
-    currentSprite.finalY = currentSprite.y;
-
-    this.tweens.add({
-      targets: currentSprite,
-      x: (currentSprite.displayWidth + innerSeparation) * this.successfulDices.length + leftOffset,
-      y: this.dockSprite.y + 10,
-      duration: 100
-    });
-  }
-
   playAudioDice(diceFace) {
     let selectedSound = diceFace + '-audio';
     this.sound.play(selectedSound, {
@@ -268,16 +265,50 @@ export class PlaybackHearingMainRenderer extends StageRenderer {
     });
   }
 
-  hideGamePanels() {
+  /**
+   * Hide all the game panels
+   * @private
+   */
+  _hideGamePanels() {
     this.scorePanel.hide();
     this.timePanel.hide();
+    this.inputElements.hide();
+    this.checkButton.hide();
   }
 
-  showGamePanels() {
+  /**
+   * Show all the game panels
+   * @private
+   */
+  _showGamePanels() {
     if (this.game.configuration.timerVisible) {
       this.timePanel.show();
     }
     this.scorePanel.show();
+    this.inputElements.show();
+    this.checkButton.show();
   }
 
+  /**
+   * Calculates the dice scale
+   * @private
+   */
+  _calculateDiceScale() {
+    let calcSprite = this.add.sprite(0, 0, this.getRandomStimulusSpriteName());
+    calcSprite.width = Math.min(this.worldWidth, this.worldHeight) / 7;
+    if (this.configuration.diceScales.shown < 0) {
+      this.diceScaleShown = calcSprite.scaleX * 3;
+    } else {
+      this.diceScaleShown = this.configuration.diceScales.shown;
+    }
+    calcSprite.destroy();
+  }
+
+  _startGame() {
+    this.status.start();
+  }
+
+  _endGame() {
+    this.status.finishGame();
+  }
 }

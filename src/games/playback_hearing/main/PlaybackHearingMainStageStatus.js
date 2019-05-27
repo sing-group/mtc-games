@@ -92,13 +92,6 @@ export class PlaybackHearingMainStageStatus extends StageStatus {
 
   increaseGuessed() {
     this.guessed++;
-    this.checkIfAllGuessed();
-  }
-
-  checkIfAllGuessed() {
-    if (this.areAllGuessed()) {
-      this.finishGame();
-    }
   }
 
   areAllGuessed() {
