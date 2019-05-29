@@ -19,12 +19,18 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import {GameCallback} from '../../game/callback';
+import check from 'check-types';
 
-export * from './recognition';
-export * from './verbal_fluency';
-export * from './central_executive';
-export * from './playback_hearing';
-export * from './associated_pairs';
-export * from './recognition_sternberg';
-export * from './calculus';
-export * from './attentional_span';
+export class AttentionalSpanGameCallback extends GameCallback {
+  static buildWith(customCallbacks) {
+    check.assert.object(customCallbacks, 'customCallbacks should be an object');
+
+    const callbacks = Object.assign(new AttentionalSpanGameCallback(), customCallbacks);
+
+    check.assert.function(callbacks.gameStarted, 'customCallbacks.gameStarted should be a function');
+    check.assert.function(callbacks.gameFinished, 'customCallbacks.gameFinished should be a function');
+
+    return callbacks;
+  }
+}

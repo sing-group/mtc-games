@@ -173,7 +173,7 @@ export const pt_PT = {
   'game.playbackHearing.param.timeBetweenElements.name': 'Tempo entre estímulos',
   'game.playbackHearing.param.timeBetweenElements.description': 'Número de segundos que a ser esperado entre estímulos.',
   'game.playbackHearing.param.diceFace.name': 'Tipo de dado',
-  'game.playbackHearing.param.diceFace.description': 'Tipo de dado (NÚMEROS, LETRAS, TRIGRAMAS o ALEATORIO).',
+  'game.playbackHearing.param.diceFace.description': 'Tipo de dado (NÚMEROS, LETRAS, TRIGRAMAS ou ALEATORIO).',
   'game.playbackHearing.result.gameCompleted.name': 'Jogo completado',
   'game.playbackHearing.result.totalTries.name': 'Tentativas totais',
   'game.playbackHearing.result.guessed.name': 'Estímulos adivinhados',
@@ -224,5 +224,23 @@ export const pt_PT = {
   'game.calculus.result.gameCompleted.name': 'Jogo completado',
   'game.calculus.result.totalTries.name': 'Tentativas totai',
   'game.calculus.result.guessed.name': 'Estímulos adivinhados',
-  'game.calculus.result.failed.name': 'Estímulos errados'
+  'game.calculus.result.failed.name': 'Estímulos errados',
+  'game.attentionalSpan.name': 'Span Atencional',
+  'game.attentionalSpan.description': 'No princípio deste jogo serão mostrados vários valores de um tipo de face dos ' +
+    'dados durante alguns poucos segundos. Logo, você terá que escrever os mostrados no princípio.',
+  'game.attentionalSpan.checkBtn': 'CHECAR',
+  'game.attentionalSpan.param.timePerElement.name': 'Tempo de reconhecimento',
+  'game.attentionalSpan.param.timePerElement.description': 'Número de segundos que cada grupo de dados é mostrado.',
+  'game.attentionalSpan.param.numberOfElements.name': 'Número de dados',
+  'game.attentionalSpan.param.numberOfElements.description': 'Número de dados mostrados.',
+  'game.attentionalSpan.param.responseIntroduction.name': 'Introdução dá resposta',
+  'game.attentionalSpan.param.responseIntroduction.description': 'Tipo de introdução da resposta (DIRECTO ou INVERSO).',
+  'game.attentionalSpan.param.timeBetweenElements.name': 'Tempo entre estímulos',
+  'game.attentionalSpan.param.timeBetweenElements.description': 'Número de segundos que a ser esperado entre estímulos.',
+  'game.attentionalSpan.param.diceFace.name': 'Tipo de dado',
+  'game.attentionalSpan.param.diceFace.description': 'Tipo de dado (NÚMEROS, LETRAS ou ALEATORIO).',
+  'game.attentionalSpan.result.gameCompleted.name': 'Jogo completado',
+  'game.attentionalSpan.result.totalTries.name': 'Tentativas totais',
+  'game.attentionalSpan.result.guessed.name': 'Estímulos adivinhados',
+  'game.attentionalSpan.result.failed.name': 'Estímulos errados'
 };

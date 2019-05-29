@@ -19,12 +19,17 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import {AttentionalSpanGame} from './AttentionalSpanGame';
+import {AttentionalSpanGameCallback} from './AttentionalSpanGameCallback';
+import {AttentionalSpanGameMetadata} from './AttentionalSpanGameMetadata';
+import {AttentionalSpanGameResult} from './AttentionalSpanGameResult';
+import {AttentionalSpanStatus} from './AttentionalSpanStatus';
 
-export * from './recognition';
-export * from './verbal_fluency';
-export * from './central_executive';
-export * from './playback_hearing';
-export * from './associated_pairs';
-export * from './recognition_sternberg';
-export * from './calculus';
-export * from './attentional_span';
+export {
+  AttentionalSpanGame,
+  AttentionalSpanGameCallback,
+  AttentionalSpanGameMetadata,
+  AttentionalSpanGameResult,
+  AttentionalSpanStatus
+};
+export * from './main';

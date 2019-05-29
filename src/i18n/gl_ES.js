@@ -224,5 +224,23 @@ export const gl_ES = {
   'game.calculus.result.gameCompleted.name': 'Xogo completado',
   'game.calculus.result.totalTries.name': 'Intentos totais',
   'game.calculus.result.guessed.name': 'Estímulos acertados',
-  'game.calculus.result.failed.name': 'Estímulos fallados'
+  'game.calculus.result.failed.name': 'Estímulos fallados',
+  'game.attentionalSpan.name': 'Span Atencional',
+  'game.attentionalSpan.description': 'No inicio deste xogo móstranse varios valores dun tipo de cara dos dados durante ' +
+    'uns poucos segundos. A continuación, terás que escribir o valor de aqueles mostrados durante o inicio do xogo.',
+  'game.attentionalSpan.checkBtn': 'REVISAR',
+  'game.attentionalSpan.param.timePerElement.name': 'Tempo de recoñecemento',
+  'game.attentionalSpan.param.timePerElement.description': 'Número de segundos que se mostra cada grupo de dados.',
+  'game.attentionalSpan.param.numberOfElements.name': 'Número de dados',
+  'game.attentionalSpan.param.numberOfElements.description': 'Número de dados mostrados.',
+  'game.attentionalSpan.param.responseIntroduction.name': 'Introdución da resposta',
+  'game.attentionalSpan.param.responseIntroduction.description': 'Tipo de introdución da resposta (DIRECTO ou INVERSO).',
+  'game.attentionalSpan.param.timeBetweenElements.name': 'Tiempo entre estímulos',
+  'game.attentionalSpan.param.timeBetweenElements.description': 'Número de segundos que se esperará entre estímulos.',
+  'game.attentionalSpan.param.diceFace.name': 'Tipo de dado',
+  'game.attentionalSpan.param.diceFace.description': 'Tipo de dado (NÚMEROS, LETRAS ou ALEATORIO).',
+  'game.attentionalSpan.result.gameCompleted.name': 'Xogo completado',
+  'game.attentionalSpan.result.totalTries.name': 'Intentos totais',
+  'game.attentionalSpan.result.guessed.name': 'Estímulos acertados',
+  'game.attentionalSpan.result.failed.name': 'Estímulos fallados'
 };

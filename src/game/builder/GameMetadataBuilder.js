@@ -26,6 +26,7 @@ import {PlaybackHearingGameMetadata} from '../../games/playback_hearing';
 import {AssociatedPairsGameMetadata} from '../../games/associated_pairs';
 import {RecognitionSternbergGameMetadata} from '../../games/recognition_sternberg';
 import {CalculusGameMetadata} from '../../games/calculus';
+import {AttentionalSpanGameMetadata} from '../../games/attentional_span';
 
 
 export class GameMetadataBuilder {
@@ -37,7 +38,8 @@ export class GameMetadataBuilder {
       PlaybackHearingGameMetadata.ID,
       AssociatedPairsGameMetadata.ID,
       RecognitionSternbergGameMetadata.ID,
-      CalculusGameMetadata.ID
+      CalculusGameMetadata.ID,
+      AttentionalSpanGameMetadata.ID
     ];
   }
 
@@ -57,6 +59,8 @@ export class GameMetadataBuilder {
         return RecognitionSternbergGameMetadata;
       case CalculusGameMetadata.ID:
         return CalculusGameMetadata;
+      case AttentionalSpanGameMetadata.ID:
+        return AttentionalSpanGameMetadata;
       default:
         throw new Error('Unrecognized game metadata id: ' + id);
     }

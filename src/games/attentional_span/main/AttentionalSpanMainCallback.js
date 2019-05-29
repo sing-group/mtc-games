@@ -19,12 +19,10 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import {MainStageCallback} from '../../../game/stage';
 
-export * from './recognition';
-export * from './verbal_fluency';
-export * from './central_executive';
-export * from './playback_hearing';
-export * from './associated_pairs';
-export * from './recognition_sternberg';
-export * from './calculus';
-export * from './attentional_span';
+export class AttentionalSpanMainCallback extends MainStageCallback {
+  constructor(callbacks) {
+    super(callbacks);
+  }
+}

@@ -224,5 +224,23 @@ export const en_US = {
   'game.calculus.result.gameCompleted.name': 'Game completed',
   'game.calculus.result.totalTries.name': 'Total tries',
   'game.calculus.result.guessed.name': 'Guessed stimulus',
-  'game.calculus.result.failed.name': 'Failed stimulus'
+  'game.calculus.result.failed.name': 'Failed stimulus',
+  'game.attentionalSpan.name': 'Attentional Span',
+  'game.attentionalSpan.description': 'At the start of this game some values of the same dice face are shown for a few seconds. ' +
+    'Then, you will have to write the ones showed at the game start.',
+  'game.attentionalSpan.checkBtn': 'CHECK',
+  'game.attentionalSpan.param.timePerElement.name': 'Recognition time',
+  'game.attentionalSpan.param.timePerElement.description': 'Number of seconds that each dice group is shown to the user.',
+  'game.attentionalSpan.param.numberOfElements.name': 'Number of dices',
+  'game.attentionalSpan.param.numberOfElements.description': 'Number of dices shown.',
+  'game.attentionalSpan.param.responseIntroduction.name': 'Response Introduction',
+  'game.attentionalSpan.param.responseIntroduction.description': 'Type of response introduction (DIRECT or INVERSE).',
+  'game.attentionalSpan.param.timeBetweenElements.name': 'Time between elements',
+  'game.attentionalSpan.param.timeBetweenElements.description': 'Number of seconds between shown elements',
+  'game.attentionalSpan.param.diceFace.name': 'Dice face',
+  'game.attentionalSpan.param.diceFace.description': 'Dice face (NUMBERS, LETTERS or RANDOM).',
+  'game.attentionalSpan.result.gameCompleted.name': 'Game completed',
+  'game.attentionalSpan.result.totalTries.name': 'Total tries',
+  'game.attentionalSpan.result.guessed.name': 'Guessed stimulus',
+  'game.attentionalSpan.result.failed.name': 'Failed stimulus'
 };
