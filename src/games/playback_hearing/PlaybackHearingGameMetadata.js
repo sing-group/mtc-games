@@ -41,7 +41,7 @@ export class PlaybackHearingGameMetadata extends StandardGameMetadata {
         ),
         Parameter.build(
           IntegerParameter, PlaybackHearingGameMetadata.ID,
-          'numberOfElements', PlaybackHearingGameMetadata.DEFAULTS.NUMBER_OF_ELEMENTS, 4, MtcDiceFace.COUNT_VALUES
+          'numberOfElements', PlaybackHearingGameMetadata.DEFAULTS.NUMBER_OF_ELEMENTS, 1, MtcDiceFace.COUNT_VALUES
         ),
         Parameter.build(
           EnumStringParameter, PlaybackHearingGameMetadata.ID,

@@ -41,7 +41,7 @@ export class AttentionalSpanGameMetadata extends StandardGameMetadata {
         ),
         Parameter.build(
           IntegerParameter, AttentionalSpanGameMetadata.ID,
-          'numberOfElements', AttentionalSpanGameMetadata.DEFAULTS.NUMBER_OF_ELEMENTS, 3, MtcDiceFace.COUNT_VALUES
+          'numberOfElements', AttentionalSpanGameMetadata.DEFAULTS.NUMBER_OF_ELEMENTS, 1, MtcDiceFace.COUNT_VALUES
         ),
         Parameter.build(
           EnumStringParameter, AttentionalSpanGameMetadata.ID,
@@ -61,7 +61,7 @@ export class AttentionalSpanGameMetadata extends StandardGameMetadata {
   static get DEFAULTS() {
     if (!AttentionalSpanGameMetadata[DEFAULTS]) {
       AttentionalSpanGameMetadata[DEFAULTS] = Object.assign({
-        TIME_BETWEEN_ELEMENTS: 1,
+        TIME_BETWEEN_ELEMENTS: 3,
         NUMBER_OF_ELEMENTS: Math.floor(MtcDiceFace.COUNT_VALUES / 4),
         RESPONSE_INTRODUCTION: AttentionalSpanGameMetadata.RESPONSE_TYPES[1],
         DICE_FACE: AttentionalSpanGameMetadata.DICE_FACES_TYPES[2]
